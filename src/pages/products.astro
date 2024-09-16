@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductCard from "../components/ProductCard.jsx";
+---
+
+<Layout>
+    <main>
+        <h1>Products</h1>
+        <ProductCard client:load />
+    </main>
+</Layout>

@@ -4,6 +4,115 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Verbena - Estethic center">
 	<main>
-		<h1>Bienvenido</h1>
+		<!-- Main Image -->
+		<section class="relative">
+			<img
+				src="https://via.placeholder.com/1500x500"
+				alt="Main image"
+				class="w-full h-96 object-cover"
+			/>
+		</section>
+
+		<!-- Explore by Category -->
+		<section class="py-12 bg-gray-50">
+			<div class="container mx-auto text-center">
+				<h2 class="text-3xl font-semibold mb-8">
+					Explora por Categoría
+				</h2>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<!-- Skincare Tips -->
+					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+						<img
+							src="https://via.placeholder.com/400x300"
+							alt="Skincare"
+							class="w-full h-56 object-cover"
+						/>
+						<div class="p-6">
+							<h3 class="text-xl font-semibold mb-4">
+								Consejos de Cuidado de la Piel
+							</h3>
+							<a
+								href="#"
+								class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+								>Explorar más</a
+							>
+						</div>
+					</div>
+					<!-- Makeup Tips -->
+					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+						<img
+							src="https://via.placeholder.com/400x300"
+							alt="Makeup"
+							class="w-full h-56 object-cover"
+						/>
+						<div class="p-6">
+							<h3 class="text-xl font-semibold mb-4">
+								Consejos de Maquillaje
+							</h3>
+							<a
+								href="#"
+								class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+								>Explorar más</a
+							>
+						</div>
+					</div>
+					<!-- For Brides -->
+					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
+						<img
+							src="https://via.placeholder.com/400x300"
+							alt="For Brides"
+							class="w-full h-56 object-cover"
+						/>
+						<div class="p-6">
+							<h3 class="text-xl font-semibold mb-4">
+								Consejos para Novias
+							</h3>
+							<a
+								href="#"
+								class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+								>Explorar más</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Blog Section -->
+		<section class="py-12">
+			<div class="container mx-auto text-center">
+				<h2 class="text-3xl font-semibold mb-8">
+					The Bare Beauty Blog
+				</h2>
+				<p class="text-gray-600 mb-8">
+					Escribe un resumen de lo que trata tu blog. Utiliza tu
+					imaginación para crear algo único.
+				</p>
+				<div
+					class="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-4xl"
+				>
+					<img
+						src="https://via.placeholder.com/800x400"
+						alt="Blog Post"
+						class="w-full h-64 object-cover"
+					/>
+					<div class="p-6">
+						<h3 class="text-2xl font-semibold mb-4">
+							Título del Post Más Reciente
+						</h3>
+						<p class="text-gray-600 mb-4">
+							Aquí puedes escribir una descripción breve sobre tu
+							último post de blog. Dale a tu audiencia una razón
+							para seguir leyendo.
+						</p>
+						<a
+							href="#"
+							class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+							>Leer más</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
 	</main>
 </Layout>

@@ -12,7 +12,7 @@ const Header = () => {
     return (
         <nav className="bg-green-verbena">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Verbena</span>
                 </a>
                 <button
@@ -30,16 +30,16 @@ const Header = () => {
                 <div className={`w-full md:block md:w-auto ${isMenuOpen ? 'block' : 'hidden'}`} id="navbar-default">
                     <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-green-verbena md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-verbena dark:bg-green-verbena md:dark:bg-green-verbena dark:border-gray-700 text-white">
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white rounded ">Home</a>
+                            <a href="/" className="block py-2 px-3 text-white rounded ">Home</a>
                         </li>
                         <li>
                             <a href="/products" className="block py-2 px-3 text-white rounded ">Products</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white rounded ">Services</a>
+                            <a href="/services" className="block py-2 px-3 text-white rounded ">Services</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white rounded ">About</a>
+                            <a href="/about" className="block py-2 px-3 text-white rounded ">About</a>
                         </li>
                         <li>
                             <a href="#" className="block py-2 px-3 text-white rounded "><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
