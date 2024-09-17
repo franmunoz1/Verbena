@@ -13,106 +13,221 @@ import Layout from "../layouts/Layout.astro";
 			/>
 		</section>
 
-		<!-- Explore by Category -->
-		<section class="py-12 bg-gray-50">
-			<div class="container mx-auto text-center">
-				<h2 class="text-3xl font-semibold mb-8">
-					Explora por Categoría
-				</h2>
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-					<!-- Skincare Tips -->
-					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
-						<img
-							src="https://via.placeholder.com/400x300"
-							alt="Skincare"
-							class="w-full h-56 object-cover"
-						/>
-						<div class="p-6">
-							<h3 class="text-xl font-semibold mb-4">
-								Consejos de Cuidado de la Piel
-							</h3>
-							<a
-								href="#"
-								class="bg-blue-500 text-white px-4 py-2 rounded-lg"
-								>Explorar más</a
-							>
-						</div>
-					</div>
-					<!-- Makeup Tips -->
-					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
-						<img
-							src="https://via.placeholder.com/400x300"
-							alt="Makeup"
-							class="w-full h-56 object-cover"
-						/>
-						<div class="p-6">
-							<h3 class="text-xl font-semibold mb-4">
-								Consejos de Maquillaje
-							</h3>
-							<a
-								href="#"
-								class="bg-blue-500 text-white px-4 py-2 rounded-lg"
-								>Explorar más</a
-							>
-						</div>
-					</div>
-					<!-- For Brides -->
-					<div class="bg-white shadow-lg rounded-lg overflow-hidden">
-						<img
-							src="https://via.placeholder.com/400x300"
-							alt="For Brides"
-							class="w-full h-56 object-cover"
-						/>
-						<div class="p-6">
-							<h3 class="text-xl font-semibold mb-4">
-								Consejos para Novias
-							</h3>
-							<a
-								href="#"
-								class="bg-blue-500 text-white px-4 py-2 rounded-lg"
-								>Explorar más</a
-							>
-						</div>
-					</div>
+		<section class="bg-gray-50 py-16">
+			<!-- Sección de 'Quiénes Somos' con texto a la izquierda e imagen a la derecha -->
+			<div
+				class="container mx-auto flex flex-col md:flex-row items-center justify-between"
+			>
+				<!-- Texto a la izquierda -->
+				<div class="w-full md:w-1/2 md:pr-12">
+					<h2
+						class="text-4xl font-serif font-semibold text-gray-800 mb-6"
+					>
+						¿Quiénes Somos?
+					</h2>
+					<p class="text-gray-600 leading-relaxed mb-6">
+						Lorem ipsum dolor sit, amet consectetur adipisicing
+						elit. Animi consequatur cupiditate rerum esse aliquid
+						cum repellendus omnis quam culpa odio accusamus iusto
+						quis laboriosam odit quas, perspiciatis autem
+						necessitatibus maxime! Lorem ipsum dolor sit amet
+						consectetur, adipisicing elit. Sapiente deserunt numquam
+						quibusdam mollitia. Asperiores cupiditate voluptates hic
+						quaerat aspernatur aliquam nihil autem fuga nostrum,
+						soluta nulla reiciendis aperiam quam sit.
+					</p>
+					<a
+						href="/about"
+						class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
+					>
+						Leer más
+					</a>
+				</div>
+
+				<!-- Imagen a la derecha -->
+				<div class="w-full md:w-1/2 mt-8 md:mt-0">
+					<img
+						src="../../public/img/imgface.jpeg"
+						alt="About Us"
+						class="w-full h-96 object-cover rounded-lg shadow-lg"
+					/>
 				</div>
 			</div>
 		</section>
 
-		<!-- Blog Section -->
-		<section class="py-12">
-			<div class="container mx-auto text-center">
-				<h2 class="text-3xl font-semibold mb-8">
-					The Bare Beauty Blog
-				</h2>
-				<p class="text-gray-600 mb-8">
-					Escribe un resumen de lo que trata tu blog. Utiliza tu
-					imaginación para crear algo único.
-				</p>
-				<div
-					class="bg-white shadow-lg rounded-lg overflow-hidden mx-auto max-w-4xl"
+		<section>
+			<!-- Make a section to show some treatments of an esthetic center responsive -->
+			<div class="container mx-auto">
+				<h2
+					class="text-4xl font-serif font-semibold text-gray-800 mb-12 text-center"
 				>
-					<img
-						src="https://via.placeholder.com/800x400"
-						alt="Blog Post"
-						class="w-full h-64 object-cover"
-					/>
-					<div class="p-6">
-						<h3 class="text-2xl font-semibold mb-4">
-							Título del Post Más Reciente
+					Nuestros Tratamientos
+				</h2>
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+				>
+					<div class="bg-gray-100 p-6 rounded-lg shadow-lg relative">
+						<img
+							src="https://via.placeholder.com/300x400"
+							alt="Facial Cleanser"
+							class="w-full h-64 object-cover rounded-lg"
+						/>
+						<h3 class="text-lg font-medium text-gray-900 mt-4">
+							Limpieza Facial
 						</h3>
-						<p class="text-gray-600 mb-4">
-							Aquí puedes escribir una descripción breve sobre tu
-							último post de blog. Dale a tu audiencia una razón
-							para seguir leyendo.
-						</p>
-						<a
-							href="#"
-							class="bg-blue-500 text-white px-4 py-2 rounded-lg"
-							>Leer más</a
-						>
+						<p class="text-xl font-bold text-gray-900">£19.00</p>
+					</div>
+
+					<div class="bg-gray-100 p-6 rounded-lg shadow-lg relative">
+						<img
+							src="https://via.placeholder.com/300x400"
+							alt="Facial Balancing Gel"
+							class="w-full h-64 object-cover rounded-lg"
+						/>
+						<h3 class="text-lg font-medium text-gray-900 mt-4">
+							Gel Facial
+						</h3>
+						<p class="text-xl font-bold text-gray-900">£32.00</p>
+					</div>
+
+					<div class="bg-gray-100 p-6 rounded-lg shadow-lg relative">
+						<img
+							src="https://via.placeholder.com/300x400"
+							alt="Super Glow"
+							class="w-full h-64 object-cover rounded-lg"
+						/>
+						<h3 class="text-lg font-medium text-gray-900 mt-4">
+							Super Glow
+						</h3>
+						<p class="text-xl font-bold text-gray-900">£21.00</p>
+					</div>
+
+					<div class="bg-gray-100 p-6 rounded-lg shadow-lg relative">
+						<img
+							src="https://via.placeholder.com/300x400"
+							alt="Facial Balancing Gel"
+							class="w-full h-64 object-cover rounded-lg"
+						/>
+						<h3 class="text-lg font-medium text-gray-900 mt-4">
+							Gel Facial
+						</h3>
+						<p class="text-xl font-bold text-gray-900">£32.00</p>
 					</div>
 				</div>
+				<div class="flex justify-center mt-8">
+					<a
+						href="/services"
+						class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
+						>Ver todos</a
+					>
+				</div>
+
+				<section class="bg-white py-16">
+					<div class="container mx-auto">
+						<h2
+							class="text-4xl font-serif font-semibold text-gray-800 mb-12 text-center"
+						>
+							Algunos productos
+						</h2>
+						<div
+							class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+						>
+							<div
+								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
+							>
+								<img
+									src="https://via.placeholder.com/300x400"
+									alt="Facial Cleanser"
+									class="w-full h-64 object-cover rounded-lg"
+								/>
+								<span
+									class="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow"
+									>Sale!</span
+								>
+								<h3
+									class="text-lg font-medium text-gray-900 mt-4"
+								>
+									Facial Cleanser
+								</h3>
+								<p class="text-sm text-gray-500 line-through">
+									£25.00
+								</p>
+								<p class="text-xl font-bold text-gray-900">
+									£19.00
+								</p>
+							</div>
+
+							<div
+								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
+							>
+								<img
+									src="https://via.placeholder.com/300x400"
+									alt="Facial Balancing Gel"
+									class="w-full h-64 object-cover rounded-lg"
+								/>
+								<h3
+									class="text-lg font-medium text-gray-900 mt-4"
+								>
+									Facial Balancing Gel
+								</h3>
+								<p class="text-xl font-bold text-gray-900">
+									£32.00
+								</p>
+							</div>
+
+							<div
+								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
+							>
+								<img
+									src="https://via.placeholder.com/300x400"
+									alt="Super Glow"
+									class="w-full h-64 object-cover rounded-lg"
+								/>
+								<span
+									class="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow"
+									>Sale!</span
+								>
+								<h3
+									class="text-lg font-medium text-gray-900 mt-4"
+								>
+									Super Glow
+								</h3>
+								<p class="text-sm text-gray-500 line-through">
+									£23.00
+								</p>
+								<p class="text-xl font-bold text-gray-900">
+									£21.00
+								</p>
+							</div>
+
+							<div
+								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
+							>
+								<img
+									src="https://via.placeholder.com/300x400"
+									alt="Facial Balancing Gel"
+									class="w-full h-64 object-cover rounded-lg"
+								/>
+								<h3
+									class="text-lg font-medium text-gray-900 mt-4"
+								>
+									Facial Balancing Gel
+								</h3>
+								<p class="text-xl font-bold text-gray-900">
+									£32.00
+								</p>
+							</div>
+						</div>
+						<div class="flex justify-center mt-8">
+							<a
+								href="/products"
+								class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
+								>Shop All</a
+							>
+						</div>
+					</div>
+				</section>
 			</div>
 		</section>
-	</main>
-</Layout>
+	</main></Layout
+>
