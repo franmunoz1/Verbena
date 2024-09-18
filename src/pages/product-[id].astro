@@ -1,5 +1,84 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ServiceDetail from "../components/ServiceDetail.jsx";
+
+export async function getStaticPaths() {
+    const services = [{ id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }];
+
+    return services.map((service) => ({
+        params: { id: service.id },
+    }));
+}
+
+// Simula la lista de servicios para mostrar el detalle
+const services = [
+    {
+        id: "1",
+        name: "Dermal Filler (Hyaluronic Acid)",
+        description:
+            "Hyaluronic acid-based fillers add volume to areas such as the lips, cheeks, undereyes, and jawline with immediately visible results.",
+        benefits: [
+            "Aumenta el volumen de los labios y mejillas",
+            "Reduce las ojeras y arrugas",
+            "Resultados visibles de forma inmediata",
+        ],
+        price: "$500",
+        imageUrl: "/path/to/your/image.png",
+    },
+    {
+        id: "2",
+        name: "Botox",
+        description: "Helps relax wrinkles and fine lines.",
+        benefits: [
+            "Reduce la aparición de arrugas",
+            "Efectos temporales y sin invasión",
+            "Mejora la apariencia de líneas finas",
+        ],
+        price: "$350",
+        imageUrl: "/path/to/your/image.png",
+    },
+    {
+        id: "3",
+        name: "Chemical Peel",
+        description: "Improves skin texture and tone.",
+        benefits: [
+            "Exfoliación profunda de la piel",
+            "Mejora el tono y la textura",
+            "Reduce manchas e imperfecciones",
+        ],
+        price: "$200",
+        imageUrl: "/path/to/your/image.png",
+    },
+    {
+        id: "4",
+        name: "Microneedling",
+        description: "Boosts collagen production for smoother skin.",
+        benefits: [
+            "Estimula la producción de colágeno",
+            "Mejora la elasticidad de la piel",
+            "Minimiza cicatrices y poros",
+        ],
+        price: "$300",
+        imageUrl: "/path/to/your/image.png",
+    },
+];
+
+const { id } = Astro.params;
+
+const service = services.find((s) => s.id === id);
+
+if (!service) {
+    throw new Error(`Service with id ${id} not found`);
+}
 ---
 
-<Layout />
+<Layout>
+    <ServiceDetail
+        treatment={service.name}
+        description={service.description}
+        benefits={service.benefits}
+        price={service.price}
+        imageUrl={service.imageUrl}
+        client:load
+    />
+</Layout>
