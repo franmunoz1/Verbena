@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.astro";
+import WhatsappButton from "../components/WhatsappButton.astro";
 
 interface Props {
 	title: string;
@@ -22,7 +23,7 @@ const { title } = Astro.props;
 	<body>
 		<Header client:load />
 		<slot />
-		<!-- Aquí se renderizarán las páginas que utilizan este layout -->
+		<WhatsappButton />
 		<Footer />
 	</body>
 </html>

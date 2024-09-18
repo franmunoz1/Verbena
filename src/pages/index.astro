@@ -1,5 +1,10 @@
 ---
+import CarouselCards from "../components/CarouselCards";
 import Layout from "../layouts/Layout.astro";
+
+// Funcionamiento de la base de datos de astro
+// import { db, Product } from "astro:db";
+// const products = await db.select().from(Product);
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -11,6 +16,13 @@ import Layout from "../layouts/Layout.astro";
 				alt="Main image"
 				class="w-full h-96 object-cover"
 			/>
+			<div class="absolute top-1/2 left-10 transform -translate-y-1/2">
+				<button
+					class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+				>
+					Botón
+				</button>
+			</div>
 		</section>
 
 		<section class="bg-gray-50 py-16">
@@ -47,7 +59,7 @@ import Layout from "../layouts/Layout.astro";
 				<!-- Imagen a la derecha -->
 				<div class="w-full md:w-1/2 mt-8 md:mt-0">
 					<img
-						src="../../public/img/imgface.jpeg"
+						src="/img/imgface.jpeg"
 						alt="About Us"
 						class="w-full h-96 object-cover rounded-lg shadow-lg"
 					/>
@@ -55,13 +67,19 @@ import Layout from "../layouts/Layout.astro";
 			</div>
 		</section>
 
-		<section>
-			<!-- Make a section to show some treatments of an esthetic center responsive -->
+		<!-- Funcionamiento de la base de datos de astro -->
+		<!-- <section>
+			<ul>
+				{products.map((product) => <li>{product.name}</li>)}
+			</ul>
+		</section> -->
+
+		<!-- <section class="bg-white py-16">
 			<div class="container mx-auto">
 				<h2
 					class="text-4xl font-serif font-semibold text-gray-800 mb-12 text-center"
 				>
-					Nuestros Tratamientos
+					Algunos productos
 				</h2>
 				<div
 					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -72,9 +90,14 @@ import Layout from "../layouts/Layout.astro";
 							alt="Facial Cleanser"
 							class="w-full h-64 object-cover rounded-lg"
 						/>
+						<span
+							class="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow"
+							>Sale!</span
+						>
 						<h3 class="text-lg font-medium text-gray-900 mt-4">
-							Limpieza Facial
+							Facial Cleanser
 						</h3>
+						<p class="text-sm text-gray-500 line-through">£25.00</p>
 						<p class="text-xl font-bold text-gray-900">£19.00</p>
 					</div>
 
@@ -85,7 +108,7 @@ import Layout from "../layouts/Layout.astro";
 							class="w-full h-64 object-cover rounded-lg"
 						/>
 						<h3 class="text-lg font-medium text-gray-900 mt-4">
-							Gel Facial
+							Facial Balancing Gel
 						</h3>
 						<p class="text-xl font-bold text-gray-900">£32.00</p>
 					</div>
@@ -96,9 +119,14 @@ import Layout from "../layouts/Layout.astro";
 							alt="Super Glow"
 							class="w-full h-64 object-cover rounded-lg"
 						/>
+						<span
+							class="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow"
+							>Sale!</span
+						>
 						<h3 class="text-lg font-medium text-gray-900 mt-4">
 							Super Glow
 						</h3>
+						<p class="text-sm text-gray-500 line-through">£23.00</p>
 						<p class="text-xl font-bold text-gray-900">£21.00</p>
 					</div>
 
@@ -109,125 +137,32 @@ import Layout from "../layouts/Layout.astro";
 							class="w-full h-64 object-cover rounded-lg"
 						/>
 						<h3 class="text-lg font-medium text-gray-900 mt-4">
-							Gel Facial
+							Facial Balancing Gel
 						</h3>
 						<p class="text-xl font-bold text-gray-900">£32.00</p>
 					</div>
 				</div>
 				<div class="flex justify-center mt-8">
 					<a
-						href="/services"
+						href="/products"
 						class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
-						>Ver todos</a
+						>Shop All</a
 					>
 				</div>
+			</div>
+		</section> -->
 
-				<section class="bg-white py-16">
-					<div class="container mx-auto">
-						<h2
-							class="text-4xl font-serif font-semibold text-gray-800 mb-12 text-center"
-						>
-							Algunos productos
-						</h2>
-						<div
-							class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-						>
-							<div
-								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
-							>
-								<img
-									src="https://via.placeholder.com/300x400"
-									alt="Facial Cleanser"
-									class="w-full h-64 object-cover rounded-lg"
-								/>
-								<span
-									class="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow"
-									>Sale!</span
-								>
-								<h3
-									class="text-lg font-medium text-gray-900 mt-4"
-								>
-									Facial Cleanser
-								</h3>
-								<p class="text-sm text-gray-500 line-through">
-									£25.00
-								</p>
-								<p class="text-xl font-bold text-gray-900">
-									£19.00
-								</p>
-							</div>
-
-							<div
-								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
-							>
-								<img
-									src="https://via.placeholder.com/300x400"
-									alt="Facial Balancing Gel"
-									class="w-full h-64 object-cover rounded-lg"
-								/>
-								<h3
-									class="text-lg font-medium text-gray-900 mt-4"
-								>
-									Facial Balancing Gel
-								</h3>
-								<p class="text-xl font-bold text-gray-900">
-									£32.00
-								</p>
-							</div>
-
-							<div
-								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
-							>
-								<img
-									src="https://via.placeholder.com/300x400"
-									alt="Super Glow"
-									class="w-full h-64 object-cover rounded-lg"
-								/>
-								<span
-									class="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow"
-									>Sale!</span
-								>
-								<h3
-									class="text-lg font-medium text-gray-900 mt-4"
-								>
-									Super Glow
-								</h3>
-								<p class="text-sm text-gray-500 line-through">
-									£23.00
-								</p>
-								<p class="text-xl font-bold text-gray-900">
-									£21.00
-								</p>
-							</div>
-
-							<div
-								class="bg-gray-100 p-6 rounded-lg shadow-lg relative"
-							>
-								<img
-									src="https://via.placeholder.com/300x400"
-									alt="Facial Balancing Gel"
-									class="w-full h-64 object-cover rounded-lg"
-								/>
-								<h3
-									class="text-lg font-medium text-gray-900 mt-4"
-								>
-									Facial Balancing Gel
-								</h3>
-								<p class="text-xl font-bold text-gray-900">
-									£32.00
-								</p>
-							</div>
-						</div>
-						<div class="flex justify-center mt-8">
-							<a
-								href="/products"
-								class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
-								>Shop All</a
-							>
-						</div>
-					</div>
-				</section>
+		<section>
+			<div class="containter mx-auto p-2">
+				<h2
+					class="text-4xl font-serif font-semibold text-gray-800 mb-12 text-center"
+				>
+					Algunos de nuestros tratamientos
+				</h2>
+				<div>
+					<CarouselCards client:load />
+				</div>
 			</div>
 		</section>
-	</main></Layout
->
+	</main>
+</Layout>

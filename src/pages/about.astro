@@ -4,6 +4,82 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
     <main>
-        <h1>About</h1>
+        <div class="bg-gray-50 p-8 text-gray-800">
+            <div class="max-w-4xl mx-auto">
+                <!-- Imagen principal -->
+                <div
+                    class="relative h-64 md:h-96 overflow-hidden rounded-lg shadow-lg mb-10"
+                >
+                    <img
+                        src="/img/centro-estetica.jpg"
+                        alt="Centro de estética"
+                        class="w-full h-full object-cover"
+                    />
+                    <div
+                        class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center"
+                    >
+                        <h1
+                            class="text-white text-4xl md:text-6xl font-bold tracking-wide"
+                        >
+                            Centro Verbena
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Sección de Objetivo -->
+                <section class="mb-12">
+                    <h2
+                        class="text-3xl md:text-4xl font-semibold mb-4 text-gray-900"
+                    >
+                        Objetivo
+                    </h2>
+                    <p class="text-lg md:text-xl leading-relaxed">
+                        Somos un centro especializado en el cuidado de la piel y
+                        bienestar, con el objetivo de transformar la belleza
+                        exterior en confianza interior. Creamos experiencias
+                        únicas que no solo resalten tu apariencia, sino también
+                        nutran tu bienestar y autoestima.
+                    </p>
+                </section>
+
+                <!-- Imagen secundaria -->
+                <div
+                    class="relative h-48 md:h-64 overflow-hidden rounded-lg shadow-lg mb-10"
+                >
+                    <img
+                        src="/img/tratamientos.jpg"
+                        alt="Tratamientos faciales"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+
+                <!-- Sección de Misión -->
+                <section class="mb-12">
+                    <h2
+                        class="text-3xl md:text-4xl font-semibold mb-4 text-gray-900"
+                    >
+                        Misión
+                    </h2>
+                    <p class="text-lg md:text-xl leading-relaxed">
+                        En Verbena, nuestra misión es brindar tratamientos
+                        faciales personalizados, ya que cada piel es única y
+                        requiere un cuidado específico. Nos comprometemos a
+                        ofrecer una experiencia basada en innovación, calidad y
+                        cuidado personalizado.
+                    </p>
+                </section>
+
+                <!-- Imagen final -->
+                <div
+                    class="relative h-48 md:h-64 overflow-hidden rounded-lg shadow-lg"
+                >
+                    <img
+                        src="/img/bienestar.jpg"
+                        alt="Bienestar y cuidado"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
     </main>
 </Layout>

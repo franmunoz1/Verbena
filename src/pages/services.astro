@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/ServiceCard.jsx";
 ---
 
 <Layout>
     <main>
-        <h1>Services</h1>
+        <ServiceCard client:load />
     </main>
 </Layout>

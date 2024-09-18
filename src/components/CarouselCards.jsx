@@ -1,74 +1,102 @@
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'; // Estilos base de Swiper
-import 'swiper/css/pagination'; // Estilos del paginador
-import { Pagination } from 'swiper/modules'; // Importación correcta de Pagination
+'use client'
 
-const ShopCarousel = () => {
+import React from 'react'
+import useEmblaCarousel from 'embla-carousel-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+const cards = [
+    {
+        title: "Dermal Filler (Hyaluronic Acid)",
+        description: "Hyaluronic acid-based fillers add volume to areas such as the lips, cheeks, undereyes, and jawline with immediately visible results.",
+        image: "/img/imghands.jpeg",
+        alt: "Dermal Filler (Hyaluronic Acid)"
+    },
+    {
+        title: "Botox Treatment",
+        description: "Botox injections reduce the appearance of facial wrinkles by temporarily paralyzing underlying muscles.",
+        image: "/placeholder.svg?height=200&width=400",
+        alt: "Botox Treatment"
+    },
+    {
+        title: "Chemical Peel",
+        description: "Chemical peels improve the appearance of the skin by removing damaged outer layers, revealing fresher, younger-looking skin underneath.",
+        image: "/placeholder.svg?height=200&width=400",
+        alt: "Chemical Peel"
+    },
+    {
+        title: "Microdermabrasion",
+        description: "Microdermabrasion is a minimally invasive procedure that renews overall skin tone and texture, improving the appearance of sun damage, wrinkles, and acne scars.",
+        image: "/placeholder.svg?height=200&width=400",
+        alt: "Microdermabrasion"
+    },
+    {
+        title: "Laser Hair Removal",
+        description: "Laser hair removal is a medical procedure that uses a concentrated beam of light to remove unwanted hair.",
+        image: "/placeholder.svg?height=200&width=400",
+        alt: "Laser Hair Removal"
+    },
+    {
+        title: "Facial Rejuvenation",
+        description: "Facial rejuvenation procedures aim to restore a more youthful appearance to the face through various techniques.",
+        image: "/placeholder.svg?height=200&width=400",
+        alt: "Facial Rejuvenation"
+    }
+]
+
+export default function CarouselCards() {
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+
+    const scrollPrev = React.useCallback(() => {
+        if (emblaApi) emblaApi.scrollPrev()
+    }, [emblaApi])
+
+    const scrollNext = React.useCallback(() => {
+        if (emblaApi) emblaApi.scrollNext()
+    }, [emblaApi])
+
     return (
-        <section className="bg-white py-16">
-            <div className="container mx-auto">
-                <h2 className="text-4xl font-serif font-semibold text-gray-800 mb-12 text-center">Shop</h2>
-
-                {/* Carrusel */}
-                <Swiper
-                    slidesPerView={1}
-                    spaceBetween={10}
-                    pagination={{ clickable: true }}
-                    modules={[Pagination]}  // Usar el módulo de paginación aquí
-                    breakpoints={{
-                        640: { slidesPerView: 2, spaceBetween: 20 },
-                        1024: { slidesPerView: 4, spaceBetween: 30 },
-                    }}
-                >
-                    <SwiperSlide>
-                        <div className="bg-gray-100 p-6 rounded-lg shadow-lg relative">
-                            <img src="https://via.placeholder.com/300x400" alt="Facial Cleanser" className="w-full h-64 object-cover rounded-lg" />
-                            <span className="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow">Sale!</span>
-                            <h3 className="text-lg font-medium text-gray-900 mt-4">Facial Cleanser</h3>
-                            <p className="text-sm text-gray-500 line-through">£25.00</p>
-                            <p className="text-xl font-bold text-gray-900">£19.00</p>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className="bg-gray-100 p-6 rounded-lg shadow-lg relative">
-                            <img src="https://via.placeholder.com/300x400" alt="Eye Cream" className="w-full h-64 object-cover rounded-lg" />
-                            <div className="flex items-center mt-2">
-                                <span className="text-yellow-500 text-lg">★★★★☆</span>
+        <div className="relative px-4 py-8">
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex">
+                    {cards.map((card, index) => (
+                        <div key={index} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] md:flex-[0_0_33.33%] lg:flex-[0_0_25%] p-4">
+                            <div className="rounded overflow-hidden shadow-lg p-6 bg-white h-full flex flex-col">
+                                <img
+                                    className="w-full h-[200px] object-cover mb-4"
+                                    src={card.image}
+                                    alt={card.alt}
+                                />
+                                <div className="px-6 py-4 flex-grow">
+                                    <div className="font-bold text-xl mb-2">{card.title}</div>
+                                    <p className="text-gray-700 text-base">
+                                        {card.description}
+                                    </p>
+                                </div>
+                                <div className="px-6 pt-4 pb-2 mt-auto flex flex-col gap-2">
+                                    <button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
+                                        Book Now
+                                    </button>
+                                    <a href="/service-4" className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full inline-block text-center">
+                                        Learn More
+                                    </a>
+                                </div>
                             </div>
-                            <h3 className="text-lg font-medium text-gray-900 mt-4">Eye Cream</h3>
-                            <p className="text-xl font-bold text-gray-900">£54.00</p>
                         </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className="bg-gray-100 p-6 rounded-lg shadow-lg relative">
-                            <img src="https://via.placeholder.com/300x400" alt="Super Glow" className="w-full h-64 object-cover rounded-lg" />
-                            <span className="absolute top-4 right-4 bg-white text-gray-900 text-sm px-3 py-1 rounded-full shadow">Sale!</span>
-                            <h3 className="text-lg font-medium text-gray-900 mt-4">Super Glow</h3>
-                            <p className="text-sm text-gray-500 line-through">£23.00</p>
-                            <p className="text-xl font-bold text-gray-900">£21.00</p>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className="bg-gray-100 p-6 rounded-lg shadow-lg relative">
-                            <img src="https://via.placeholder.com/300x400" alt="Facial Balancing Gel" className="w-full h-64 object-cover rounded-lg" />
-                            <h3 className="text-lg font-medium text-gray-900 mt-4">Facial Balancing Gel</h3>
-                            <p className="text-xl font-bold text-gray-900">£32.00</p>
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
-
-                <div className="flex justify-center mt-8">
-                    <a href="/shop" className="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors">
-                        Shop All
-                    </a>
+                    ))}
                 </div>
             </div>
-        </section>
-    );
-};
-
-export default ShopCarousel;
+            <button
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
+                onClick={scrollPrev}
+            >
+                <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
+                onClick={scrollNext}
+            >
+                <ChevronRight className="w-6 h-6" />
+            </button>
+        </div>
+    )
+}
