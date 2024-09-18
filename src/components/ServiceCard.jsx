@@ -1,103 +1,88 @@
-// src/components/ServiceCard.jsx
 import React, { useState } from "react";
 
 const services = [
-    {
-        id: 1,
-        title: "Dermal Filler (Hyaluronic Acid)",
-        description:
-            "Hyaluronic acid-based fillers add volume to areas such as the lips, cheeks, undereyes, and jawline with immediately visible results.",
-        img: "/img/imghands.jpeg",
-        category: "Filler",
-    },
-    {
-        id: 2,
-        title: "Botox Injections",
-        description:
-            "Botox is used to reduce the appearance of wrinkles and fine lines by temporarily relaxing muscles.",
-        img: "/img/imghands.jpeg",
-        category: "Botox",
-    },
-    {
-        id: 3,
-        title: "Chemical Peel",
-        description:
-            "Chemical peels improve the appearance of the skin by removing the top layers, helping with scars, wrinkles, and discolored skin.",
-        img: "/img/imghands.jpeg",
-        category: "Peel",
-    },
-    // Puedes añadir más servicios aquí.
+    { id: '6', name: 'Limpieza facial prunda', price: 90, summary: 'chau celulas muertas acumuladas, puntos negros,quistes de milium y postulas!', description: 'chau celulas muertas acumuladas, puntos negros,quistes de milium y postulas!. En 10 pasos mejoro la salud y la apariencia de tu piel, eliminando impurezas y revitalizándola. Limpio en profundidad, elimino las células muertas, realizo extracciones de puntos negros, quistes de millium y pústulas, coloco sueros para tratar cada problemática e hidrato en todos los niveles dejando tu piel impecable. 💧🌟', recomendation: '', image: '/img/higieneFacial.jpeg', alt: 'Limpieza facial' },
+    { id: '7', name: 'Limpieza facial + Dermaplaning', price: 100, summary: '¿Te copa la idea de hacerte un peeling apto para todo el año o eliminar esos vellitos que opacan y le otorgan textura a tu rostro? 😍', description: '¿Te copa la idea de hacerte un peeling apto para todo el año o eliminar esos vellitos que opacan y le otorgan textura a tu rostro? 😍. Si tu piel es apta, el dermaplaning es el tratamiento perfecto. Utiliza un bisturí descartable para eliminar células muertas y vello facial, mejorando la textura, reduciendo arrugas finas y cicatrices por acné. Además, proporciona una exfoliación profunda que estimula la renovación celular. El resultado es una piel más uniforme y luminosa, ideal para mantener durante todo el año. ✨', recomendation: '', image: '/img/limpiezaFacial+dermapiling.jpeg', alt: 'limpieza facial y dermapiling' },
+    { id: '8', name: 'Limpieza facial + Dermapen', price: 120, summary: '¿Rejuvenecer la piel sin cirugía ni tiempos de recuperación prolongados? 😍', description: '¿Rejuvenecer la piel sin cirugía ni tiempos de recuperación prolongados? 😍. El dermapen utiliza microagujas para estimular la regeneración de la piel, logrando la reducción de arrugas, líneas finas y cicatrices. Además, al añadir una ampolla específica durante el tto, potenciamos los resultados y maximizamos los beneficios de cada sustancia aplicada. ✨. Incluye masajes con Cryo Sticks, esferas de metal que proporcionan una sensación refrescante y relajante con frío localizado, ayudando a reducir la inflamación post-tratamiento. Además, un masaje relajante en hombros, cervicales y cabeza para un toque de bienestar adicional. 💆‍♀️', recomendation: '⚠️ Este tto no es apto para embarazadas, anticoagulados, diabéticos, ni personas que cursen un proceso inflamatorio de la piel.', image: '/img/limpiezaFacial+dermapen.jpeg', alt: 'Limpieza facial con dermapen' },
+    { id: '9', name: 'Limpieza facial prunda', price: 90, summary: 'chau celulas muertas acumuladas, puntos negros,quistes de milium y postulas!', description: 'chau celulas muertas acumuladas, puntos negros,quistes de milium y postulas!. En 10 pasos mejoro la salud y la apariencia de tu piel, eliminando impurezas y revitalizándola. Limpio en profundidad, elimino las células muertas, realizo extracciones de puntos negros, quistes de millium y pústulas, coloco sueros para tratar cada problemática e hidrato en todos los niveles dejando tu piel impecable. 💧🌟', recomendation: '', image: '/img/higieneFacial.jpeg', alt: 'Limpieza facial' },
+    { id: '10', name: 'Limpieza facial + Dermaplaning', price: 100, summary: '¿Te copa la idea de hacerte un peeling apto para todo el año o eliminar esos vellitos que opacan y le otorgan textura a tu rostro? 😍', description: '¿Te copa la idea de hacerte un peeling apto para todo el año o eliminar esos vellitos que opacan y le otorgan textura a tu rostro? 😍. Si tu piel es apta, el dermaplaning es el tratamiento perfecto. Utiliza un bisturí descartable para eliminar células muertas y vello facial, mejorando la textura, reduciendo arrugas finas y cicatrices por acné. Además, proporciona una exfoliación profunda que estimula la renovación celular. El resultado es una piel más uniforme y luminosa, ideal para mantener durante todo el año. ✨', recomendation: '', image: '/img/limpiezaFacial+dermapiling.jpeg', alt: 'limpieza facial y dermapiling' },
+    { id: '11', name: 'Limpieza facial + Dermapen', price: 120, summary: '¿Rejuvenecer la piel sin cirugía ni tiempos de recuperación prolongados? 😍', description: '¿Rejuvenecer la piel sin cirugía ni tiempos de recuperación prolongados? 😍. El dermapen utiliza microagujas para estimular la regeneración de la piel, logrando la reducción de arrugas, líneas finas y cicatrices. Además, al añadir una ampolla específica durante el tto, potenciamos los resultados y maximizamos los beneficios de cada sustancia aplicada. ✨. Incluye masajes con Cryo Sticks, esferas de metal que proporcionan una sensación refrescante y relajante con frío localizado, ayudando a reducir la inflamación post-tratamiento. Además, un masaje relajante en hombros, cervicales y cabeza para un toque de bienestar adicional. 💆‍♀️', recomendation: '⚠️ Este tto no es apto para embarazadas, anticoagulados, diabéticos, ni personas que cursen un proceso inflamatorio de la piel.', image: '/img/limpiezaFacial+dermapen.jpeg', alt: 'Limpieza facial con dermapen' },
 ];
 
 export default function ServiceCard() {
-    // Estado para gestionar el filtro actual
     const [filter, setFilter] = useState("All");
+    const [sort, setSort] = useState("default");
 
-    // Función para manejar el cambio en el filtro
-    const handleFilterChange = (e) => {
-        console.log("Category selected:", e.target.value);
-        setFilter(e.target.value);
-    };
+    const handleFilterChange = (e) => setFilter(e.target.value);
+    const handleSortChange = (e) => setSort(e.target.value);
 
-    // Filtrar los servicios según la categoría seleccionada
-    const filteredServices = services.filter((service) => {
-        // Si se selecciona "All", se muestran todos los servicios
-        if (filter === "All") return true;
-        // De lo contrario, se muestran solo los servicios que coinciden con la categoría seleccionada
-        return service.category === filter;
-    });
-
-
-
+    const filteredServices = services
+        .filter((service) => filter === "All" || service.category === filter)
+        .sort((a, b) => {
+            if (sort === "priceAsc") return a.price - b.price;
+            if (sort === "priceDesc") return b.price - a.price;
+            return 0; // Default sorting
+        });
 
     return (
         <div>
-            {/* Barra de filtro */}
-            <div className="mb-4">
-                <label htmlFor="category" className="mr-2">
-                    Filter by Category:
-                </label>
-                <select
-                    id="category"
-                    className="border py-2 px-4 rounded"
-                    onChange={handleFilterChange}
-                    value={filter}
-                >
-                    <option value="All">All</option>
-                    <option value="Filler">Filler</option>
-                    <option value="Botox">Botox</option>
-                    <option value="Peel">Peel</option>
-                </select>
+            {/* Barra de filtros */}
+            <div className="mb-6 flex gap-4 items-center justify-center pt-4">
+                <div>
+                    <label htmlFor="category" className="mr-2 font-bold">Filtrar por categoría:</label>
+                    <select
+                        id="category"
+                        className="border py-2 px-4 rounded"
+                        onChange={handleFilterChange}
+                        value={filter}
+                    >
+                        <option value="All">Todos</option>
+                        <option value="Filler">Filler</option>
+                        <option value="Botox">Botox</option>
+                        <option value="Peel">Peel</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="sort" className="mr-2 font-bold">Ordenar por precio:</label>
+                    <select
+                        id="sort"
+                        className="border py-2 px-4 rounded"
+                        onChange={handleSortChange}
+                        value={sort}
+                    >
+                        <option value="default">Por defecto</option>
+                        <option value="priceAsc">Menor a mayor</option>
+                        <option value="priceDesc">Mayor a menor</option>
+                    </select>
+                </div>
             </div>
 
             {/* Mostrar servicios filtrados */}
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                 {filteredServices.length > 0 ? (
                     filteredServices.map((service) => (
                         <div
                             key={service.id}
-                            className="max-w-sm rounded overflow-hidden shadow-lg p-6 bg-white"
+                            className="max-w-lg rounded overflow-hidden shadow-lg p-6 bg-white flex flex-col"
                         >
                             <img
-                                className="w-full max-h-[200px] object-cover"
-                                src={service.img}
-                                alt={service.title}
+                                className="w-full h-[300px] object-cover"
+                                src={service.image}
+                                alt={service.name}
                             />
                             <div className="px-6 py-4">
-                                <div className="font-bold text-xl mb-2">
-                                    {service.title}
-                                </div>
-                                <p className="text-gray-700 text-base">
-                                    {service.description}
-                                </p>
+                                <div className="font-bold text-xl mb-2">{service.name}</div>
+                                <p className="text-gray-700 text-base">{service.summary}</p>
+                                <span className="text-gray-700 text-base">Price: ${service.price}</span>
                             </div>
-                            <div className="px-6 pt-4 pb-2">
-                                <button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
+                            <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
+                                <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
                                     Book Now
                                 </button>
                                 <a
                                     href={`/service-${service.id}`}
-                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full"
+                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
                                 >
                                     Learn More
                                 </a>
@@ -105,7 +90,7 @@ export default function ServiceCard() {
                         </div>
                     ))
                 ) : (
-                    <p>No services available for the selected category.</p>
+                    <p>No hay servicios disponibles para la categoría seleccionada.</p>
                 )}
             </section>
         </div>

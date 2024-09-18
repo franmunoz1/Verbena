@@ -6,22 +6,55 @@ const handleWhatsApp = (name, date, treatment) => {
     window.open(url, '_blank');
 };
 
-const ServiceDetail = ({ treatment, description, benefits, price, imageUrl }) => {
+const ServiceDetail = ({ treatment, description, recomendation, price, image }) => {
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
+    const [error, setError] = useState('');
+
+    const validateForm = () => {
+        // Verificar que el nombre no esté vacío
+        if (!name) {
+            setError('El nombre no puede estar vacío.');
+            return false;
+        }
+
+        // Verificar que el nombre contenga solo letras
+        const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
+        if (!nameRegex.test(name)) {
+            setError('El nombre solo debe contener letras.');
+            return false;
+        }
+
+        // Verificar que la fecha esté seleccionada
+        if (!date) {
+            setError('Se debe seleccionar una fecha.');
+            return false;
+        }
+
+        // Verificar que la fecha no sea anterior a hoy
+        const today = new Date().toISOString().split('T')[0];
+        if (date < today) {
+            setError('La fecha no puede ser anterior a hoy.');
+            return false;
+        }
+
+        setError(''); // Limpiar el mensaje de error si todo está bien
+        return true;
+    };
+
+    const handleSubmit = () => {
+        if (validateForm()) {
+            handleWhatsApp(name, date, treatment);
+        }
+    };
 
     return (
         <div className="container mx-auto p-4">
-            <img src={imageUrl} alt={treatment} className="w-full h-64 object-cover" />
+            <img src={image} alt={treatment} className="w-full h-64 object-cover" />
             <h1 className="text-3xl font-bold mt-4">{treatment}</h1>
             <p className="mt-2 text-lg">{description}</p>
-            <h2 className="text-2xl font-semibold mt-4">Beneficios:</h2>
-            <ul className="list-disc ml-4">
-                {benefits.map((benefit, index) => (
-                    <li key={index}>{benefit}</li>
-                ))}
-            </ul>
-            <p className="mt-4 text-xl font-semibold">Precio: {price}</p>
+            {recomendation && <span>Recomendaciones: {recomendation}</span>}
+            <p className="mt-4 text-xl font-semibold">Precio: ${price}</p>
 
             <form className="mt-6">
                 <div className="mb-4">
@@ -44,9 +77,12 @@ const ServiceDetail = ({ treatment, description, benefits, price, imageUrl }) =>
                         required
                     />
                 </div>
+
+                {error && <p className="text-red-500">{error}</p>}
+
                 <button
                     type="button"
-                    onClick={() => handleWhatsApp(name, date, treatment)}
+                    onClick={handleSubmit}
                     className="bg-green-500 text-white p-2 rounded w-full"
                 >
                     Enviar por WhatsApp
