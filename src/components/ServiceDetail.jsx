@@ -63,9 +63,7 @@ const ServiceDetail = ({ treatment, description, recomendation, price, image }) 
                         {recomendation && (
                             <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
                                 <div className="flex">
-                                    <div className="flex-shrink-0">
-                                        <Info className="h-5 w-5 text-green-600" />
-                                    </div>
+
                                     <div className="ml-3">
                                         <p className="text-sm text-green-700">
                                             <span className="font-medium">Recomendaciones:</span> {recomendation}
