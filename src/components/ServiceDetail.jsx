@@ -49,45 +49,82 @@ const ServiceDetail = ({ treatment, description, recomendation, price, image }) 
     };
 
     return (
-        <div className="container mx-auto p-4">
-            <img src={image} alt={treatment} className="w-full h-64 object-cover" />
-            <h1 className="text-3xl font-bold mt-4">{treatment}</h1>
-            <p className="mt-2 text-lg">{description}</p>
-            {recomendation && <span>Recomendaciones: {recomendation}</span>}
-            <p className="mt-4 text-xl font-semibold">Precio: ${price}</p>
+        <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+            <div className="max-w-4xl mx-auto p-6">
+                <div className="bg-white shadow-xl rounded-lg overflow-hidden">
+                    <div className="relative h-64 sm:h-80 md:h-96">
+                        <img src={image} alt={treatment} className="w-full h-full object-cover" />
+                        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center px-4">{treatment}</h1>
+                        </div>
+                    </div>
+                    <div className="p-6 sm:p-8">
+                        <p className="text-gray-600 text-lg leading-relaxed mb-6">{description}</p>
+                        {recomendation && (
+                            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                                <div className="flex">
+                                    <div className="flex-shrink-0">
+                                        <Info className="h-5 w-5 text-green-600" />
+                                    </div>
+                                    <div className="ml-3">
+                                        <p className="text-sm text-green-700">
+                                            <span className="font-medium">Recomendaciones:</span> {recomendation}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        <div className="flex items-center justify-between mb-8">
+                            <div className="flex items-center">
 
-            <form className="mt-6">
-                <div className="mb-4">
-                    <label className="block text-gray-700">Nombre:</label>
-                    <input
-                        type="text"
-                        className="w-full p-2 border border-gray-300 rounded"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+                                <span className="text-2xl font-semibold text-gray-800">${price}</span>
+                            </div>
+                            <div className="text-sm text-gray-500">Por sesión</div>
+                        </div>
+                        <form className="space-y-6">
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                                    Nombre
+                                </label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
+                                    Selecciona una fecha
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        type="date"
+                                        id="date"
+                                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                        required
+                                    />
+
+                                </div>
+                            </div>
+                            {error && <p className="text-red-500 text-sm">{error}</p>}
+                            <div className='flex justify-center'>
+                                <button
+                                    type="button"
+                                    onClick={handleSubmit}
+                                    className="bg-green-verbena text-white p-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                                >
+                                    Reservar por WhatsApp
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700">Selecciona una fecha:</label>
-                    <input
-                        type="date"
-                        className="w-full p-2 border border-gray-300 rounded"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        required
-                    />
-                </div>
-
-                {error && <p className="text-red-500">{error}</p>}
-
-                <button
-                    type="button"
-                    onClick={handleSubmit}
-                    className="bg-green-500 text-white p-2 rounded w-full"
-                >
-                    Enviar por WhatsApp
-                </button>
-            </form>
+            </div>
         </div>
     );
 };

@@ -74,7 +74,7 @@ export default function ServiceCard() {
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{service.name}</div>
                                 <p className="text-gray-700 text-base">{service.summary}</p>
-                                <span className="text-gray-700 text-base">Price: ${service.price}</span>
+                                <span className="text-gray-700 font-bold">Price: ${service.price}</span>
                             </div>
                             <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
                                 <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
