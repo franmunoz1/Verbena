@@ -118,7 +118,7 @@ const ServiceDetail = ({ treatment, description, recomendation, price, image }) 
                                     onClick={handleSubmit}
                                     className="bg-green-verbena text-white p-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
                                 >
-                                    Reservar por WhatsApp
+                                    Reservar por whatsApp
                                 </button>
                             </div>
                         </form>
