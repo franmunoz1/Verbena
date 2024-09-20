@@ -1,9 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import CartComponent from '../components/Cart';
 ---
 
 <Layout title="Cart">
   <main>
     <h1>Cart</h1>
+
+    <CartComponent client:load/>
   </main>
 </Layout>

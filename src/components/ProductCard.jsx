@@ -1,33 +1,6 @@
 // src/components/ServiceCard.jsx
 import React, { useState } from "react";
-
-// const services = [
-//     {
-//         id: 1,
-//         title: "Dermal Filler (Hyaluronic Acid)",
-//         description:
-//             "Hyaluronic acid-based fillers add volume to areas such as the lips, cheeks, undereyes, and jawline with immediately visible results.",
-//         img: "/img/imghands.jpeg",
-//         category: "Filler",
-//     },
-//     {
-//         id: 2,
-//         title: "Botox Injections",
-//         description:
-//             "Botox is used to reduce the appearance of wrinkles and fine lines by temporarily relaxing muscles.",
-//         img: "/img/imghands.jpeg",
-//         category: "Botox",
-//     },
-//     {
-//         id: 3,
-//         title: "Chemical Peel",
-//         description:
-//             "Chemical peels improve the appearance of the skin by removing the top layers, helping with scars, wrinkles, and discolored skin.",
-//         img: "/img/imghands.jpeg",
-//         category: "Peel",
-//     },
-//     // Puedes añadir más servicios aquí.
-// ];
+import {cart} from '../store/cart';
 
 export default function ServiceCard({products}) {
     // Estado para gestionar el filtro actual
@@ -48,7 +21,19 @@ export default function ServiceCard({products}) {
     // });
 
     const addProductToCart = (id) => {
+        const product = products.find((product) => product.id === id);
+        console.log("product", product)
+        cart.set([...cart.get(), {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1
+        }])
 
+        console.log("aca", localStorage)
+
+        localStorage.setItem('cart', JSON.stringify(cart.get()))
+        
     }
 
 
@@ -96,7 +81,7 @@ export default function ServiceCard({products}) {
                                 </p>
                             </div>
                             <div className="px-6 pt-4 pb-2">
-                                <button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
+                                <button onClick={() => addProductToCart(product.id)} className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
                                     Book Now
                                 </button>
                                 <a
