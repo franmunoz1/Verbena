@@ -1,10 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProductCard from "../components/ProductCard.jsx";
+import { db, Product } from "astro:db";
+const products = await db.select().from(Product);
 ---
 
-<Layout>
+<Layout title="products">
     <main>
-        <ProductCard client:load />
+        <ProductCard products={products} client:load />
     </main>
 </Layout>
