@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'

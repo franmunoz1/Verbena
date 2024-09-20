@@ -1,10 +1,36 @@
-import { useStore } from '@nanostores/react';
-import { cart } from '../store/cart';
+import React, { useState, useEffect } from "react";
 
 export default function Cart() {
-    console.log("awda")
-  const cart = useStore(cart);
-  console.log("aca", cart)
+  const [cart, setCart] = useState([]);
 
-  return cart ? <span>...</span> : <span>asd</span>;
+  // Check if localStorage is available (client-side only)
+  const getCart = () => {
+    if (typeof window !== 'undefined' && localStorage) {
+      const storedCart = localStorage.getItem('cart');
+      return storedCart ? JSON.parse(storedCart) : [];
+    }
+    return [];
+  };
+
+  useEffect(() => {
+    const cartData = getCart();
+    setCart(cartData);
+  }, []);
+
+  console.log("cart", cart);
+
+  return (
+    <div>
+      <h2>Your Cart</h2>
+      {/* Render cart items */}
+      {cart.length > 0 ? (
+        cart.map((item, index) => <div class="" key={index}>
+          <p>{item.name} - ${item.price}</p>
+          <button>Remove</button>
+        </div>)
+      ) : (
+        <p>Your cart is empty.</p>
+      )}
+    </div>
+  );
 }

@@ -1,5 +1,7 @@
 import { atom } from 'nanostores';
 
+// const cart = localStorage.get
+
 export const cart = atom([{
   id: 1,
   name: 'Limpieza Facial',
