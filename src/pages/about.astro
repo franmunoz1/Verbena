@@ -1,84 +1,80 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Test from "../components/CartButton";
 ---
 
-<Layout>
-    <main class="bg-neutral-50 text-neutral-800">
-        <div class="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-            {/* Hero Section */}
-            <div
-                class="relative h-[70vh] overflow-hidden rounded-xl shadow-2xl mb-16"
-            >
-                <img
-                    src="/img/centro-estetica.jpg"
-                    alt="Centro de estética"
-                    class="absolute inset-0 w-full h-full object-cover z-0"
-                />
-                <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
-                <div
-                    class="absolute inset-0 flex items-center justify-center z-20"
-                >
-                    <h1
-                        class="text-white text-5xl md:text-7xl font-extrabold tracking-tight"
-                    >
-                        Centro Verbena
-                    </h1>
-                </div>
-            </div>
-
-            {/* Objective Section */}
-            <section class="mb-20">
-                <h2 class="text-4xl font-bold mb-6 text-neutral-900">
-                    Objetivo
-                </h2>
-                <p class="text-xl leading-relaxed">
-                    Somos un centro especializado en el cuidado de la piel y
-                    bienestar, con el objetivo de transformar la belleza
-                    exterior en confianza interior. Creamos experiencias únicas
-                    que no solo resalten tu apariencia, sino también nutran tu
-                    bienestar y autoestima.
-                </p>
-            </section>
-
-            {/* img Grid */}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
-                <div class="relative h-80 overflow-hidden rounded-xl shadow-lg">
-                    <img
-                        src="/img/tratamientos.jpg"
-                        alt="Tratamientos faciales"
-                        class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                </div>
-                <div class="relative h-80 overflow-hidden rounded-xl shadow-lg">
-                    <img
-                        src="/img/bienestar.jpg"
-                        alt="Bienestar y cuidado"
-                        class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                </div>
-            </div>
-
-            {/* Mission Section */}
-            <section class="mb-20">
-                <h2 class="text-4xl font-bold mb-6 text-neutral-900">Misión</h2>
-                <p class="text-xl leading-relaxed">
-                    En Verbena, nuestra misión es brindar tratamientos faciales
-                    personalizados, ya que cada piel es única y requiere un
-                    cuidado específico. Nos comprometemos a ofrecer una
-                    experiencia basada en innovación, calidad y cuidado
-                    personalizado.
-                </p>
-            </section>
-
-            {/* Call to Action */}
-            <div class="text-center">
-                <a
-                    href="/services"
-                    class="inline-block bg-green-verbena text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors duration-300 hover:bg-neutral-700"
-                >
-                    Reserva tu consulta
-                </a>
-            </div>
+<Layout title="about">
+  <main class="bg-neutral-50 text-neutral-800">
+    <div class="max-w-5xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <div
+        class="relative h-[70vh] overflow-hidden rounded-xl shadow-2xl mb-16"
+      >
+        <img
+          src="/img/centro-estetica.jpg"
+          alt="Centro de estética"
+          class="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+        <div class="absolute inset-0 flex items-center justify-center z-20">
+          <h1
+            class="text-white text-5xl md:text-7xl font-extrabold tracking-tight"
+          >
+            Centro Verbena
+          </h1>
         </div>
-    </main>
+      </div>
+
+      {/* Objective Section */}
+      <section class="mb-20">
+        <h2 class="text-4xl font-bold mb-6 text-neutral-900">Objetivo</h2>
+        <p class="text-xl leading-relaxed">
+          Somos un centro especializado en el cuidado de la piel y bienestar,
+          con el objetivo de transformar la belleza exterior en confianza
+          interior. Creamos experiencias únicas que no solo resalten tu
+          apariencia, sino también nutran tu bienestar y autoestima.
+        </p>
+        <Test client:load/>
+      </section>
+
+      {/* img Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <div class="relative h-80 overflow-hidden rounded-xl shadow-lg">
+          <img
+            src="/img/tratamientos.jpg"
+            alt="Tratamientos faciales"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+        <div class="relative h-80 overflow-hidden rounded-xl shadow-lg">
+          <img
+            src="/img/bienestar.jpg"
+            alt="Bienestar y cuidado"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+      </div>
+
+      {/* Mission Section */}
+      <section class="mb-20">
+        <h2 class="text-4xl font-bold mb-6 text-neutral-900">Misión</h2>
+        <p class="text-xl leading-relaxed">
+          En Verbena, nuestra misión es brindar tratamientos faciales
+          personalizados, ya que cada piel es única y requiere un cuidado
+          específico. Nos comprometemos a ofrecer una experiencia basada en
+          innovación, calidad y cuidado personalizado.
+        </p>
+      </section>
+
+      {/* Call to Action */}
+      <div class="text-center">
+        <a
+          href="/services"
+          class="inline-block bg-green-verbena text-white px-8 py-4 rounded-full text-lg font-semibold transition-colors duration-300 hover:bg-neutral-700"
+        >
+          Reserva tu consulta
+        </a>
+      </div>
+    </div>
+  </main>
 </Layout>

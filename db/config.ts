@@ -5,12 +5,17 @@ import { defineDb, defineTable, column } from 'astro:db';
 const Product = defineTable({
   columns: {
     id: column.text({ primaryKey: true }),
-    name: column.text({ unique: true }),
+    name: column.text({ unique: false }),
     price: column.number({ unique: false }),
+    summary: column.text({ unique: false }),
+    description: column.text({ unique: false }),
+    recomendation: column.text({ unique: false }),
+    image: column.text({ unique: false }),
+    alt: column.text({ unique: false }),
   }
 });
 
-const Services = defineTable({
+const Service = defineTable({
   columns: {
     id: column.text({ primaryKey: true }),
     name: column.text({ unique: true }),
@@ -26,6 +31,7 @@ const Services = defineTable({
 
 export default defineDb({
   tables: {
-    Product
+    Product,
+    Service
   }
 });

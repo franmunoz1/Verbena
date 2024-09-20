@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CartButton from './CartButton';
 
 const Header = () => {
     // Estado para controlar la visibilidad del menú
@@ -42,13 +43,7 @@ const Header = () => {
                             <a href="/about" className="block py-2 px-3 text-white rounded ">About</a>
                         </li>
                         <li>
-                            <a href="#" className="block py-2 px-3 text-white rounded "><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                <path d="M17 17h-11v-14h-2" />
-                                <path d="M6 5l14 1l-1 7h-13" />
-                            </svg></a>
+                            <CartButton />
                         </li>
                     </ul>
                 </div>

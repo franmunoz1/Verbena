@@ -1,10 +1,13 @@
 ---
 import CarouselCards from "../components/CarouselCards";
 import Layout from "../layouts/Layout.astro";
+import Cart from '../components/CartButton';
 
 // Funcionamiento de la base de datos de astro
-// import { db, Product } from "astro:db";
-// const products = await db.select().from(Product);
+import { db, Service, Product } from "astro:db";
+const services = await db.select().from(Service);
+const products = await db.select().from(Product);
+console.log("products", products);
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -160,7 +163,7 @@ import Layout from "../layouts/Layout.astro";
 					Algunos de nuestros tratamientos
 				</h2>
 				<div>
-					<CarouselCards client:load />
+					<CarouselCards services={services} client:load  />
 				</div>
 			</div>
 		</section>
