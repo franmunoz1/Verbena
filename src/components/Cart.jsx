@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {removeFromCart} from '../store/cart';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -20,9 +21,8 @@ export default function Cart() {
   };
 
   const removeItem = (index) => {
-    const updatedCart = cart.filter((_, i) => i !== index);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    removeFromCart(cart[index].id);
+    setCart(cart.filter((item, i) => i !== index));
   };
 
   const clearCart = () => {
