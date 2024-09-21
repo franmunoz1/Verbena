@@ -1,5 +1,5 @@
 import { useStore } from "@nanostores/react";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 // import { cart as getCart } from "../store/cart";
 
 export default function CartButton() {

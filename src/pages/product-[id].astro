@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ServiceDetail from "../components/ServiceDetail.jsx";
+import ProductDetail from "../components/ProductDetail.jsx";
 import { db, Product } from "astro:db";
 
 export async function getStaticPaths() {
@@ -16,7 +16,7 @@ const { id } = Astro.params;
 const products = await db.select().from(Product);
 const product = products.find((p) => p.id === id);
 
-const services = [
+const products = [
   {
     id: "1",
     name: "Dermal Filler (Hyaluronic Acid)",
@@ -68,21 +68,21 @@ const services = [
   },
 ];
 
-const service = services.find((s) => s.id === "4");
+const product = products.find((s) => s.id === "4");
 
 if (!product) {
-  throw new Error(`Service with id ${id} not found`);
+  throw new Error(`product with id ${id} not found`);
 }
 ---
 
 <Layout title={`detail-${product.name}`}>
   <span>Product detail TODO</span>
-  <ServiceDetail
-    treatment={product.name || service.name}
-    description={service?.description}
-    benefits={service?.benefits}
+  <ProductDetail
+    treatment={product.name}
+    description={product?.description}
+    benefits={product?.benefits}
     price={product.price}
-    imageUrl={service?.imageUrl}
+    imageUrl={product?.image}
     client:load
   />
 </Layout>
