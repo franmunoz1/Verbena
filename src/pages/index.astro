@@ -1,7 +1,7 @@
 ---
 import CarouselCards from "../components/CarouselCards";
 import Layout from "../layouts/Layout.astro";
-import Cart from '../components/CartButton';
+import Cart from "../components/CartButton";
 
 // Funcionamiento de la base de datos de astro
 import { db, Service, Product } from "astro:db";
@@ -19,13 +19,13 @@ console.log("products", products);
 				alt="Main image"
 				class="w-full h-96 object-cover"
 			/>
-			<div class="absolute top-1/2 left-10 transform -translate-y-1/2">
+			<!-- <div class="absolute top-1/2 left-10 transform -translate-y-1/2">
 				<button
 					class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
 				>
 					Botón
 				</button>
-			</div>
+			</div> -->
 		</section>
 
 		<section class="bg-gray-50 py-16">
@@ -163,7 +163,7 @@ console.log("products", products);
 					Algunos de nuestros tratamientos
 				</h2>
 				<div>
-					<CarouselCards services={services} client:load  />
+					<CarouselCards services={services} client:load />
 				</div>
 			</div>
 		</section>
