@@ -40,7 +40,7 @@ export default function CarouselCards({ products }) {
                                 </div>
                                 <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
                                     <button
-                                        onClick={() => handleAddToCart(products)}
+                                        onClick={() => handleAddToCart(card)}
                                         className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
                                         Agregar al carrito
                                     </button>
