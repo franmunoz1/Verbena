@@ -10,72 +10,7 @@ export async function getStaticPaths() {
   }));
 }
 
-export async function get({ params }) {
-  const { id } = params;
-  const products = await db.select().from(Product);
-  const product = products.find((p) => p.id === id);
-
-  if (!product) {
-    throw new Error(`Product with id ${id} not found`);
-  }
-
-  return {
-    props: { product },
-  };
-}
-
-const products = [
-  {
-    id: "1",
-    name: "Product 1",
-    price: 100,
-    summary: "Summary 1",
-    description: "Description 1",
-    recomendation: "Recomendation 1",
-    image: "/img/higieneFacial.jpeg",
-    alt: "Alt 1",
-  },
-  {
-    id: "2",
-    name: "Product 2",
-    price: 200,
-    summary: "Summary 2",
-    description: "Description 2",
-    recomendation: "Recomendation 2",
-    image: "/img/higieneFacial.jpeg",
-    alt: "Alt 2",
-  },
-  {
-    id: "3",
-    name: "Product 3",
-    price: 300,
-    summary: "Summary 3",
-    description: "Description 3",
-    recomendation: "Recomendation 3",
-    image: "/img/higieneFacial.jpeg",
-    alt: "Alt 3",
-  },
-  {
-    id: "4",
-    name: "Product 4",
-    price: 400,
-    summary: "Summary 4",
-    description: "Description 4",
-    recomendation: "Recomendation 4",
-    image: "/img/higieneFacial.jpeg",
-    alt: "Alt 4",
-  },
-  {
-    id: "5",
-    name: "Product 5",
-    price: 500,
-    summary: "Summary 5",
-    description: "Description 5",
-    recomendation: "Recomendation 5",
-    image: "/img/higieneFacial.jpeg",
-    alt: "Alt 5",
-  },
-];
+const products = await db.select().from(Product);
 
 const { id } = Astro.params;
 
