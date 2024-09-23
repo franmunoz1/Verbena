@@ -1,13 +1,26 @@
 import { useStore } from "@nanostores/react";
 import { cart } from "../store/cart";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function CartButton() {
-  const cartItems = useStore(cart);
+  const cartItems = useStore(cart); // Move useStore outside of useEffect
+  const [cartCounter, setCartCounter] = useState(0);
+
+  useEffect(() => {
+    let acc = 0;
+
+    if (cartItems && cartItems.length > 0) {
+      cartItems.forEach(prod => {
+        acc += prod.quantity;
+      });
+    }
+
+    setCartCounter(acc);
+  }, [cartItems]); // Add cartItems as a dependency for useEffect
 
   return (
     <div className="items-center justify-center flex">
-      <span>{cartItems.length}</span>
+      <span>{cartCounter}</span>
       <a
         href="/cart"
         className="block py-2 px-3 text-white rounded cursor-pointer"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {removeFromCart} from '../store/cart';
+import {removeFromCart, updateQuantity} from '../store/cart';
 
 export default function Cart() {
   const [cart, setCart] = useState([]);
@@ -12,11 +12,12 @@ export default function Cart() {
     return [];
   };
 
-  const updateQuantity = (index, quantity) => {
+  const handleQuantity = (index, quantity) => {
     const updatedCart = cart.map((item, i) =>
       i === index ? { ...item, quantity: item.quantity + quantity } : item
     );
     setCart(updatedCart);
+    updateQuantity(cart[index].id, cart[index].quantity + quantity);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
@@ -68,9 +69,9 @@ export default function Cart() {
                 <p className="text-gray-500">Subtotal ${item.price * item.quantity}</p>
               </div>
               <div className="flex items-center">
-                <button onClick={() => updateQuantity(index, -1)} disabled={item.quantity === 1}>-</button>
+                <button onClick={() => handleQuantity(index, -1)} disabled={item.quantity === 1}>-</button>
                 <span className="px-4">{item.quantity}</span>
-                <button onClick={() => updateQuantity(index, 1)}>+</button>
+                <button onClick={() => handleQuantity(index, 1)}>+</button>
               </div>
               <button onClick={() => removeItem(index)} className="ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
                 Remove

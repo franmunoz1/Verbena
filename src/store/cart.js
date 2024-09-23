@@ -37,3 +37,15 @@ export const removeFromCart = (productId) => {
   cart.set([...updatedCart]);
   localStorage.setItem('cart', JSON.stringify(updatedCart));
 };
+
+export const updateQuantity = (productId, quantity) => {
+  const currentCart = cart.get();
+  const existingProductIndex = currentCart.findIndex(item => item.id === productId);
+
+  if (existingProductIndex !== -1) {
+    currentCart[existingProductIndex].quantity = quantity;
+  }
+
+  cart.set([...currentCart]);
+  localStorage.setItem('cart', JSON.stringify(currentCart));
+}
