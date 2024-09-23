@@ -6,7 +6,7 @@ const handleWhatsApp = (name, date, treatment) => {
     window.open(url, '_blank');
 };
 
-const ServiceDetail = ({ treatment, description, recomendation, price, image }) => {
+const ServiceDetail = ({ service }) => {
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
     const [error, setError] = useState('');
@@ -44,7 +44,7 @@ const ServiceDetail = ({ treatment, description, recomendation, price, image }) 
 
     const handleSubmit = () => {
         if (validateForm()) {
-            handleWhatsApp(name, date, treatment);
+            handleWhatsApp(name, date, service.name);
         }
     };
 
@@ -53,20 +53,20 @@ const ServiceDetail = ({ treatment, description, recomendation, price, image }) 
             <div className="max-w-4xl mx-auto p-6">
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                     <div className="relative h-64 sm:h-80 md:h-96">
-                        <img src={image} alt={treatment} className="w-full h-full object-cover" />
+                        <img src={service.image} alt={service.name} className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center px-4">{treatment}</h1>
+                            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center px-4">{service.name}</h1>
                         </div>
                     </div>
                     <div className="p-6 sm:p-8">
-                        <p className="text-gray-600 text-lg leading-relaxed mb-6">{description}</p>
-                        {recomendation && (
+                        <p className="text-gray-600 text-lg leading-relaxed mb-6">{service.description}</p>
+                        {service.recomendation && (
                             <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
                                 <div className="flex">
 
                                     <div className="ml-3">
                                         <p className="text-sm text-green-700">
-                                            <span className="font-medium">Recomendaciones:</span> {recomendation}
+                                            <span className="font-medium">Recomendaciones:</span> {service.recomendation}
                                         </p>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@ const ServiceDetail = ({ treatment, description, recomendation, price, image }) 
                         <div className="flex items-center justify-between mb-8">
                             <div className="flex items-center">
 
-                                <span className="text-2xl font-semibold text-gray-800">${price}</span>
+                                <span className="text-2xl font-semibold text-gray-800">${service.price}</span>
                             </div>
                             <div className="text-sm text-gray-500">Por sesión</div>
                         </div>

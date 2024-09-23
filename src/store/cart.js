@@ -5,7 +5,7 @@ const getInitialCart = () => {
     const storedCart = localStorage.getItem('cart');
     return storedCart ? JSON.parse(storedCart) : [];
   }
-  return []; 
+  return [];
 };
 
 export const cart = atom(getInitialCart());
