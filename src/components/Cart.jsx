@@ -60,8 +60,10 @@ export default function Cart() {
 
       {cart.length > 0 ? (
         <div className="space-y-4">
-          {cart.map((item, index) => (
-            <div key={index} className="flex items-center justify-between bg-white shadow-md rounded-lg p-4">
+          {cart.map((item, index) => {
+
+            return (
+              <div key={index} className="flex items-center justify-between bg-white shadow-md rounded-lg p-4">
               <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-md mr-4" />
               <div className="flex-1">
                 <p className="font-semibold text-lg">{item.name}</p>
@@ -77,7 +79,8 @@ export default function Cart() {
                 Remove
               </button>
             </div>
-          ))}
+            )
+          })}
 
           <div className="text-right mt-4">
             <p className="text-2xl font-bold">Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>

@@ -21,7 +21,12 @@ export const addToCart = (product) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      quantity: 1
+      quantity: 1,
+      alt: product.alt,
+      description: product.description,
+      recomendation: product.recomendation,
+      summary: product.summary,
+      image: product.image,
     });
   }
 

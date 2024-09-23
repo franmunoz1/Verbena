@@ -6,11 +6,11 @@ import { db, Product, Service } from 'astro:db';
 
 export default async function seed() {
 	await db.insert(Product).values([
-		{ id: '1', name: 'Product 1', price: 100, summary: 'Summary 1', description: 'Description 1', recomendation: 'Recomendation 1', image: '/img/higieneFacial.jpeg', alt: 'Alt 1' },
-		{ id: '2', name: 'Product 2', price: 200, summary: 'Summary 2', description: 'Description 2', recomendation: 'Recomendation 2', image: '/img/higieneFacial.jpeg', alt: 'Alt 2' },
-		{ id: '3', name: 'Product 3', price: 300, summary: 'Summary 3', description: 'Description 3', recomendation: 'Recomendation 3', image: '/img/higieneFacial.jpeg', alt: 'Alt 3' },
-		{ id: '4', name: 'Product 4', price: 400, summary: 'Summary 4', description: 'Description 4', recomendation: 'Recomendation 4', image: '/img/higieneFacial.jpeg', alt: 'Alt 4' },
-		{ id: '5', name: 'Product 5', price: 500, summary: 'Summary 5', description: 'Description 5', recomendation: 'Recomendation 5', image: '/img/higieneFacial.jpeg', alt: 'Alt 5' },
+		{ id: '1', name: 'Higiene facial', price: 100, summary: 'Summary 1', description: 'Description 1', recomendation: 'Recomendation 1', image: '/img/higieneFacial.jpeg', alt: 'Alt 1' },
+		{ id: '2', name: 'Laminado Cejas', price: 200, summary: 'Summary 2', description: 'Description 2', recomendation: 'Recomendation 2', image: '/img/laminadoCejas.jpeg', alt: 'Alt 2' },
+		{ id: '3', name: 'Limpieza Facial + Dermapiling', price: 300, summary: 'Summary 3', description: 'Description 3', recomendation: 'Recomendation 3', image: '/img/limpiezaFacial+dermapiling.jpeg', alt: 'Alt 3' },
+		{ id: '4', name: 'Limpieza Facial + Tratamiento Led', price: 400, summary: 'Summary 4', description: 'Description 4', recomendation: 'Recomendation 4', image: '/img/limpiezaFacial+tratamientoLed.jpeg', alt: 'Alt 4' },
+		{ id: '5', name: 'Lifting Pestañas', price: 500, summary: 'Summary 5', description: 'Description 5', recomendation: 'Recomendation 5', image: '/img/liftingPestanas.jpeg', alt: 'Alt 5' },
 	]);
 
 	await db.insert(Service).values([

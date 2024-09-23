@@ -7,7 +7,6 @@ import Cart from "../components/CartButton";
 import { db, Service, Product } from "astro:db";
 const services = await db.select().from(Service);
 const products = await db.select().from(Product);
-console.log("products", products);
 ---
 
 <Layout title="Verbena - Estethic center">

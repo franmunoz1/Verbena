@@ -13,7 +13,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function CarouselCards({services}) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-    console.log("services", services)
 
     const scrollPrev = React.useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()

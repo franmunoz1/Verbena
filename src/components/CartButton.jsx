@@ -3,7 +3,7 @@ import { cart } from "../store/cart";
 import { useEffect, useState } from 'react';
 
 export default function CartButton() {
-  const cartItems = useStore(cart); // Move useStore outside of useEffect
+  const cartItems = useStore(cart);
   const [cartCounter, setCartCounter] = useState(0);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function CartButton() {
     }
 
     setCartCounter(acc);
-  }, [cartItems]); // Add cartItems as a dependency for useEffect
+  }, [cartItems]);
 
   return (
     <div className="items-center justify-center flex">
