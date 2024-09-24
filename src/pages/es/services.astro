@@ -2,11 +2,16 @@
 import Layout from "../../layouts/Layout.astro";
 import ServiceCard from "../../components/ServiceCard.jsx";
 import { db, Service } from "astro:db";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
 const services = await db.select().from(Service);
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <Layout title="services">
     <main>
-        <ServiceCard services={services} client:load />
+        <ServiceCard services={services} currentLanguage={lang} client:load />
     </main>
 </Layout>
