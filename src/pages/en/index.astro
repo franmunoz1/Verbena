@@ -76,7 +76,7 @@ console.log("awda", carouselTraductions)
           Algunos de nuestros tratamientos
         </h2>
         <div>
-          <CarouselServices services={services} client:load />
+          <CarouselServices services={services} currentLanguage={lang} client:load />
         </div>
       </div>
     </section>
@@ -89,7 +89,7 @@ console.log("awda", carouselTraductions)
           Nuestros productos
         </h2>
         <div>
-          <CarouselProducts products={products} carouselTraductions={carouselTraductions} client:load />
+          <CarouselProducts products={products} currentLanguage={lang} carouselTraductions={carouselTraductions} client:load />
         </div>
       </div>
     </section>

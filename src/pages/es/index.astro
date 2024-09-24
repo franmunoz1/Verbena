@@ -12,6 +12,12 @@ const products = await db.select().from(Product);
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const carouselTraductions = {
+  home: t("nav.home"),
+};
+
+console.log("awda", carouselTraductions)
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -70,7 +76,7 @@ const t = useTranslations(lang);
           Algunos de nuestros tratamientos
         </h2>
         <div>
-          <CarouselServices services={services} client:load />
+          <CarouselServices services={services} currentLanguage={lang} client:load />
         </div>
       </div>
     </section>
@@ -83,7 +89,7 @@ const t = useTranslations(lang);
           Nuestros productos
         </h2>
         <div>
-          <CarouselProducts products={products} carouselTraductions={null} client:load />
+          <CarouselProducts products={products} currentLanguage={lang} carouselTraductions={carouselTraductions} client:load />
         </div>
       </div>
     </section>
