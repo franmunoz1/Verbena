@@ -23,7 +23,7 @@ const lang = getLangFromUrl(Astro.url)
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header client:load />
+		<Header siteUrl={Astro.url} client:load />
 		<section class="min-h-[800px]">
 			<slot />
 		</section>

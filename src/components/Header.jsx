@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import CartButton from './CartButton';
+import { LanguagePicker } from './LanguagePicker';
 
-const Header = () => {
+const Header = ({siteUrl}) => {
     // Estado para controlar la visibilidad del menú
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -45,6 +46,7 @@ const Header = () => {
                         <li>
                             <CartButton />
                         </li>
+                        <LanguagePicker siteUrl={siteUrl} />
                     </ul>
                 </div>
             </div>
