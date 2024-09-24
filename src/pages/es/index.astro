@@ -1,0 +1,91 @@
+---
+import CarouselServices from "../../components/CarouselServices";
+import CarouselProducts from "../../components/CarouselProducts";
+import Layout from "../../layouts/Layout.astro";
+import Cart from "../../components/CartButton";
+
+// Funcionamiento de la base de datos de astro
+import { db, Service, Product } from "astro:db";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const services = await db.select().from(Service);
+const products = await db.select().from(Product);
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Verbena - Estethic center">
+  <main>
+    <section class="relative">
+      <img
+        src="https://via.placeholder.com/1500x500"
+        alt="Main image"
+        class="w-full h-96 object-cover"
+      />
+    </section>
+
+    <section class="bg-gray-50 py-16">
+      <!-- Sección de 'Quiénes Somos' con texto a la izquierda e imagen a la derecha -->
+      <div
+        class="container mx-auto flex flex-col md:flex-row items-center justify-between"
+      >
+        <!-- Texto a la izquierda -->
+        <div class="w-full md:w-1/2 md:pr-12">
+          <h2 class="text-4xl font-serif font-semibold text-gray-800 mb-6">
+            {t("nav.home")}
+          </h2>
+          <p class="text-gray-600 leading-relaxed mb-6">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
+            consequatur cupiditate rerum esse aliquid cum repellendus omnis quam
+            culpa odio accusamus iusto quis laboriosam odit quas, perspiciatis
+            autem necessitatibus maxime! Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Sapiente deserunt numquam quibusdam mollitia.
+            Asperiores cupiditate voluptates hic quaerat aspernatur aliquam
+            nihil autem fuga nostrum, soluta nulla reiciendis aperiam quam sit.
+          </p>
+          <a
+            href="/about"
+            class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
+          >
+            Leer más
+          </a>
+        </div>
+
+        <!-- Imagen a la derecha -->
+        <div class="w-full md:w-1/2 mt-8 md:mt-0">
+          <img
+            src="/img/imgface.jpeg"
+            alt="About Us"
+            class="w-full h-96 object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="containter mx-auto p-2">
+        <h2
+          class="text-4xl font-serif font-semibold text-gray-800 pt-6 text-center"
+        >
+          Algunos de nuestros tratamientos
+        </h2>
+        <div>
+          <CarouselServices services={services} client:load />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="containter mx-auto p-2">
+        <h2
+          class="text-4xl font-serif font-semibold text-gray-800 pt-6 text-center"
+        >
+          Nuestros productos
+        </h2>
+        <div>
+          <CarouselProducts products={products} client:load />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ServiceCard from "../components/ServiceCard.jsx";
+import Layout from "../../layouts/Layout.astro";
+import ServiceCard from "../../components/ServiceCard.jsx";
 import { db, Service } from "astro:db";
 const services = await db.select().from(Service);
 ---
