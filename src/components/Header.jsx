@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CartButton from './CartButton';
 import { LanguagePicker } from './LanguagePicker';
 
-const Header = ({ siteUrl, lang }) => {
+const Header = ({ siteUrl, lang, test }) => {
     // Estado para controlar la visibilidad del menú
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -10,6 +10,8 @@ const Header = ({ siteUrl, lang }) => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    console.log("ACA MAN", test)
 
     return (
         <nav className="bg-green-verbena">

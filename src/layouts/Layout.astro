@@ -10,6 +10,8 @@ interface Props {
 
 const { title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
+
+const test = Astro.props;
 ---
 
 <!doctype html>
@@ -23,7 +25,7 @@ const lang = getLangFromUrl(Astro.url);
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header siteUrl={Astro.url} lang={lang} client:load />
+		<Header siteUrl={Astro.url} lang={lang} test={test} client:load />
 		<section class="min-h-[800px]">
 			<slot />
 		</section>
