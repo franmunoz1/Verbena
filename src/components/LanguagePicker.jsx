@@ -16,8 +16,8 @@ export const LanguagePicker = ({siteUrl}) => {
   const [currentLang, setCurrentLang] = useState('')
 
   const handleSelect = (e) => {
-    console.log("Acawdad", window.location.hostname)
-    window.location.href = `${window.location.hostname.includes("localhost") ? siteUrl.origin : window.location.hostname}/${e.target.value}`;
+    // console.log("Acawdad", window.location.hostname)
+    window.location.href = `${window.location.hostname.includes("localhost") ? siteUrl.origin : }/${e.target.value}`;
   }
 
   useEffect(() => {
