@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ServiceCard({ services }) {
+export default function ServiceCard({ services, lang, siteUrl }) {
     const [filter, setFilter] = useState("All");
     const [sort, setSort] = useState("default");
 
@@ -72,7 +72,7 @@ export default function ServiceCard({ services }) {
                                     Book Now
                                 </button>
                                 <a
-                                    href={`/service-${service.id}`}
+                                    href={`/${lang}/service-${service.id}`}
                                     className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
                                 >
                                     Learn More

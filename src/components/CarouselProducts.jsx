@@ -2,8 +2,10 @@ import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { addToCart } from '../store/cart';
+import '@fontsource/tenor-sans';
 
-export default function CarouselCards({ products }) {
+export default function CarouselCards({ products, currentLanguage, carouselTraductions }) {
+
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
     console.log("products", products)
 
@@ -19,6 +21,8 @@ export default function CarouselCards({ products }) {
         addToCart(product);
     };
 
+
+    console.log("carouselTraductions", carouselTraductions)
     return (
         <div className="relative px-4 py-8">
             <div className="overflow-hidden" ref={emblaRef}>
@@ -42,10 +46,10 @@ export default function CarouselCards({ products }) {
                                     <button
                                         onClick={() => handleAddToCart(card)}
                                         className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
-                                        Agregar al carrito
+                                        Add to cart
                                     </button>
                                     <a
-                                        href={`/product-${card.id}`}
+                                        href={`/${currentLanguage}/product-${card.id}`}
                                         className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
                                     >
                                         Learn More

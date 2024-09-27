@@ -1,7 +1,7 @@
 import React from "react";
 import { addToCart } from '../store/cart';
 
-export default function productCard({ products }) {
+export default function productCard({ products, lang, siteUrl }) {
 
     const handleAddToCart = (product) => {
         addToCart(product);
@@ -33,11 +33,13 @@ export default function productCard({ products }) {
                                     Agregar al carrito
                                 </button>
                                 <a
-                                    href={`/product-${product.id}`}
+                                    href={`/${lang}/product-${product.id}`}
                                     className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
                                 >
                                     Ver más
                                 </a>
+
+
                             </div>
                         </div>
                     ))

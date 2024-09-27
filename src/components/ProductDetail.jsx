@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addToCart } from '../store/cart';
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = ({ product, siteUrl, lang }) => {
     const [quantity, setQuantity] = useState(1);
 
     const handleAddToCart = () => {

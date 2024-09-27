@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {removeFromCart} from '../store/cart';
+import { removeFromCart, updateQuantity } from '../store/cart';
 
-export default function Cart() {
+export default function Cart({ lang, siteUrl }) {
   const [cart, setCart] = useState([]);
 
   const getCart = () => {
@@ -12,11 +12,12 @@ export default function Cart() {
     return [];
   };
 
-  const updateQuantity = (index, quantity) => {
+  const handleQuantity = (index, quantity) => {
     const updatedCart = cart.map((item, i) =>
       i === index ? { ...item, quantity: item.quantity + quantity } : item
     );
     setCart(updatedCart);
+    updateQuantity(cart[index].id, cart[index].quantity + quantity);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
@@ -59,24 +60,27 @@ export default function Cart() {
 
       {cart.length > 0 ? (
         <div className="space-y-4">
-          {cart.map((item, index) => (
-            <div key={index} className="flex items-center justify-between bg-white shadow-md rounded-lg p-4">
-              <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-md mr-4" />
-              <div className="flex-1">
-                <p className="font-semibold text-lg">{item.name}</p>
-                <p className="text-gray-500">Unidad ${item.price}</p>
-                <p className="text-gray-500">Subtotal ${item.price * item.quantity}</p>
+          {cart.map((item, index) => {
+
+            return (
+              <div key={index} className="flex items-center justify-between bg-white shadow-md rounded-lg p-4">
+                <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-md mr-4" />
+                <div className="flex-1">
+                  <p className="font-semibold text-lg">{item.name}</p>
+                  <p className="text-gray-500">Unidad ${item.price}</p>
+                  <p className="text-gray-500">Subtotal ${item.price * item.quantity}</p>
+                </div>
+                <div className="flex items-center">
+                  <button onClick={() => handleQuantity(index, -1)} disabled={item.quantity === 1}>-</button>
+                  <span className="px-4">{item.quantity}</span>
+                  <button onClick={() => handleQuantity(index, 1)}>+</button>
+                </div>
+                <button onClick={() => removeItem(index)} className="ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                  Remove
+                </button>
               </div>
-              <div className="flex items-center">
-                <button onClick={() => updateQuantity(index, -1)} disabled={item.quantity === 1}>-</button>
-                <span className="px-4">{item.quantity}</span>
-                <button onClick={() => updateQuantity(index, 1)}>+</button>
-              </div>
-              <button onClick={() => removeItem(index)} className="ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                Remove
-              </button>
-            </div>
-          ))}
+            )
+          })}
 
           <div className="text-right mt-4">
             <p className="text-2xl font-bold">Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>

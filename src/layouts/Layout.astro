@@ -2,16 +2,20 @@
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.astro";
 import WhatsappButton from "../components/WhatsappButton.astro";
+import { getLangFromUrl } from "../i18n/utils";
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+const test = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -20,8 +24,8 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<Header client:load />
+	<body class="bg-[#f5f1ec]">
+		<Header siteUrl={Astro.url} lang={lang} test={test} client:load />
 		<section class="min-h-[800px]">
 			<slot />
 		</section>
