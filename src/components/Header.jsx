@@ -43,6 +43,10 @@ const Header = ({ siteUrl, lang }) => {
                         <li>
                             <a href={`/${lang}/about`} className="block py-2 px-3 text-white rounded ">About</a>
                         </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-green-verbena md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-verbena dark:bg-green-verbena md:dark:bg-green-verbena dark:border-gray-700 text-white">
                         <li>
                             <CartButton lang={lang} siteUrl={siteUrl} />
                         </li>

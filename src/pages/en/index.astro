@@ -17,7 +17,7 @@ const carouselTraductions = {
   home: t("nav.home"),
 };
 
-console.log("awda", carouselTraductions)
+console.log("awda", carouselTraductions);
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -76,7 +76,11 @@ console.log("awda", carouselTraductions)
           Algunos de nuestros tratamientos
         </h2>
         <div>
-          <CarouselServices services={services} currentLanguage={lang} client:load />
+          <CarouselServices
+            services={services}
+            currentLanguage={lang}
+            client:load
+          />
         </div>
       </div>
     </section>
@@ -89,7 +93,12 @@ console.log("awda", carouselTraductions)
           Nuestros productos
         </h2>
         <div>
-          <CarouselProducts products={products} currentLanguage={lang} carouselTraductions={carouselTraductions} client:load />
+          <CarouselProducts
+            products={products}
+            currentLanguage={lang}
+            carouselTraductions={carouselTraductions}
+            client:load
+          />
         </div>
       </div>
     </section>

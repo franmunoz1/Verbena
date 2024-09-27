@@ -3,7 +3,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { addToCart } from '../store/cart';
 
-export default function CarouselCards({ products, currentLanguage ,carouselTraductions }) {
+export default function CarouselCards({ products, currentLanguage, carouselTraductions }) {
 
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
     console.log("products", products)
@@ -45,7 +45,7 @@ export default function CarouselCards({ products, currentLanguage ,carouselTradu
                                     <button
                                         onClick={() => handleAddToCart(card)}
                                         className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
-                                        {/* {t('nav.home')} */}
+                                        Add to cart
                                     </button>
                                     <a
                                         href={`/${currentLanguage}/product-${card.id}`}
