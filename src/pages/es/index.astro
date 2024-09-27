@@ -3,6 +3,7 @@ import CarouselServices from "../../components/CarouselServices";
 import CarouselProducts from "../../components/CarouselProducts";
 import Layout from "../../layouts/Layout.astro";
 import Cart from "../../components/CartButton";
+import "@fontsource/tenor-sans";
 
 // Funcionamiento de la base de datos de astro
 import { db, Service, Product } from "astro:db";
@@ -30,7 +31,7 @@ console.log("awda", carouselTraductions);
       />
     </section>
 
-    <section class="bg-gray-50 py-16">
+    <section class="py-16">
       <!-- Sección de 'Quiénes Somos' con texto a la izquierda e imagen a la derecha -->
       <div
         class="container mx-auto flex flex-col md:flex-row items-center justify-between"
@@ -40,7 +41,7 @@ console.log("awda", carouselTraductions);
           <h2 class="text-4xl font-serif font-semibold text-gray-800 mb-6">
             {t("nav.home")}
           </h2>
-          <p class="text-gray-600 leading-relaxed mb-6">
+          <p class="text-gray-600 leading-relaxed mb-6 font-[sans-serif]">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
             consequatur cupiditate rerum esse aliquid cum repellendus omnis quam
             culpa odio accusamus iusto quis laboriosam odit quas, perspiciatis
@@ -71,9 +72,9 @@ console.log("awda", carouselTraductions);
     <section>
       <div class="containter mx-auto p-2">
         <h2
-          class="text-4xl font-serif font-semibold text-gray-800 pt-6 text-center"
+          class="text-4xl font-serif font-semibold text-green-verbena-light pt-6 text-center"
         >
-          Algunos de nuestros tratamientos
+          Nuestros tratamientos
         </h2>
         <div>
           <CarouselServices

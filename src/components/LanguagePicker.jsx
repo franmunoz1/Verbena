@@ -1,7 +1,7 @@
 import { languages, defaultLang } from "../i18n/ui";
-import {useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
-export const LanguagePicker = ({siteUrl}) => {
+export const LanguagePicker = ({ siteUrl }) => {
   const langsEntries = Object.entries(languages);
 
   const langsArray = [];
@@ -25,13 +25,13 @@ export const LanguagePicker = ({siteUrl}) => {
   }, []);
 
   return (
-    <select onChange={(e) => {handleSelect(e)}} className={"bg-transparent"}>
+    <select onChange={(e) => { handleSelect(e) }} className={"bg-transparent"}>
       {langsArray &&
         langsArray.length > 0 &&
         langsArray.map((l) => {
 
           return l.key === currentLang ? (
-            <option selected key={l.key} value={l.key} selected>
+            <option selected key={l.key} value={l.key}>
               {l.label}
             </option>
           ) : (

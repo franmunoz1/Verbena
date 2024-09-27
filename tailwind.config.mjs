@@ -10,6 +10,7 @@ export default {
 				'brown-verbena': '#A67C52',
 				'dun-verbena': '#D5C4A1',
 				'almond-verbena': '#EAD7C5',
+				'beige-verbena': '#f5f1ec',
 			},
 		},
 	},

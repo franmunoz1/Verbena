@@ -2,6 +2,7 @@ import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { addToCart } from '../store/cart';
+import '@fontsource/tenor-sans';
 
 export default function CarouselCards({ products, currentLanguage, carouselTraductions }) {
 

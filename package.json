@@ -13,6 +13,7 @@
     "@astrojs/db": "^0.14.1",
     "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.0",
+    "@fontsource/tenor-sans": "^5.1.0",
     "@nanostores/react": "^0.7.3",
     "@types/react": "^18.3.6",
     "@types/react-dom": "^18.3.0",
