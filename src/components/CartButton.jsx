@@ -2,7 +2,7 @@ import { useStore } from "@nanostores/react";
 import { cart } from "../store/cart";
 import { useEffect, useState } from 'react';
 
-export default function CartButton() {
+export default function CartButton({ siteUrl, lang }) {
   const cartItems = useStore(cart);
   const [cartCounter, setCartCounter] = useState(0);
 
@@ -22,7 +22,7 @@ export default function CartButton() {
     <div className="items-center justify-center flex">
       <span>{cartCounter}</span>
       <a
-        href="/cart"
+        href={`${lang}/cart`}
         className="block py-2 px-3 text-white rounded cursor-pointer"
       >
         <svg

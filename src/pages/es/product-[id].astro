@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ProductDetail from "../../components/ProductDetail.jsx";
 import { db, Product } from "astro:db";
+import { getLangFromUrl } from "../../i18n/utils";
 
 export async function getStaticPaths() {
   const products = await db.select().from(Product);
@@ -14,6 +15,8 @@ const products = await db.select().from(Product);
 
 const { id } = Astro.params;
 
+const lang = getLangFromUrl(Astro.url);
+
 const product = products.find((s) => s.id === id);
 
 if (!product) {
@@ -22,5 +25,10 @@ if (!product) {
 ---
 
 <Layout title={`detail-${product.name}`}>
-  <ProductDetail product={product} client:load />
+  <ProductDetail
+    product={product}
+    siteUrl={Astro.url}
+    lang={lang}
+    client:load
+  />
 </Layout>

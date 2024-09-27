@@ -12,6 +12,11 @@ const t = useTranslations(lang);
 
 <Layout title="services">
     <main>
-        <ServiceCard services={services} currentLanguage={lang} client:load />
+        <ServiceCard
+            services={services}
+            siteUrl={Astro.url}
+            lang={lang}
+            client:load
+        />
     </main>
 </Layout>

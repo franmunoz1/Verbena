@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ServiceDetail from "../../components/ServiceDetail.jsx";
 import { db, Service } from "astro:db";
+import { getLangFromUrl } from "../../i18n/utils";
 
 export async function getStaticPaths() {
     const services = await db.select().from(Service);
@@ -9,6 +10,8 @@ export async function getStaticPaths() {
         params: { id: service.id },
     }));
 }
+
+const lang = getLangFromUrl(Astro.url);
 
 const services = await db.select().from(Service);
 
@@ -22,5 +25,10 @@ if (!service) {
 ---
 
 <Layout title={`detail-${service.name}`}>
-    <ServiceDetail service={service} client:load />
+    <ServiceDetail
+        service={service}
+        siteUrl={Astro.url}
+        lang={lang}
+        client:load
+    />
 </Layout>

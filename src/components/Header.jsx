@@ -44,7 +44,7 @@ const Header = ({ siteUrl, lang }) => {
                             <a href={`/${lang}/about`} className="block py-2 px-3 text-white rounded ">About</a>
                         </li>
                         <li>
-                            <CartButton />
+                            <CartButton lang={lang} siteUrl={siteUrl} />
                         </li>
                         <LanguagePicker siteUrl={siteUrl} />
                     </ul>

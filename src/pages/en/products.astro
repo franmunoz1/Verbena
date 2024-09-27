@@ -2,11 +2,19 @@
 import Layout from "../../layouts/Layout.astro";
 import ProductCard from "../../components/ProductCard.jsx";
 import { db, Product } from "astro:db";
+import { getLangFromUrl } from "../../i18n/utils";
+
 const products = await db.select().from(Product);
+const lang = getLangFromUrl(Astro.url);
 ---
 
 <Layout title="products">
     <main>
-        <ProductCard products={products} client:load />
+        <ProductCard
+            products={products}
+            siteUrl={Astro.url}
+            lang={lang}
+            client:load
+        />
     </main>
 </Layout>
