@@ -29,7 +29,7 @@ const test = Astro.props;
 		<section class="min-h-[800px]">
 			<slot />
 		</section>
-		<WhatsappButton />
-		<Footer />
+		<WhatsappButton client:load />
+		<Footer siteUrl={Astro.url} lang={lang} test={test} client:load />
 	</body>
 </html>
