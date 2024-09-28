@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import "@fontsource/tenor-sans";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import ImageCarousel from "../../components/ImageCarousel";
 
 // Configuración del idioma
 const lang = getLangFromUrl(Astro.url);
@@ -15,18 +16,24 @@ const horarios = [
 ---
 
 <Layout title="About Us - Verbena Estethic Center">
-  <main class="container mx-auto py-16">
+  <main class="container mx-auto py-16 px-4 lg:px-20">
     <!-- Sección de título -->
-    <section class="text-center mb-16">
+    <section
+      class="text-center mb-16"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+    >
       <h1
         class="text-4xl font-serif font-semibold text-green-verbena mb-4"
         data-aos="fade-down"
+        data-aos-duration="1200"
       >
         Sobre Nosotros
       </h1>
       <p
         class="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto"
         data-aos="fade-up"
+        data-aos-duration="1200"
       >
         En Verbena, nuestro objetivo es proporcionar una experiencia única de
         bienestar y belleza, combinando técnicas innovadoras con un ambiente
@@ -35,14 +42,17 @@ const horarios = [
     </section>
 
     <!-- Horarios de atención -->
-    <section class="mb-16">
+    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
       <h2
         class="text-2xl font-serif font-semibold text-green-verbena mb-6 text-left"
         data-aos="fade-right"
+        data-aos-duration="1200"
       >
         Horarios de atención
       </h2>
-      <ul class="bg-gray-50 p-6 rounded-lg shadow-lg" data-aos="fade-up">
+      <ul
+        class="bg-gray-50 p-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
+      >
         {
           horarios.map((horario) => (
             <li class="flex justify-between py-2 text-gray-700">
@@ -55,35 +65,40 @@ const horarios = [
     </section>
 
     <!-- Ubicación con Google Maps -->
-    <section class="mb-16">
+    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
       <h2
         class="text-2xl font-serif font-semibold text-green-verbena mb-6 text-left"
         data-aos="fade-right"
+        data-aos-duration="1200"
       >
         Ubicación
       </h2>
-      <div class="aspect-w-16 aspect-h-9">
+      <div
+        class="relative w-full h-[500px] p-4 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
+      >
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093775!2d144.9630576!3d-37.8142179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ce7e33!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sau!4v1631517583204!5m2!1sen!2sau"
-          class="w-full h-full rounded-lg shadow-lg"
+          class="absolute inset-0 w-full h-full rounded-lg shadow-lg"
           allowfullscreen=""
           loading="lazy"></iframe>
       </div>
     </section>
 
     <!-- Formulario de contacto -->
-    <section class="mb-16">
+    <section class="mb-16" data-aos="fade-up" data-aos-duration="1000">
       <h2
         class="text-2xl font-serif font-semibold text-green-verbena mb-6 text-left"
         data-aos="fade-right"
+        data-aos-duration="1200"
       >
         Contáctanos
       </h2>
       <form
         action="#"
         method="POST"
-        class="bg-gray-50 p-8 rounded-lg shadow-lg"
+        class="bg-gray-50 p-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
         data-aos="fade-up"
+        data-aos-duration="1200"
       >
         <div class="mb-6">
           <label for="name" class="block text-gray-700 mb-2">Nombre</label>
@@ -127,16 +142,17 @@ const horarios = [
     </section>
 
     <!-- Carrusel de fotos -->
-    <section>
+    <section data-aos="fade-up" data-aos-duration="1000">
       <h2
         class="text-2xl font-serif font-semibold text-green-verbena mb-6 text-left"
         data-aos="fade-right"
+        data-aos-duration="1200"
       >
         Nuestras Instalaciones
       </h2>
-      <div class="p-4" data-aos="fade-up">
+      <div class="" data-aos="fade-up" data-aos-duration="1200">
         <!-- Componente del Carrusel -->
-        <!-- <CarouselServices client:load /> -->
+        <ImageCarousel client:load />
       </div>
     </section>
   </main>

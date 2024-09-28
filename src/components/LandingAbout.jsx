@@ -20,7 +20,7 @@ const LandingAbout = () => {
                             Nuestra historia
                         </h2>
                         <p className="text-gray-800 leading-relaxed mb-8 font-sans">
-                            En Verbena, nuestra historia comenzó en el 2020, bajo la visión de nuestra CEO, Arianna Romero, quien, tras graduarse, decidió crear un espacio donde la belleza y el bienestar se entrelazan...
+                            En Verbena, nuestra historia comenzó en el 2020, bajo la visión de nuestra CEO, Arianna Romero, quien, tras graduarse , decidió crear un espacio donde la belleza y el bienestar se entrelazan. Con un compromiso inquebrantable hacia la excelencia, nos hemos aliado con los profesionales más destacados en el ámbito de la estética facial, garantizando que cada tratamiento no solo potencie la salud de tu piel, sino que también eleve tu estado emocional. Nuestra misión es ofrecer un enfoque holístico que refleje la filosofía de que la verdadera belleza comienza desde adentro. Te invitamos a ser parte de nuestra comunidad, donde cada visita es una oportunidad para iluminarte y renovarte.
                         </p>
                     </div>
                     <div className="w-full md:w-1/2" data-aos="zoom-in" data-aos-delay="200">
