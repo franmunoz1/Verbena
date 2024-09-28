@@ -19,11 +19,10 @@ export default function CartButton({ siteUrl, lang }) {
   }, [cartItems]);
 
   return (
-    <div className="items-center justify-center flex">
-      <span>{cartCounter}</span>
+    <div className="relative flex items-center justify-center">
       <a
         href={`${lang}/cart`}
-        className="block py-2 px-3 text-white rounded cursor-pointer"
+        className="block py-2 px-3 text-white rounded cursor-pointer relative"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -35,6 +34,7 @@ export default function CartButton({ siteUrl, lang }) {
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
+          className="hover:scale-110 transition-transform duration-200"
         >
           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
           <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -42,6 +42,13 @@ export default function CartButton({ siteUrl, lang }) {
           <path d="M17 17h-11v-14h-2" />
           <path d="M6 5l14 1l-1 7h-13" />
         </svg>
+
+        {/* Estilo del contador */}
+        {cartCounter > 0 && (
+          <span className="absolute -top-2 -right-2  text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+            {cartCounter}
+          </span>
+        )}
       </a>
     </div>
   );

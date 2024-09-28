@@ -2,6 +2,7 @@
 import CarouselServices from "../../components/CarouselServices";
 import CarouselProducts from "../../components/CarouselProducts";
 import Layout from "../../layouts/Layout.astro";
+import CarouselLanding from "../../components/CarouselLanding";
 import Cart from "../../components/CartButton";
 import "@fontsource/tenor-sans";
 
@@ -16,6 +17,7 @@ const t = useTranslations(lang);
 
 const carouselTraductions = {
   home: t("nav.home"),
+  title: t("carouselprod.title"),
 };
 
 console.log("awda", carouselTraductions);
@@ -24,10 +26,11 @@ console.log("awda", carouselTraductions);
 <Layout title="Verbena - Estethic center">
   <main>
     <section class="relative">
+      <!-- Imagen principal con animación de entrada desde arriba -->
       <img
         src="https://via.placeholder.com/1500x500"
         alt="Main image"
-        class="w-full h-96 object-cover"
+        class="w-full h-96 object-cover animate-fadeInDown"
       />
     </section>
 
@@ -36,8 +39,8 @@ console.log("awda", carouselTraductions);
       <div
         class="container mx-auto flex flex-col md:flex-row items-center justify-between"
       >
-        <!-- Texto a la izquierda -->
-        <div class="w-full md:w-1/2 md:pr-12">
+        <!-- Texto a la izquierda con animación de aparición -->
+        <div class="w-full md:w-1/2 md:pr-12 animate-fadeIn">
           <h2 class="text-4xl font-serif font-semibold text-gray-800 mb-6">
             {t("nav.home")}
           </h2>
@@ -52,14 +55,14 @@ console.log("awda", carouselTraductions);
           </p>
           <a
             href="/about"
-            class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
+            class="inline-block bg-gray-300 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-400 hover:scale-105 transition-transform duration-300"
           >
             Leer más
           </a>
         </div>
 
-        <!-- Imagen a la derecha -->
-        <div class="w-full md:w-1/2 mt-8 md:mt-0">
+        <!-- Imagen a la derecha con animación de entrada desde la derecha -->
+        <div class="w-full md:w-1/2 mt-8 md:mt-0 animate-fadeInRight">
           <img
             src="/img/imgface.jpeg"
             alt="About Us"
@@ -72,11 +75,12 @@ console.log("awda", carouselTraductions);
     <section>
       <div class="containter mx-auto p-2">
         <h2
-          class="text-4xl font-serif font-semibold text-green-verbena-light pt-6 text-center"
+          class="text-4xl font-serif font-semibold text-green-verbena pt-6 text-left pl-10"
         >
           Nuestros tratamientos
         </h2>
-        <div>
+        <!-- Carrusel con animación de desvanecimiento -->
+        <div class="animate-fadeInUp">
           <CarouselServices
             services={services}
             currentLanguage={lang}
@@ -86,6 +90,10 @@ console.log("awda", carouselTraductions);
       </div>
     </section>
 
+    <section class="animate-fadeIn">
+      <CarouselLanding />
+    </section>
+
     <section>
       <div class="containter mx-auto p-2">
         <h2
@@ -93,7 +101,8 @@ console.log("awda", carouselTraductions);
         >
           Nuestros productos
         </h2>
-        <div>
+        <!-- Carrusel de productos con animación -->
+        <div class="animate-fadeInUp">
           <CarouselProducts
             products={products}
             currentLanguage={lang}

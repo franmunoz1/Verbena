@@ -52,7 +52,7 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                                         href={`/${currentLanguage}/product-${card.id}`}
                                         className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
                                     >
-                                        Learn More
+                                        {carouselTraductions.title}
                                     </a>
                                 </div>
                             </div>

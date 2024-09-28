@@ -8,11 +8,10 @@ export const defaultLang = 'es';
 export const ui = {
   en: {
     'nav.home': 'Who we are?',
-    'nav.about': 'About',
-    'nav.twitter': 'Twitter',
+    'carouselprod.title': 'Our products',
   },
   es: {
     'nav.home': 'Quienes somos?',
-    'nav.about': 'À propos',
+    'carouselprod.title': 'Nuestros productos',
   },
 } as const;
