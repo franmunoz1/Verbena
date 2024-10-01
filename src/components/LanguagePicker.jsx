@@ -16,9 +16,15 @@ export const LanguagePicker = ({ siteUrl }) => {
   const [currentLang, setCurrentLang] = useState('')
 
   const handleSelect = (e) => {
-    // console.log("Acawdad", window.location.hostname)
-    window.location.href = window.location.hostname.includes("localhost") ? `${siteUrl.origin}/${e.target.value}` : `/${e.target.value}`;
-  }
+    const newLang = e.target.value;
+    const currentPath = window.location.pathname.split("/").slice(2).join("/"); // Obtiene la ruta actual sin el idioma
+    const newUrl = `/${newLang}/${currentPath}`;
+
+    window.location.href = window.location.hostname.includes("localhost")
+      ? `${siteUrl.origin}/${newLang}/${currentPath}`
+      : newUrl;
+  };
+
 
   useEffect(() => {
     setCurrentLang(window.location.pathname.split("/")[1]);
