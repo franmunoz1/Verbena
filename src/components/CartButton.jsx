@@ -21,7 +21,7 @@ export default function CartButton({ siteUrl, lang }) {
   return (
     <div className="relative flex items-center justify-center">
       <a
-        href={`${lang}/cart`}
+        href={`/${lang}/cart`}
         className="block py-2 px-3 text-white rounded cursor-pointer relative"
       >
         <svg
