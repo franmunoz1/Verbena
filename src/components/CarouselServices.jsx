@@ -34,14 +34,14 @@ export default function CarouselCards({ services, currentLanguage }) {
                                     </p>
                                 </div>
                                 <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
-                                    <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
+                                    {/* <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
                                         Book Now
-                                    </button>
+                                    </button> */}
                                     <a
                                         href={`/${currentLanguage}/service-${card.id}`}
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
+                                        className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2 text-center"
                                     >
-                                        Learn More
+                                        Reservar
                                     </a>
                                 </div>
                             </div>

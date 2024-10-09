@@ -2,7 +2,6 @@
 import CarouselServices from "../../components/CarouselServices";
 import CarouselProducts from "../../components/CarouselProducts";
 import Layout from "../../layouts/Layout.astro";
-import CarouselLanding from "../../components/CarouselLanding";
 import Cart from "../../components/CartButton";
 import OpinionsClients from "../../components/OpinionsClients";
 import LandingAbout from "../../components/LandingAbout";
@@ -21,8 +20,6 @@ const carouselTraductions = {
   home: t("nav.home"),
   title: t("carouselprod.title"),
 };
-
-console.log("awda", carouselTraductions);
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -77,17 +74,17 @@ console.log("awda", carouselTraductions);
       <div class="containter mx-auto p-2">
         <div class="flex flex-col sm:flex-row justify-between p-4">
           <h2
-            class="text-[2rem] font-serif font-semibold text-green-verbena pt-6 text-left"
+            class="text-[2rem] font-serif font-semibold text-green-verbena pt-6 text-center sm:text-left pb-8"
             data-aos="fade-right"
           >
-            Nuestros tratamientos
+            Our treatments
           </h2>
-          <button
-            class="bg-green-verbena text-white text-sm px-8 py-2 mt-4 sm:mt-0 w-full sm:w-auto rounded-full hover:bg-[#badc80] transition-all ease-in-out duration-300"
-            data-aos="zoom-in"
+          <a
+            href=`/${lang}/services`
+            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-green-800 transition duration-300 max-h-[30px] self-center"
           >
-            Ver más
-          </button>
+            See more
+          </a>
         </div>
         <!-- Carrusel con animación de desvanecimiento -->
         <div data-aos="fade-up">
@@ -104,17 +101,17 @@ console.log("awda", carouselTraductions);
       <div class="containter mx-auto p-2">
         <div class="flex flex-col sm:flex-row justify-between p-4">
           <h2
-            class="text-[2rem] font-serif font-semibold text-green-verbena pt-6 text-left"
+            class="text-[2rem] font-serif font-semibold text-green-verbena pt-6 text-center sm:text-left pb-8"
             data-aos="fade-right"
           >
-            Nuestros productos
+            Our productos
           </h2>
-          <button
-            class="bg-green-verbena text-white text-sm px-8 py-2 mt-4 sm:mt-0 w-full sm:w-auto rounded-full hover:bg-[#badc80] transition-all ease-in-out duration-300"
-            data-aos="zoom-in"
+          <a
+            href=`/${lang}/products`
+            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-green-800 transition duration-300 max-h-[30px] self-center"
           >
-            Ver más
-          </button>
+            Shop now
+          </a>
         </div>
 
         <!-- Carrusel de productos con animación -->

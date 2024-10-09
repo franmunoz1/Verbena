@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.astro";
+import Footer1 from "../components/Footer1.jsx";
 import WhatsappButton from "../components/WhatsappButton.astro";
 import { getLangFromUrl } from "../i18n/utils";
 
@@ -34,6 +35,6 @@ const test = Astro.props;
 			<slot />
 		</section>
 		<WhatsappButton />
-		<Footer siteUrl={Astro.url} lang={lang} test={test} />
+		<Footer1 siteUrl={Astro.url} lang={lang} test={test} client:load />
 	</body>
 </html>

@@ -1,52 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
 import { addToCart } from '../store/cart';
 
-export default function productCard({ products, lang, siteUrl }) {
+export default function ProductCard({ products, lang, siteUrl }) {
+    const [selectedCategory, setSelectedCategory] = useState(''); // example filter state
 
     const handleAddToCart = (product) => {
         addToCart(product);
     };
 
+    const handleFilterChange = (category) => {
+        setSelectedCategory(category); // update filter state
+    };
+
+    // Filter products based on selected category (this is just a placeholder logic)
+    const filteredProducts = selectedCategory
+        ? products.filter((product) => product.category === selectedCategory)
+        : products;
+
     return (
-        <div>
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-                {products.length > 0 ? (
-                    products.map((product) => (
-                        <div
-                            key={product.id}
-                            className="max-w-lg rounded overflow-hidden shadow-lg p-6 bg-white flex flex-col"
+        <div className="mx-[50px] flex flex-col lg:flex-row">
+            {/* Aside for filters */}
+            <aside className="w-full lg:w-1/4 mb-6 lg:mb-0 lg:mr-6">
+                <div className="bg-gray-100 p-4 rounded-md">
+                    <h2 className="text-lg font-bold mb-4">Filters</h2>
+                    <div className="flex flex-col">
+                        <button
+                            className={`py-2 px-4 rounded-md text-left ${selectedCategory === '' ? 'bg-green-verbena text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleFilterChange('')}
                         >
-                            <img
-                                className="w-full h-[300px] object-cover"
-                                src={product.image}
-                                alt={product.name}
-                            />
-                            <div className="px-6 py-4">
-                                <div className="font-bold text-xl mb-2">{product.name}</div>
-                                <p className="text-gray-700 text-base">{product.summary}</p>
-                                <span className="text-gray-700 font-bold">Price: ${product.price}</span>
-                            </div>
-                            <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
-                                <button
-                                    onClick={() => handleAddToCart(product)}
-                                    className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
-                                    Agregar al carrito
-                                </button>
-                                <a
-                                    href={`/${lang}/product-${product.id}`}
-                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
-                                >
-                                    Ver más
-                                </a>
+                            All
+                        </button>
+                        <button
+                            className={`py-2 px-4 mt-2 rounded-md text-left ${selectedCategory === 'category1' ? 'bg-green-verbena text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleFilterChange('category1')}
+                        >
+                            Category 1
+                        </button>
+                        <button
+                            className={`py-2 px-4 mt-2 rounded-md text-left ${selectedCategory === 'category2' ? 'bg-green-verbena text-white' : 'bg-gray-200'}`}
+                            onClick={() => handleFilterChange('category2')}
+                        >
+                            Category 2
+                        </button>
+                    </div>
+                </div>
+            </aside>
 
-
+            {/* Products grid */}
+            <div className="w-full lg:w-3/4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 p-4">
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map((product) => (
+                        <div key={product.id} className="group relative">
+                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                <img
+                                    src={product.image}
+                                    alt={product.alt}
+                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[300px]"
+                                />
                             </div>
+                            <div className="mt-4 flex justify-between flex-col items-center">
+                                <div className="text-center">
+                                    <h3 className="text-sm text-gray-700 font-bold">
+                                        <h3 className="text-sm text-gray-700 font-bold">
+                                            <a href={`/${lang}/product-${product.id}`}>
+                                                {product.name}
+                                            </a>
+                                        </h3>
+
+                                    </h3>
+                                    <p className="mt-1 text-sm text-gray-500">{product.summary}</p>
+                                </div>
+                                <p className="text-sm font-medium text-gray-900">US$ {product.price}</p>
+                            </div>
+                            <button
+                                onClick={() => handleAddToCart(product)}
+                                className="mt-2 w-full bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
+                            >
+                                Add to cart
+                            </button>
                         </div>
                     ))
                 ) : (
-                    <p>No hay productos disponibles para la categoría seleccionada.</p>
+                    <p>No products available for the selected category.</p>
                 )}
-            </section>
+            </div>
         </div>
     );
 }

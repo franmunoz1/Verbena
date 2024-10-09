@@ -3,11 +3,11 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { addToCart } from '../store/cart';
 import '@fontsource/tenor-sans';
+import '@fontsource-variable/raleway';
 
 export default function CarouselCards({ products, currentLanguage, carouselTraductions }) {
 
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-    console.log("products", products)
 
     const scrollPrev = React.useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
@@ -21,39 +21,38 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
         addToCart(product);
     };
 
-
-    console.log("carouselTraductions", carouselTraductions)
     return (
         <div className="relative px-4 py-8">
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
-                    {products && products.length > 0 && products.map((card, index) => (
-                        <div key={card.id} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4">
-                            <div className="rounded overflow-hidden shadow-lg p-6 bg-white h-full flex flex-col">
-                                <img
-                                    className="w-full h-[150px] sm:h-[200px] md:h-[250px] lg:h-[200px] object-cover mb-4"
-                                    src={card.image}
-                                    alt={card.alt}
-
-                                />
-                                <div className="px-6 py-4 flex-grow">
-                                    <div className="font-bold text-xl mb-2">{card.name}</div>
-                                    <p className="text-gray-700 text-base">
-                                        {card.summary}
-                                    </p>
+                    {products && products.length > 0 && products.map((product, index) => (
+                        <div key={product.id} className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4">
+                            <div className="group relative flex flex-col h-full">
+                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                    <img
+                                        src={product.image}
+                                        alt={product.alt}
+                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[400px]"
+                                    />
                                 </div>
-                                <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
+                                <div className="mt-4 flex-grow flex flex-col justify-between items-center">
+                                    <div className="text-center">
+                                        <h3 className="text-sm text-gray-700 font-bold">
+                                            <a href={`/${currentLanguage}/product-${product.id}`}>
+                                                {product.name}
+                                            </a>
+                                        </h3>
+                                        <p className="mt-1 text-sm text-gray-500">{product.summary}</p>
+                                    </div>
+                                    <p className="text-sm font-medium text-gray-900" style={{ fontFamily: 'Raleway Variable' }}>US$ {product.price}</p>
+                                </div>
+                                <div className="mt-auto w-full">
                                     <button
-                                        onClick={() => handleAddToCart(card)}
-                                        className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
-                                        Add to cart
-                                    </button>
-                                    <a
-                                        href={`/${currentLanguage}/product-${card.id}`}
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
+                                        onClick={() => handleAddToCart(product)}
+                                        className="w-full bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
                                     >
-                                        {carouselTraductions.title}
-                                    </a>
+                                        {carouselTraductions.addToCart || 'Add to cart'}
+                                    </button>
                                 </div>
                             </div>
                         </div>
