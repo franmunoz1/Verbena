@@ -5,7 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 import '@fontsource/cormorant-garamond';
 
-export default function Header({ siteUrl, lang }) {
+export default function Header({ siteUrl, lang, navbarTraductions }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -27,16 +27,16 @@ export default function Header({ siteUrl, lang }) {
                 {/* Barra de navegación centrada en pantallas md o mayores */}
                 <div className="hidden md:flex md:flex-1 justify-center items-center gap-6 text-sm font-medium">
                     <a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">
-                        Home
+                        {navbarTraductions.home}
                     </a>
                     <a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">
-                        Products
+                        {navbarTraductions.products}
                     </a>
                     <a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">
-                        Services
+                        {navbarTraductions.services}
                     </a>
                     <a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">
-                        About
+                        {navbarTraductions.about}
                     </a>
                     {/* LanguagePicker visible en computadoras */}
                     <LanguagePicker siteUrl={siteUrl} />
@@ -77,16 +77,16 @@ export default function Header({ siteUrl, lang }) {
 
                             <nav className="flex flex-col gap-6 mt-8 text-lg">
                                 <a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">
-                                    Home
+                                    {navbarTraductions.home}
                                 </a>
                                 <a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">
-                                    Products
+                                    {navbarTraductions.products}
                                 </a>
                                 <a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">
-                                    Services
+                                    {navbarTraductions.services}
                                 </a>
                                 <a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">
-                                    About
+                                    {navbarTraductions.about}
                                 </a>
                             </nav>
                         </div>

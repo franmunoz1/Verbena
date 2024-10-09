@@ -4,7 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import '@fontsource/cormorant-garamond';
 
-export default function Footer({ siteUrl, lang }) {
+export default function Footer({ siteUrl, lang, footerTraductions }) {
     const [showBackToTop, setShowBackToTop] = useState(false);
 
     useEffect(() => {
@@ -49,7 +49,7 @@ export default function Footer({ siteUrl, lang }) {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="font-semibold text-lg mb-4">Contact Us</h3>
+                        <h3 className="font-semibold text-lg mb-4">{footerTraductions.contactUs}</h3>
                         <ul className="space-y-2 text-sm">
                             <li className="flex items-center gap-2">
                                 <EmailIcon className="h-4 w-4" />
@@ -70,7 +70,7 @@ export default function Footer({ siteUrl, lang }) {
                 {/* Bottom section */}
                 <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
                     <div className="text-sm text-muted-foreground mb-4 md:mb-0">
-                        © 2024 Verbena. All rights reserved.
+                        {footerTraductions.copyrigth}
                     </div>
                     <div className="flex items-center gap-4">
                         <LanguagePicker siteUrl={siteUrl} />

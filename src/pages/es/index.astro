@@ -17,7 +17,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const carouselTraductions = {
-  home: t("nav.home"),
   title: t("carouselprod.title"),
 };
 ---
@@ -81,7 +80,7 @@ const carouselTraductions = {
           </h2>
           <a
             href=`/${lang}/services`
-            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-md hover:bg-green-800 transition duration-300 max-h-[30px] self-center"
+            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-green-800 transition duration-300 max-h-[30px] self-center"
           >
             Ver más
           </a>

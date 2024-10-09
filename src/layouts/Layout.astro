@@ -3,14 +3,30 @@ import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.astro";
 import Footer1 from "../components/Footer1.jsx";
 import WhatsappButton from "../components/WhatsappButton.astro";
-import { getLangFromUrl } from "../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
-const lang = getLangFromUrl(Astro.url);
+
+const navbarTraductions = {
+	home: t("nav.home"),
+	products: t("nav.products"),
+	services: t("nav.services"),
+	about: t("nav.about"),
+};
+
+const footerTraductions = {
+	description: t("footer.description"),
+	quickLinks: t("footer.quickLinks"),
+	contactUs: t("footer.contactUs"),
+	copyrigth: t("footer.copyright"),
+};
 
 const test = Astro.props;
 ---
@@ -30,11 +46,23 @@ const test = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class="bg-[#f5f1ec]">
-		<Header siteUrl={Astro.url} lang={lang} test={test} client:load />
+		<Header
+			siteUrl={Astro.url}
+			lang={lang}
+			test={test}
+			navbarTraductions={navbarTraductions}
+			client:load
+		/>
 		<section class="min-h-[800px]">
 			<slot />
 		</section>
 		<WhatsappButton />
-		<Footer1 siteUrl={Astro.url} lang={lang} test={test} client:load />
+		<Footer1
+			siteUrl={Astro.url}
+			lang={lang}
+			test={test}
+			footerTraductions={footerTraductions}
+			client:load
+		/>
 	</body>
 </html>
