@@ -19,6 +19,15 @@ const t = useTranslations(lang);
 const carouselTraductions = {
   title: t("carouselprod.title"),
 };
+
+const landingAboutTraductions = {
+  title: t("landingabout.title"),
+  description: t("landingabout.description"),
+  title1: t("landingabout.title1"),
+  description1: t("landingabout.description1"),
+  title2: t("landingabout.title2"),
+  description2: t("landingabout.description2"),
+};
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -35,7 +44,10 @@ const carouselTraductions = {
     </section>
 
     <section class="py-16">
-      <LandingAbout client:load />
+      <LandingAbout
+        landingAboutTraductions={landingAboutTraductions}
+        client:load
+      />
 
       <!-- Contenedor con animaciones AOS -->
       <!-- <div

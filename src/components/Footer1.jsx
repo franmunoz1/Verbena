@@ -32,7 +32,7 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
                             <span className="text-green-verbena font-extrabold text-3xl" style={{ fontFamily: 'Cormorant Garamond', font: 'serif' }}>Verbena</span>
                         </a>
                         <p className="text-muted-foreground text-sm">
-                            Discover the essence of nature with Verbena's organic products and services.
+                            {footerTraductions.description}
                         </p>
                     </div>
 
@@ -40,10 +40,10 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
                     <div>
                         <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
                         <ul className="space-y-2 text-sm">
-                            <li><a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">Home</a></li>
-                            <li><a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">Products</a></li>
-                            <li><a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">Services</a></li>
-                            <li><a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">About</a></li>
+                            <li><a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">{footerTraductions.home}</a></li>
+                            <li><a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">{footerTraductions.products}</a></li>
+                            <li><a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">{footerTraductions.services}</a></li>
+                            <li><a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">{footerTraductions.about}</a></li>
                         </ul>
                     </div>
 
