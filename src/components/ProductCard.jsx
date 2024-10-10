@@ -51,33 +51,36 @@ export default function ProductCard({ products, lang, siteUrl }) {
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (
                         <div key={product.id} className="group relative flex flex-col h-full">
-                            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-                                <img
-                                    src={product.image}
-                                    alt={product.alt}
-                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[300px]"
-                                />
-                            </div>
-                            <div className="mt-4 flex flex-col justify-between flex-grow">
-                                <div className="text-center">
-                                    <h3 className="text-sm text-gray-700 font-bold">
-                                        <h3 className="text-sm text-gray-700 font-bold">
-                                            <a href={`/${lang}/product-${product.id}`}>
-                                                {product.name}
-                                            </a>
-                                        </h3>
-                                    </h3>
-                                    <p className="mt-1 text-sm text-gray-500">{product.summary}</p>
+                            <a href={`/${lang}/product-${product.id}`} className="block group flex-grow flex flex-col justify-between">
+                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                    <img
+                                        src={product.image}
+                                        alt={product.alt}
+                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[300px] rounded-md"
+                                    />
                                 </div>
-                                <p className="text-sm font-medium text-gray-900 text-center">US$ {product.price}</p>
+                                <div className="mt-4 flex-grow flex flex-col justify-between">
+                                    <div className="text-center">
+                                        <h3 className="text-sm text-gray-700 font-bold">
+                                            {product.name}
+                                        </h3>
+                                        <p className="mt-1 text-sm text-gray-500">{product.summary}</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <div className="text-center mt-2">
+                                <p className="text-sm font-medium text-gray-900">US$ {product.price}</p>
                             </div>
-                            <button
-                                onClick={() => handleAddToCart(product)}
-                                className="mt-2 w-full bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
-                            >
-                                Add to cart
-                            </button>
+                            <div className="mt-2">
+                                <button
+                                    onClick={() => handleAddToCart(product)}
+                                    className="w-full bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
+                                >
+                                    Add to cart
+                                </button>
+                            </div>
                         </div>
+
                     ))
                 ) : (
                     <p>No products available for the selected category.</p>
