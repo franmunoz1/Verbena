@@ -31,6 +31,14 @@ export const ui = {
     'landingabout.title2': 'Our vision',
     'landingabout.description2': 'Create a space where skin health and self-care merge, empowering people to feel confident and radiant from the inside out.',
 
+    // Cart
+    'cart.title': 'Your cart',
+    'cart.empty': 'Your cart is empty',
+    'cart.total': 'Total',
+    'cart.quit': 'Remove',
+    'cart.clear': 'Clear cart',
+    'cart.checkout': 'Send via Whatsapp',
+
     // Carousel
     'carouselprod.title': 'Our products',
   },
@@ -57,6 +65,14 @@ export const ui = {
     'landingabout.description1': 'La piel refleja lo que sientes. En Verbena, te ayudamos a iluminarte desde el corazón, proporcionando tratamientos que no solo mejoran tu piel, sino que también elevan tu estado de ánimo.',
     'landingabout.title2': 'Nuestros visión',
     'landingabout.description2': 'Crear un espacio donde la salud de la piel y el autocuidado se fusionen, empoderando a las personas para que se sientan confiadas y radiantes desde adentro hacia afuera.',
+
+    // Cart
+    'cart.title': 'Tu carrito',
+    'cart.empty': 'Tu carrito está vacío',
+    'cart.total': 'Total',
+    'cart.quit': 'Quitar',
+    'cart.clear': 'Vaciar carrito',
+    'cart.checkout': 'Enviar por Whatsapp',
 
     // Carousel
     'carouselprod.title': 'Nuestros productos',

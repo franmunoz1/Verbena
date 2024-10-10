@@ -1,10 +1,23 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CartComponent from "../../components/Cart";
+
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const cartTraductions = {
+  titleCart: t("cart.title"),
+  emptyCart: t("cart.empty"),
+  totalCart: t("cart.total"),
+  quitCart: t("cart.quit"),
+  clearCart: t("cart.clear"),
+  checkoutCart: t("cart.checkout"),
+};
 ---
 
 <Layout title="Cart">
   <main>
-    <CartComponent client:load />
+    <CartComponent cartTraductions={cartTraductions} client:load />
   </main>
 </Layout>
