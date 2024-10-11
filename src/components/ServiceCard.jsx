@@ -18,7 +18,7 @@ export default function ServiceCard({ services, lang, siteUrl }) {
     return (
         <div>
             {/* Barra de filtros */}
-            <div className="mb-6 flex gap-4 items-center justify-center pt-4">
+            {/* <div className="mb-6 flex gap-4 items-center justify-center pt-4">
                 <div>
                     <label htmlFor="category" className="mr-2 font-bold">Filtrar por categoría:</label>
                     <select
@@ -47,7 +47,7 @@ export default function ServiceCard({ services, lang, siteUrl }) {
                         <option value="priceDesc">Mayor a menor</option>
                     </select>
                 </div>
-            </div>
+            </div> */}
 
             {/* Mostrar servicios filtrados */}
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
