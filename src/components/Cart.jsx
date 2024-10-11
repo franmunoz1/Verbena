@@ -43,7 +43,7 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
 
     // Codificar el mensaje para usarlo en la URL de WhatsApp
     const mensajeCodificado = encodeURIComponent(mensaje);
-    const numeroTelefono = '1234567890'; // Reemplaza con el número de teléfono que recibirá el mensaje
+    const numeroTelefono = '17869256878'; // Reemplaza con el número de teléfono que recibirá el mensaje
 
     // Abrir el enlace de WhatsApp
     window.open(`https://api.whatsapp.com/send?phone=${numeroTelefono}&text=${mensajeCodificado}`, '_blank');

@@ -12,6 +12,7 @@ const Product = defineTable({
     recomendation: column.text({ unique: false }),
     image: column.text({ unique: false }),
     alt: column.text({ unique: false }),
+    category: column.text({ unique: false }),
   }
 });
 

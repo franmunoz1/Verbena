@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const handleWhatsApp = (name, date, treatment) => {
     const message = `Hola! Quiero reservar el tratamiento: ${treatment}.\nNombre: ${name}\nFecha seleccionada: ${date}`;
-    const url = `https://wa.me/3512433148?text=${encodeURIComponent(message)}`;
+    const url = `https://wa.me/17869256878?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 };
 
