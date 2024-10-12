@@ -9,7 +9,7 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
-        AOS.init({ duration: 600 }); // Inicializamos AOS con una duración de animación
+        AOS.init({ duration: 600 });
     }, []);
 
     const toggleMenu = () => {
