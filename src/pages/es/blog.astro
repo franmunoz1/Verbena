@@ -1,0 +1,45 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import { db, Blog } from "astro:db";
+
+if (Astro.request.method === "POST") {
+    const formData = await Astro.request.formData();
+    const title = formData.get("title");
+    const description = formData.get("description");
+    if (typeof title === "string" && typeof description === "string") {
+        await db.insert(Blog).values({ title, description });
+    }
+    console.log("Form submitted", title, description);
+}
+
+// render the new list of Blogs on each request
+const blogs = await db.select().from(Blog);
+---
+
+<Layout title="blogs">
+    <h1>Blog</h1>
+    <p>Esta es la página de blog</p>
+
+    <form method="POST" style="display: grid">
+        <label for="title">title</label>
+        <input id="title" name="title" />
+
+        <label for="description">description</label>
+        <textarea id="description" name="description"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <ul>
+        <!-- render the list of blogs -->
+        {
+            blogs.map(({ title, description }) => (
+                <li>
+                    <h2>{title}</h2>
+                    <p>{description}</p>
+                </li>
+            ))
+        }
+    </ul>
+</Layout>

@@ -29,10 +29,18 @@ const Service = defineTable({
   }
 });
 
+const Blog = defineTable({
+  columns: {
+    title: column.text({ unique: false }),
+    description: column.text({ unique: false })
+  }
+});
+
 
 export default defineDb({
   tables: {
     Product,
-    Service
+    Service,
+    Blog
   }
 });

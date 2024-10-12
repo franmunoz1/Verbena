@@ -1,4 +1,4 @@
-import { db, Product, Service } from 'astro:db';
+import { db, Product, Service, Blog } from 'astro:db';
 
 // https://astro.build/db/seed
 
@@ -31,5 +31,9 @@ export default async function seed() {
 		{ id: '106', name: 'Tratamiento de Acné + Alta Frecuencia', price: 120, summary: 'Este tratamiento especializado purifica los poros obstruidos, elimina el exceso de grasa y bacterias, y reduce la inflamación del acné.', description: 'Este tratamiento especializado purifica los poros obstruidos, elimina el exceso de grasa y bacterias, y reduce la inflamación del acné. Incluye una limpieza profunda para remover impurezas y sebo, seguida de una exfoliación suave para renovar la piel. Se aplica un tratamiento de alta frecuencia que elimina bacterias y estimula la circulación sanguínea, promoviendo la curación de la piel.', recomendation: '⚠️ Este tto no es apto para embarazadas, anticoagulados, diabéticos, ni personas que cursen un proceso inflamatorio de la piel.', image: '/img/limpiezaFacial+dermapen.jpeg', alt: 'Limpieza facial con dermapen' },
 		{ id: '107', name: 'Limpieza Profunda de Espalda', price: 120, summary: 'La espalda es una zona desafiante de cuidar debido a su alta concentración de glándulas sebáceas', description: 'La espalda es una zona desafiante de cuidar debido a su alta concentración de glándulas sebáceas. Nuestro tratamiento exfoliante y limpiador específico para la espalda no solo elimina impurezas, sino que también protege y proporciona una sensación reconfortante, asegurando una piel limpia y saludable.', recomendation: '⚠️ Este tto no es apto para embarazadas, anticoagulados, diabéticos, ni personas que cursen un proceso inflamatorio de la piel.', image: '/img/limpiezaFacial+dermapen.jpeg', alt: 'Limpieza facial con dermapen' },
 		{ id: '108', name: 'Limpieza Facial Profunda + Ácido Hialurónico con DermaPen', price: 120, summary: 'La espalda es una zona desafiante de cuidar debido a su alta concentración de glándulas sebáceas', description: 'La espalda es una zona desafiante de cuidar debido a su alta concentración de glándulas sebáceas. Nuestro tratamiento exfoliante y limpiador específico para la espalda no solo elimina impurezas, sino que también protege y proporciona una sensación reconfortante, asegurando una piel limpia y saludable.', recomendation: '⚠️ Este tto no es apto para embarazadas, anticoagulados, diabéticos, ni personas que cursen un proceso inflamatorio de la piel.', image: '/img/limpiezaFacial+dermapen.jpeg', alt: 'Limpieza facial con dermapen' },
+	]);
+
+	await db.insert(Blog).values([
+		{ title: '¿Qué es el ácido hialurónico y cómo actúa en la piel?', description: 'El ácido hialurónico es una sustancia que se encuentra de forma natural en la piel y que tiene la capacidad de retener agua, lo que la mantiene hidratada y con un aspecto joven. Con el paso de los años, la producción de ácido hialurónico disminuye, lo que provoca la aparición de arrugas y la pérdida de volumen en la piel.' },
 	]);
 }
