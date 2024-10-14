@@ -47,18 +47,6 @@ export default function ImageCarousel() {
                     ))}
                 </div>
             </div>
-            {/* <button
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-                onClick={scrollPrev}
-            >
-                <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-                onClick={scrollNext}
-            >
-                <ChevronRight className="w-6 h-6" />
-            </button> */}
         </div>
     );
 }
