@@ -22,6 +22,7 @@ export const ui = {
     'footer.products': 'Products',
     'footer.services': 'Services',
     'footer.about': 'About',
+    'footer.links': 'Quick Links',
 
     // LandingAbout
     'landingabout.title': 'Our story',
@@ -57,6 +58,7 @@ export const ui = {
     'footer.products': 'Productos',
     'footer.services': 'Servicios',
     'footer.about': 'Acerca de',
+    'footer.links': 'Links Rapidos',
 
     // LandingAbout
     'landingabout.title': 'Nuestra historia',

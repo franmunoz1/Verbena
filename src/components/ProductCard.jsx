@@ -79,7 +79,7 @@ export default function ProductCard({ products, lang, siteUrl }) {
                     sortedProducts.map((product) => (
                         <div key={product.id} className="group relative flex flex-col h-full shadow-md p-4 rounded-md hover:shadow-lg transition duration-300">
                             <a href={`/${lang}/product-${product.id}`} className="block group flex-grow flex-col justify-between">
-                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
+                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80">
                                     <img
                                         src={product.image}
                                         alt={product.alt}

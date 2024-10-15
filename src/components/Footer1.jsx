@@ -38,7 +38,7 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
+                        <h3 className="font-semibold text-lg mb-4">{footerTraductions.links}</h3>
                         <ul className="space-y-2 text-sm">
                             <li><a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">{footerTraductions.home}</a></li>
                             <li><a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">{footerTraductions.products}</a></li>
@@ -57,7 +57,7 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
                             </li>
                             <li className="flex items-center gap-2">
                                 <PhoneIcon className="h-4 w-4" />
-                                <span className="text-muted-foreground">+1 (555) 123-4567</span>
+                                <span className="text-muted-foreground">+1 (786) 925-6878</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <MapPinIcon className="h-4 w-4" />

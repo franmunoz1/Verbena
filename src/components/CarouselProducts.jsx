@@ -26,9 +26,9 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
                     {products && products.length > 0 && products.map((product, index) => (
-                        <div key={product.id} className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4">
-                            <div className="group relative flex flex-col h-full">
-                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                        <div key={product.id} className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] shadow-md p-4 rounded-md hover:shadow-lg transition duration-300">
+                            <div className="group relative flex flex-col h-full "> {/* Agregado rounded-lg y shadow-lg */}
+                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
                                     <img
                                         src={product.image}
                                         alt={product.alt}
@@ -72,5 +72,6 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                 <ChevronRight className="w-6 h-6" />
             </button>
         </div>
+
     )
 }

@@ -35,7 +35,7 @@ export default function ImageCarousel() {
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex">
                     {images.map((image, index) => (
-                        <div key={index} className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4">
+                        <div key={index} className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4 bor">
                             <div className="rounded overflow-hidden shadow-lg p-6 bg-white h-full">
                                 <img
                                     className="w-full h-[250px] object-cover mb-4"
