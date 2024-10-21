@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ProductDetail from "../../components/ProductDetail.jsx";
 import { db, Product } from "astro:db";
-import { getLangFromUrl } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
   const products = await db.select().from(Product);
@@ -12,6 +12,12 @@ export async function getStaticPaths() {
 }
 
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const detailProductTranslation = {
+  quantity: t("detailprod.quantity"),
+  addCart: t("detailprod.add"),
+};
 
 const products = await db.select().from(Product);
 
@@ -29,6 +35,7 @@ if (!product) {
     product={product}
     siteUrl={Astro.url}
     lang={lang}
+    detailProductTranslation={detailProductTranslation}
     client:load
   />
 </Layout>

@@ -40,6 +40,10 @@ export const ui = {
     'cart.clear': 'Clear cart',
     'cart.checkout': 'Send via Whatsapp',
 
+    // Detail product
+    'detailprod.quantity': 'Quantity',
+    'detailprod.add': 'Add to cart',
+
     // Carousel
     'carouselprod.title': 'Our products',
   },
@@ -75,6 +79,10 @@ export const ui = {
     'cart.quit': 'Quitar',
     'cart.clear': 'Vaciar carrito',
     'cart.checkout': 'Enviar por Whatsapp',
+
+    // Detail product
+    'detailprod.quantity': 'Cantidad',
+    'detailprod.add': 'Agregar al carrito',
 
     // Carousel
     'carouselprod.title': 'Nuestros productos',

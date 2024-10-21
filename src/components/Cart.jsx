@@ -105,7 +105,7 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
           </div>
 
           <div className="flex gap-4">
-            <button onClick={clearCart} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">
+            <button onClick={clearCart} className="w-full border border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">
               {cartTraductions.clearCart}
             </button>
             <button onClick={enviarPorWhatsapp} className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">

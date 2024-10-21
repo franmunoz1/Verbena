@@ -21,8 +21,23 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
             <div className="container flex mx-auto h-16 items-center justify-between px-4 md:px-6">
                 {/* Logo */}
                 <a href={`/${lang}`} className="flex items-center gap-2">
-                    <span className="text-green-verbena font-extrabold text-4xl" style={{ fontFamily: 'Cormorant Garamond', font: 'serif' }}>Verbena</span>
+                    <div className="flex flex-col text-center leading-none">
+                        <span
+                            className="text-green-verbena font-extrabold text-4xl"
+                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        >
+                            Verbena
+                        </span>
+                        <span
+                            className="text-[0.6rem] text-green-verbena italic tracking-tighter"
+                            style={{ letterSpacing: '0.03em' }}
+                        >
+                            ESTHETIC CENTER
+                        </span>
+                    </div>
                 </a>
+
+
 
                 {/* Barra de navegación centrada en pantallas md o mayores */}
                 <div className="hidden md:flex md:flex-1 justify-center items-center gap-6 text-sm font-medium">

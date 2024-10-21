@@ -27,13 +27,30 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
             <div className="container mx-auto px-4 py-8 md:py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Logo and description */}
-                    <div className="md:col-span-2">
-                        <a href={`/${lang}`} className="flex items-center gap-2 mb-4">
-                            <span className="text-green-verbena font-extrabold text-3xl" style={{ fontFamily: 'Cormorant Garamond', font: 'serif' }}>Verbena</span>
-                        </a>
-                        <p className="text-muted-foreground text-sm">
-                            {footerTraductions.description}
-                        </p>
+                    <div className="md:col-span-2 flex flex-col justify-between">
+                        <div>
+                            <a href={`/${lang}`} className="flex items-center gap-2">
+                                <div className="flex flex-col text-center leading-none">
+                                    <span
+                                        className="text-green-verbena font-extrabold text-4xl"
+                                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                                    >
+                                        Verbena
+                                    </span>
+                                    <span
+                                        className="text-[0.6rem] text-green-verbena italic tracking-tighter"
+                                        style={{ letterSpacing: '0.03em' }}
+                                    >
+                                        ESTHETIC CENTER
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div>
+                            <p className="text-muted-foreground text-sm py-6 sm:p-0">
+                                {footerTraductions.description}
+                            </p>
+                        </div>
                     </div>
 
                     {/* Quick Links */}
