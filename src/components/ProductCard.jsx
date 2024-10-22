@@ -101,10 +101,11 @@ export default function ProductCard({ products, lang, siteUrl }) {
                             <div className="mt-2">
                                 <button
                                     onClick={() => handleAddToCart(product)}
-                                    className="w-full bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md transition duration-300"
+                                    className="w-full bg-green-verbena hover:bg-green-600 text-white font-semibold py-3 px-5 rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out"
                                 >
                                     Añadir al carrito
                                 </button>
+
                             </div>
                         </div>
                     ))

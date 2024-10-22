@@ -32,7 +32,7 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                                     <img
                                         src={product.image}
                                         alt={product.alt}
-                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[400px]"
+                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[300px]"
                                     />
                                 </div>
                                 <div className="mt-4 flex-grow flex flex-col justify-between items-center">
@@ -49,10 +49,11 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                                 <div className="mt-auto w-full">
                                     <button
                                         onClick={() => handleAddToCart(product)}
-                                        className="w-full bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
+                                        className="w-full bg-green-verbena hover:bg-green-600 text-white font-semibold py-3 px-5 rounded-lg shadow-md transform transition-transform duration-300 ease-in-out"
                                     >
                                         {carouselTraductions.addToCart || 'Add to cart'}
                                     </button>
+
                                 </div>
                             </div>
                         </div>
