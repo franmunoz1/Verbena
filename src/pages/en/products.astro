@@ -8,7 +8,7 @@ const products = await db.select().from(Product);
 const lang = getLangFromUrl(Astro.url);
 ---
 
-<Layout title="products">
+<Layout title="Verbena - Products">
     <main>
         <ProductCard
             products={products}

@@ -26,6 +26,8 @@ const Service = defineTable({
     recomendation: column.text({ unique: false }),
     image: column.text({ unique: false }),
     alt: column.text({ unique: false }),
+    benefits: column.json({ unique: false }),
+    care: column.json({ unique: false }),
   }
 });
 

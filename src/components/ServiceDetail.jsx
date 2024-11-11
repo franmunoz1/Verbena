@@ -60,25 +60,34 @@ const ServiceDetail = ({ service }) => {
                     </div>
                     <div className="p-6 sm:p-8">
                         <p className="text-gray-600 text-lg leading-relaxed mb-6">{service.description}</p>
-                        {service.recomendation && (
-                            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
-                                <div className="flex">
 
-                                    <div className="ml-3">
-                                        <p className="text-sm text-green-700">
-                                            <span className="font-medium">Recomendaciones:</span> {service.recomendation}
-                                        </p>
-                                    </div>
-                                </div>
+                        {service.care && service.care.length > 0 && (
+                            <div className="bg-green-50 border-l-4 border-red-500 p-4 mb-6">
+                                <p className="text-sm text-red-700 font-medium">Cuidados:</p>
+                                <ul className="list-disc list-inside text-red-700 ml-4">
+                                    {service.care.map((benefit, index) => (
+                                        <li key={index} className="text-sm">{benefit}</li>
+                                    ))}
+                                </ul>
                             </div>
                         )}
-                        <div className="flex items-center justify-between mb-8">
-                            <div className="flex items-center">
 
-                                <span className="text-2xl font-semibold text-gray-800">${service.price}</span>
+                        {service.benefits && service.benefits.length > 0 && (
+                            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                                <p className="text-sm text-green-700 font-medium">Beneficios:</p>
+                                <ul className="list-disc list-inside text-green-700 ml-4">
+                                    {service.benefits.map((benefit, index) => (
+                                        <li key={index} className="text-sm">{benefit}</li>
+                                    ))}
+                                </ul>
                             </div>
+                        )}
+
+                        <div className="flex items-center justify-between mb-8">
+                            <span className="text-2xl font-semibold text-gray-800">${service.price}</span>
                             <div className="text-sm text-gray-500">Por sesión</div>
                         </div>
+
                         <form className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -97,26 +106,23 @@ const ServiceDetail = ({ service }) => {
                                 <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
                                     Selecciona una fecha
                                 </label>
-                                <div className="relative">
-                                    <input
-                                        type="date"
-                                        id="date"
-                                        className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
-                                        value={date}
-                                        onChange={(e) => setDate(e.target.value)}
-                                        required
-                                    />
-
-                                </div>
+                                <input
+                                    type="date"
+                                    id="date"
+                                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent transition"
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    required
+                                />
                             </div>
                             {error && <p className="text-red-500 text-sm">{error}</p>}
-                            <div className='flex justify-center'>
+                            <div className="flex justify-center">
                                 <button
                                     type="button"
                                     onClick={handleSubmit}
                                     className="bg-green-verbena text-white p-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
                                 >
-                                    Reservar por whatsApp
+                                    Reservar por WhatsApp
                                 </button>
                             </div>
                         </form>
@@ -125,6 +131,7 @@ const ServiceDetail = ({ service }) => {
             </div>
         </div>
     );
+
 };
 
 export default ServiceDetail;
