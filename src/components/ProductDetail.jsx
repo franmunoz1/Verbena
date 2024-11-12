@@ -41,7 +41,7 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                         {product.description}
                     </p>
                     <div className="mb-6">
-                        <h3 className="text-sm font-medium mb-2">QUANTITY{detailProductTranslation.quantity}</h3>
+                        <h3 className="text-sm font-medium mb-2">{detailProductTranslation.quantity}</h3>
                         <div className="flex items-center">
                             <input
                                 type="number"
@@ -53,7 +53,7 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                             <button
                                 onClick={handleAddToCart}
                                 className="flex bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-                                Add to Cart
+                                {detailProductTranslation.addCart}
                             </button>
                         </div>
                     </div>

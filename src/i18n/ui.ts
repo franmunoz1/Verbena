@@ -52,7 +52,35 @@ export const ui = {
 
     // Carousel products
     'carouselprod.add': 'Add to cart',
+
+    // List products
+    'listprod.filters': 'Filters',
+    'listprod.category': 'Category',
+    'listprod.orderbyprice': 'Order by price',
+    'listprod.add': 'Add to cart',
+    'listprod.noprod': 'No products available for the selected category.',
+    'listprod.categoryall': 'All',
+    'listprod.categorylimp': 'Cleansers',
+    'listprod.categoryserum': 'Serum',
+    'listprod.categoryhid': 'Moisturizers',
+    'listprod.categoryfps': 'FPS',
+    'listprod.noorder': 'Unordered',
+    'listprod.lth': 'Low to high',
+    'listprod.htl': 'High to low',
+
+    // List services
+    'listserv.reserve': 'Reserve',
+    'listserv.price': 'Price',
+
+    // Detail service
+    'detailserv.per': 'Per session',
+    'detailserv.name': 'Name',
+    'detailserv.date': 'Select a date',
+    'detailserv.send': 'Send via Whatsapp',
+    'detailserv.benefits': 'Benefits',
+    'detailserv.cares': 'Cares',
   },
+
   es: {
     'nav.home': 'Inicio',
     'nav.products': 'Productos',
@@ -98,5 +126,32 @@ export const ui = {
 
     // Carousel products
     'carouselprod.add': 'Agregar al carrito',
+
+    // List products
+    'listprod.filters': 'Filtros',
+    'listprod.category': 'Categoría',
+    'listprod.orderbyprice': 'Ordenar por precio',
+    'listprod.add': 'Agregar al carrito',
+    'listprod.noprod': 'No hay productos disponibles para la categoría seleccionada.',
+    'listprod.categoryall': 'Todos',
+    'listprod.categorylimp': 'Limpiadores',
+    'listprod.categoryserum': 'Serum',
+    'listprod.categoryhid': 'Hidrantes',
+    'listprod.categoryfps': 'FPS',
+    'listprod.noorder': 'Sin ordenar',
+    'listprod.lth': 'Menor a mayor',
+    'listprod.htl': 'Mayor a menor',
+
+    // List services
+    'listserv.reserve': 'Reservar',
+    'listserv.price': 'Precio',
+
+    // Detail service
+    'detailserv.per': 'Por sesión',
+    'detailserv.name': 'Nombre',
+    'detailserv.date': 'Seleccione una fecha',
+    'detailserv.send': 'Enviar por Whatsapp',
+    'detailserv.benefits': 'Beneficios',
+    'detailserv.cares': 'Cuidados',
   },
 } as const;

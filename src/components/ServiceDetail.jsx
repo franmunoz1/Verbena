@@ -6,7 +6,7 @@ const handleWhatsApp = (name, date, treatment) => {
     window.open(url, '_blank');
 };
 
-const ServiceDetail = ({ service }) => {
+const ServiceDetail = ({ service, serviceTraductions }) => {
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
     const [error, setError] = useState('');
@@ -63,7 +63,7 @@ const ServiceDetail = ({ service }) => {
 
                         {service.care && service.care.length > 0 && (
                             <div className="bg-green-50 border-l-4 border-red-500 p-4 mb-6">
-                                <p className="text-sm text-red-700 font-medium">Cuidados:</p>
+                                <p className="text-sm text-red-700 font-medium">{serviceTraductions.cares}:</p>
                                 <ul className="list-disc list-inside text-red-700 ml-4">
                                     {service.care.map((benefit, index) => (
                                         <li key={index} className="text-sm">{benefit}</li>
@@ -74,7 +74,7 @@ const ServiceDetail = ({ service }) => {
 
                         {service.benefits && service.benefits.length > 0 && (
                             <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
-                                <p className="text-sm text-green-700 font-medium">Beneficios:</p>
+                                <p className="text-sm text-green-700 font-medium">{serviceTraductions.benefits}:</p>
                                 <ul className="list-disc list-inside text-green-700 ml-4">
                                     {service.benefits.map((benefit, index) => (
                                         <li key={index} className="text-sm">{benefit}</li>
@@ -85,13 +85,13 @@ const ServiceDetail = ({ service }) => {
 
                         <div className="flex items-center justify-between mb-8">
                             <span className="text-2xl font-semibold text-gray-800">${service.price}</span>
-                            <div className="text-sm text-gray-500">Por sesión</div>
+                            <div className="text-sm text-gray-500">{serviceTraductions.per}</div>
                         </div>
 
                         <form className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                                    Nombre
+                                    {serviceTraductions.name}
                                 </label>
                                 <input
                                     type="text"
@@ -104,7 +104,7 @@ const ServiceDetail = ({ service }) => {
                             </div>
                             <div>
                                 <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-                                    Selecciona una fecha
+                                    {serviceTraductions.date}
                                 </label>
                                 <input
                                     type="date"
@@ -122,7 +122,7 @@ const ServiceDetail = ({ service }) => {
                                     onClick={handleSubmit}
                                     className="bg-green-verbena text-white p-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
                                 >
-                                    Reservar por WhatsApp
+                                    {serviceTraductions.send}
                                 </button>
                             </div>
                         </form>

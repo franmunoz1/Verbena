@@ -8,6 +8,11 @@ const services = await db.select().from(Service);
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const servicesTraductions = {
+    reserve: t("listserv.reserve"),
+    price: t("listserv.price"),
+};
 ---
 
 <Layout title="Verbena - Servicios">
@@ -15,6 +20,7 @@ const t = useTranslations(lang);
         <ServiceCard
             services={services}
             siteUrl={Astro.url}
+            servicesTraductions={servicesTraductions}
             lang={lang}
             client:load
         />

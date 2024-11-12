@@ -2,10 +2,27 @@
 import Layout from "../../layouts/Layout.astro";
 import ProductCard from "../../components/ProductCard.jsx";
 import { db, Product } from "astro:db";
-import { getLangFromUrl } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const products = await db.select().from(Product);
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const listProdTraductions = {
+    filter: t("listprod.filters"),
+    category: t("listprod.category"),
+    orderbyprice: t("listprod.orderbyprice"),
+    add: t("listprod.add"),
+    noprod: t("listprod.noprod"),
+    all: t("listprod.categoryall"),
+    categorylimp: t("listprod.categorylimp"),
+    categoryserum: t("listprod.categoryserum"),
+    categoryhid: t("listprod.categoryhid"),
+    categoryfps: t("listprod.categoryfps"),
+    noorder: t("listprod.noorder"),
+    lth: t("listprod.lth"),
+    htl: t("listprod.htl"),
+};
 ---
 
 <Layout title="Verbena - Products">
@@ -14,6 +31,7 @@ const lang = getLangFromUrl(Astro.url);
             products={products}
             siteUrl={Astro.url}
             lang={lang}
+            listProdTraductions={listProdTraductions}
             client:load
         />
     </main>

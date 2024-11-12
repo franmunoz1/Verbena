@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import ServiceDetail from "../../components/ServiceDetail.jsx";
 import { db, Service } from "astro:db";
-import { getLangFromUrl } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
     const services = await db.select().from(Service);
@@ -11,23 +11,35 @@ export async function getStaticPaths() {
     }));
 }
 
+const lang = getLangFromUrl(Astro.url);
+
+const t = useTranslations(lang);
+
 const services = await db.select().from(Service);
 
 const { id } = Astro.params;
 
 const service = services.find((s) => s.id === id);
 
-const lang = getLangFromUrl(Astro.url);
-
 if (!service) {
-    throw new Error(`Product with id ${id} not found`);
+    throw new Error(`Service with id ${id} not found`);
 }
+
+const serviceTraductions = {
+    per: t("detailserv.per"),
+    name: t("detailserv.name"),
+    date: t("detailserv.date"),
+    send: t("detailserv.send"),
+    benefits: t("detailserv.benefits"),
+    cares: t("detailserv.cares"),
+};
 ---
 
 <Layout title={`Service-${service.name}`}>
     <ServiceDetail
         service={service}
         siteUrl={Astro.url}
+        serviceTraductions={serviceTraductions}
         lang={lang}
         client:load
     />

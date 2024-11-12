@@ -2,18 +2,26 @@
 import Layout from "../../layouts/Layout.astro";
 import ServiceCard from "../../components/ServiceCard.jsx";
 import { db, Service } from "astro:db";
-import { getLangFromUrl } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 const services = await db.select().from(Service);
+
 const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const servicesTraductions = {
+    reserve: t("listserv.reserve"),
+    price: t("listserv.price"),
+};
 ---
 
 <Layout title="Verbena - Services">
     <main>
         <ServiceCard
             services={services}
-            lang={lang}
             siteUrl={Astro.url}
+            servicesTraductions={servicesTraductions}
+            lang={lang}
             client:load
         />
     </main>
