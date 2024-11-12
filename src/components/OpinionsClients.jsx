@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const OpinionsClients = () => {
+const OpinionsClients = ({ opinionsTraductions }) => {
     useEffect(() => {
         AOS.init({ duration: 1000, once: true });
     }, []);
@@ -17,7 +17,7 @@ const OpinionsClients = () => {
                     className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-left mb-8 text-green-verbena border-b-4 border-green-verbena pb-2"
                     data-aos="fade-right"
                 >
-                    Nuestros clientes
+                    {opinionsTraductions.title}
                 </h2>
                 <div
                     className="flex flex-col lg:grid lg:grid-cols-1 gap-6"
@@ -25,16 +25,24 @@ const OpinionsClients = () => {
                 >
                     {[
                         {
-                            name: 'Sarah Johnson',
-                            text: "I've been coming to BeautyGlow for years, and I'm always impressed with their services. My skin has never looked better!",
+                            name: 'Lara Garay',
+                            text: opinionsTraductions.first,
                         },
                         {
-                            name: 'Michael Chen',
-                            text: "The staff at BeautyGlow are true professionals. They really know their stuff and always make me feel comfortable.",
+                            name: 'Mary ann Watson',
+                            text: opinionsTraductions.second,
                         },
                         {
-                            name: 'Emily Rodriguez',
-                            text: "I love the products they use and sell. They've made such a difference in my skincare routine.",
+                            name: 'María Otero',
+                            text: opinionsTraductions.third,
+                        },
+                        {
+                            name: 'Rachel Martinez',
+                            text: opinionsTraductions.fourth,
+                        },
+                        {
+                            name: 'Lautaro García',
+                            text: opinionsTraductions.fifth,
                         },
                     ].map((testimonial, index) => (
                         <div

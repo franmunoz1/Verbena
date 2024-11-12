@@ -92,15 +92,15 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
                     <div className="flex items-center gap-4">
                         <LanguagePicker siteUrl={siteUrl} />
                         <div className="flex gap-4">
-                            <a href="#" className="text-muted-foreground hover:text-foreground">
+                            {/* <a href="#" className="text-muted-foreground hover:text-foreground">
                                 <FacebookIcon className="h-5 w-5" />
-                            </a>
+                            </a> */}
                             <a href="https://www.instagram.com/verbena.ec/" target="blank" className="text-muted-foreground hover:text-foreground">
                                 <InstagramIcon className="h-5 w-5" />
                             </a>
-                            <a href="#" className="text-muted-foreground hover:text-foreground">
+                            {/* <a href="#" className="text-muted-foreground hover:text-foreground">
                                 <TwitterIcon className="h-5 w-5" />
-                            </a>
+                            </a> */}
                         </div>
                     </div>
                 </div>

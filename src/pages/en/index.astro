@@ -30,6 +30,15 @@ const landingAboutTraductions = {
   title2: t("landingabout.title2"),
   description2: t("landingabout.description2"),
 };
+
+const opinionsTraductions = {
+  title: t("opinions.title"),
+  first: t("opinions.first"),
+  second: t("opinions.second"),
+  third: t("opinions.third"),
+  fourth: t("opinions.fourth"),
+  fifth: t("opinions.fifth"),
+};
 ---
 
 <Layout title="Verbena - Estethic center">
@@ -173,7 +182,7 @@ const landingAboutTraductions = {
     </section>
 
     <section>
-      <OpinionsClients client:load />
+      <OpinionsClients opinionsTraductions={opinionsTraductions} client:load />
     </section>
   </main>
 </Layout>

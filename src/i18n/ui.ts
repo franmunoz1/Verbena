@@ -79,6 +79,14 @@ export const ui = {
     'detailserv.send': 'Send via Whatsapp',
     'detailserv.benefits': 'Benefits',
     'detailserv.cares': 'Cares',
+
+    // Opinions
+    'opinions.title': 'Our clients',
+    'opinions.first': 'I loved my experience at the center. I tried the Deep Facial Cleansing treatment and was surprised with the results. My skin feels much softer and fresher, and they also helped me eliminate impurities like blackheads and milium cysts. The dedication and professionalism of the team made the difference, and I would recommend this service to anyone looking to improve the health of their skin.',
+    'opinions.second': 'I highly recommend the HYALU7 BIOSERUM serum. Since using it, I notice how my expression lines look softer, and my skin has a natural glow that it didn`t have before. I love that the center always advises me on which products are best for my needs. I`m happy with the results!',
+    'opinions.third': 'I decided to do the spot treatment and, in just a few sessions, my skin looks much more even. They also recommended the ECLAIR LUMIBLEND serum to help maintain the results at home, and it is fantastic! The team truly knows what they are doing and personalizes each recommendation to ensure the best results. A first class service.',
+    'opinions.fourth': 'My skin is very sensitive, so I tried the Facial for Sensitive Skin and Rosacea. From the first session, I noticed less redness and a great improvement in the hydration of my skin. Thanks to the team for the care and attention at every step! Additionally, the VITA C FLUID that was recommended to me is perfect for maintaining the luminosity on my face without irritation.',
+    'opinions.fifth': 'To control the oil on my skin, they recommended BIO DETOX CONTROL and it has been a great change for me. Its effect is very refreshing and really helps keep my pores under control. I also tried the Facial Cleansing + Dermaplaning, and I can say that my skin has never looked better. Super recommended!',
   },
 
   es: {
@@ -153,5 +161,13 @@ export const ui = {
     'detailserv.send': 'Enviar por Whatsapp',
     'detailserv.benefits': 'Beneficios',
     'detailserv.cares': 'Cuidados',
+
+    // Opinions
+    'opinions.title': 'Nuestros clientes',
+    'opinions.first': 'Me encantó mi experiencia en el centro. Probé el tratamiento de Limpieza Facial Profunda y quedé sorprendida con los resultados. Mi piel se siente mucho más suave y fresca, además me ayudaron a eliminar impurezas como puntos negros y quistes de milium. La dedicación y profesionalismo del equipo hicieron la diferencia, y recomendaría este servicio a cualquiera que busque mejorar la salud de su piel.',
+    'opinions.second': 'Recomiendo mucho el serum HYALU7 BIOSERUM. Desde que lo uso, noto cómo mis líneas de expresión se ven más suaves, y la piel tiene un brillo natural que antes no tenía. Me encanta que en el centro siempre me asesoran sobre qué productos son los mejores para mis necesidades. ¡Estoy feliz con los resultados!',
+    'opinions.third': 'Decidí hacerme el tratamiento para manchas y, en pocas sesiones, mi piel se ve mucho más uniforme. También me recomendaron el serum ECLAIR LUMIBLEND para ayudar a mantener los resultados en casa, y ¡es fantástico! Realmente, el equipo sabe lo que hace y personaliza cada recomendación para asegurar los mejores resultados. Un servicio de primera.',
+    'opinions.fourth': 'Mi piel es muy sensible, por lo que probé el Facial para Piel Sensible y Rosácea. Desde la primera sesión, noté menos enrojecimiento y una gran mejora en la hidratación de mi piel. ¡Gracias al equipo por el cuidado y la atención en cada paso! Además, el VITA C FLUID que me recomendaron es perfecto para mantener la luminosidad en mi rostro sin irritación.',
+    'opinions.fifth': 'Para el control de la grasa en mi piel, me recomendaron el CONTROL BIO DETOX y ha sido un gran cambio para mí. Su efecto es muy refrescante y realmente ayuda a mantener mis poros bajo control. También probé la Limpieza Facial + Dermaplaning, y puedo decir que mi piel nunca se ha visto mejor. ¡Súper recomendado!',
   },
 } as const;
