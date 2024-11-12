@@ -2,7 +2,7 @@ import React from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
-export default function CarouselCards({ services, currentLanguage }) {
+export default function CarouselCards({ services, currentLanguage, carouselTraductions }) {
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
     console.log("services", services)
 
@@ -41,7 +41,7 @@ export default function CarouselCards({ services, currentLanguage }) {
                                         href={`/${currentLanguage}/service-${card.id}`}
                                         className="bg-green-verbena hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out mr-2 text-center"
                                     >
-                                        Reservar
+                                        {carouselTraductions.reserve}
                                     </a>
 
                                 </div>

@@ -46,6 +46,12 @@ export const ui = {
 
     // Carousel
     'carouselprod.title': 'Our products',
+
+    // Carousel services
+    'carosuelserv.reserve': 'Reserve',
+
+    // Carousel products
+    'carouselprod.add': 'Add to cart',
   },
   es: {
     'nav.home': 'Inicio',
@@ -86,5 +92,11 @@ export const ui = {
 
     // Carousel
     'carouselprod.title': 'Nuestros productos',
+
+    // Carousel services
+    'carosuelserv.reserve': 'Reservar',
+
+    // Carousel products
+    'carouselprod.add': 'Agregar al carrito',
   },
 } as const;

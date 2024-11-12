@@ -18,6 +18,8 @@ const t = useTranslations(lang);
 
 const carouselTraductions = {
   title: t("carouselprod.title"),
+  reserve: t("carosuelserv.reserve"),
+  add: t("carouselprod.add"),
 };
 
 const landingAboutTraductions = {
@@ -100,6 +102,7 @@ const landingAboutTraductions = {
         <!-- Carrusel con animación de desvanecimiento -->
         <div data-aos="fade-up">
           <CarouselServices
+            carouselTraductions={carouselTraductions}
             services={services}
             currentLanguage={lang}
             client:load

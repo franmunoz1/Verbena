@@ -51,7 +51,7 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                                         onClick={() => handleAddToCart(product)}
                                         className="w-full bg-green-verbena hover:bg-green-600 text-white font-semibold py-3 px-5 rounded-lg shadow-md transform transition-transform duration-300 ease-in-out"
                                     >
-                                        {carouselTraductions.addToCart || 'Add to cart'}
+                                        {carouselTraductions.add}
                                     </button>
 
                                 </div>
