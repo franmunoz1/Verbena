@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProductDetail from "../../components/ProductDetail.jsx";
+import { db, Product } from "astro:db";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+export async function getStaticPaths() {
+  const products = await db.select().from(Product);
+  return products.map((product) => ({
+    params: { id: product.id },
+  }));
+}
+
+const products = await db.select().from(Product);
+
+const { id } = Astro.params;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const detailProductTranslation = {
+  quantity: t("detailprod.quantity"),
+  addCart: t("detailprod.add"),
+};
+
+const product = products.find((s) => s.id === id);
+
+if (!product) {
+  throw new Error(`Product with id ${id} not found`);
+}
+---
+
+<Layout title={`Producto-${product.name}`}>
+  <ProductDetail
+    product={product}
+    siteUrl={Astro.url}
+    lang={lang}
+    detailProductTranslation={detailProductTranslation}
+    client:load
+  />
+</Layout>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ServiceCard({ services }) {
+export default function ServiceCard({ services, lang, siteUrl, servicesTraductions }) {
     const [filter, setFilter] = useState("All");
     const [sort, setSort] = useState("default");
 
@@ -18,7 +18,7 @@ export default function ServiceCard({ services }) {
     return (
         <div>
             {/* Barra de filtros */}
-            <div className="mb-6 flex gap-4 items-center justify-center pt-4">
+            {/* <div className="mb-6 flex gap-4 items-center justify-center pt-4">
                 <div>
                     <label htmlFor="category" className="mr-2 font-bold">Filtrar por categoría:</label>
                     <select
@@ -47,7 +47,7 @@ export default function ServiceCard({ services }) {
                         <option value="priceDesc">Mayor a menor</option>
                     </select>
                 </div>
-            </div>
+            </div> */}
 
             {/* Mostrar servicios filtrados */}
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
@@ -65,17 +65,17 @@ export default function ServiceCard({ services }) {
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{service.name}</div>
                                 <p className="text-gray-700 text-base">{service.summary}</p>
-                                <span className="text-gray-700 font-bold">Price: ${service.price}</span>
+                                <span className="text-gray-700 font-bold">{servicesTraductions.price}: ${service.price}</span>
                             </div>
                             <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
-                                <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
+                                {/* <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
                                     Book Now
-                                </button>
+                                </button> */}
                                 <a
-                                    href={`/service-${service.id}`}
-                                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
+                                    href={`/${lang}/service-${service.id}`}
+                                    className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2 text-center"
                                 >
-                                    Learn More
+                                    {servicesTraductions.reserve}
                                 </a>
                             </div>
                         </div>

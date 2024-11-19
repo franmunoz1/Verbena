@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {removeFromCart} from '../store/cart';
+import { removeFromCart, updateQuantity } from '../store/cart';
 
-export default function Cart() {
+export default function Cart({ lang, siteUrl, cartTraductions }) {
   const [cart, setCart] = useState([]);
 
   const getCart = () => {
@@ -12,11 +12,12 @@ export default function Cart() {
     return [];
   };
 
-  const updateQuantity = (index, quantity) => {
+  const handleQuantity = (index, quantity) => {
     const updatedCart = cart.map((item, i) =>
       i === index ? { ...item, quantity: item.quantity + quantity } : item
     );
     setCart(updatedCart);
+    updateQuantity(cart[index].id, cart[index].quantity + quantity);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
@@ -42,7 +43,7 @@ export default function Cart() {
 
     // Codificar el mensaje para usarlo en la URL de WhatsApp
     const mensajeCodificado = encodeURIComponent(mensaje);
-    const numeroTelefono = '1234567890'; // Reemplaza con el número de teléfono que recibirá el mensaje
+    const numeroTelefono = '17869256878'; // Reemplaza con el número de teléfono que recibirá el mensaje
 
     // Abrir el enlace de WhatsApp
     window.open(`https://api.whatsapp.com/send?phone=${numeroTelefono}&text=${mensajeCodificado}`, '_blank');
@@ -55,45 +56,68 @@ export default function Cart() {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-3xl font-bold mb-6">Your Cart</h2>
+      <h2 className="text-3xl font-bold mb-6">{cartTraductions.titleCart}</h2>
 
       {cart.length > 0 ? (
         <div className="space-y-4">
-          {cart.map((item, index) => (
-            <div key={index} className="flex items-center justify-between bg-white shadow-md rounded-lg p-4">
-              <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-md mr-4" />
-              <div className="flex-1">
-                <p className="font-semibold text-lg">{item.name}</p>
-                <p className="text-gray-500">Unidad ${item.price}</p>
-                <p className="text-gray-500">Subtotal ${item.price * item.quantity}</p>
+          {cart.map((item, index) => {
+
+            return (
+              <div key={index} className="flex flex-col md:flex-row items-center justify-between bg-[#f9f8f4] shadow-md rounded-lg p-4 space-y-4 md:space-y-0">
+                <img src={item.image} alt={item.name} className="w-24 h-24 md:w-16 md:h-16 object-cover rounded-md mr-4" />
+
+                <div className="flex-1 text-center md:text-left">
+                  <p className="font-semibold text-lg text-[#2e3814]">{item.name}</p>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+                  <div className="flex items-center justify-center border border-[#dedaba] rounded-lg">
+                    <button
+                      onClick={() => handleQuantity(index, -1)}
+                      disabled={item.quantity === 1}
+                      className="px-2 text-[#2e3814]">
+                      -
+                    </button>
+                    <span className="px-4 text-[#2e3814]">{item.quantity}</span>
+                    <button
+                      onClick={() => handleQuantity(index, 1)}
+                      className="px-2 text-[#2e3814]">
+                      +
+                    </button>
+                  </div>
+
+                  <p className="text-[#2e3814]">${item.price.toFixed(2)}</p>
+
+                  <button
+                    onClick={() => removeItem(index)}
+                    className="text-[#2e3814] underline hover:text-red-600 transition-colors duration-300">
+                    {cartTraductions.quitCart}
+                  </button>
+                </div>
               </div>
-              <div className="flex items-center">
-                <button onClick={() => updateQuantity(index, -1)} disabled={item.quantity === 1}>-</button>
-                <span className="px-4">{item.quantity}</span>
-                <button onClick={() => updateQuantity(index, 1)}>+</button>
-              </div>
-              <button onClick={() => removeItem(index)} className="ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
-                Remove
-              </button>
-            </div>
-          ))}
+
+
+            )
+          })}
 
           <div className="text-right mt-4">
             <p className="text-2xl font-bold">Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
           </div>
 
           <div className="flex gap-4">
-            <button onClick={clearCart} className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">
-              Clear Cart
+            <button onClick={clearCart} className="w-full border border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">
+              {cartTraductions.clearCart}
             </button>
             <button onClick={enviarPorWhatsapp} className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">
-              Enviar por Whatsapp
+              {cartTraductions.checkoutCart}
             </button>
           </div>
         </div>
       ) : (
-        <p className="text-gray-500">Your cart is empty.</p>
+        <p className="text-gray-500">{cartTraductions.emptyCart}</p>
       )}
     </div>
   );
 }
+
+

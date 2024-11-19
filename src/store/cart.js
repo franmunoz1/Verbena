@@ -10,18 +10,20 @@ const getInitialCart = () => {
 
 export const cart = atom(getInitialCart());
 
-export const addToCart = (product) => {
+export const addToCart = (product, quantity = 1) => {
   const currentCart = cart.get();
   const existingProductIndex = currentCart.findIndex(item => item.id === product.id);
 
   if (existingProductIndex !== -1) {
-    currentCart[existingProductIndex].quantity += 1;
+    // Update the quantity for the existing product
+    currentCart[existingProductIndex].quantity += quantity;
   } else {
+    // Add new product with the passed quantity
     currentCart.push({
       id: product.id,
       name: product.name,
       price: product.price,
-      quantity: 1,
+      quantity: quantity, // Use the passed quantity here
       alt: product.alt,
       description: product.description,
       recomendation: product.recomendation,
@@ -33,6 +35,7 @@ export const addToCart = (product) => {
   cart.set([...currentCart]);
   localStorage.setItem('cart', JSON.stringify(currentCart));
 };
+
 
 export const removeFromCart = (productId) => {
   const currentCart = cart.get();
