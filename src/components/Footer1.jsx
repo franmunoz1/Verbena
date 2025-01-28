@@ -78,7 +78,7 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
                             </li>
                             <li className="flex items-center gap-2">
                                 <MapPinIcon className="h-4 w-4" />
-                                <span className="text-muted-foreground">1340 Lincoln Rd, Miami Beach</span>
+                                <span className="text-muted-foreground">1575 Euclid Ave,  Miami Beach, FL 33139-3538</span>
                             </li>
                         </ul>
                     </div>
