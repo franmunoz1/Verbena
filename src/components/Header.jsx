@@ -17,7 +17,8 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
     };
 
     return (
-        <nav className="sticky top-0 z-40 w-full bg-white shadow-md">
+        <nav className="sticky top-0 z-40 w-full bg-white  shadow-md" >
+            {/* AGREGAR TRANSPARENCIA HEADER: bg-opacity-30 backdrop-blur-sm */}
             <div className="container flex mx-auto h-16 items-center justify-between px-4 md:px-6">
                 {/* Menú hamburguesa solo visible en pantallas pequeñas (izquierda) */}
                 <button className="md:hidden rounded-full p-2 border" onClick={toggleMenu}>
@@ -53,6 +54,9 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                     </a>
                     <a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">
                         {navbarTraductions.services}
+                    </a>
+                    <a href={`/${lang}/giftcard`} className="text-muted-foreground hover:text-foreground">
+                        Gift Card
                     </a>
                     <a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">
                         {navbarTraductions.about}
@@ -93,6 +97,9 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                             <a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">
                                 {navbarTraductions.services}
                             </a>
+                            <a href={`/${lang}/giftcard`} className="text-muted-foreground hover:text-foreground">
+                                Gift Card
+                            </a>
                             <a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">
                                 {navbarTraductions.about}
                             </a>
@@ -100,7 +107,7 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                     </div>
                 )}
             </div>
-        </nav>
+        </nav >
 
     );
 }

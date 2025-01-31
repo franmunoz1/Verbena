@@ -87,6 +87,13 @@ export const ui = {
     'opinions.third': 'I decided to do the spot treatment and, in just a few sessions, my skin looks much more even. They also recommended the ECLAIR LUMIBLEND serum to help maintain the results at home, and it is fantastic! The team truly knows what they are doing and personalizes each recommendation to ensure the best results. A first class service.',
     'opinions.fourth': 'My skin is very sensitive, so I tried the Facial for Sensitive Skin and Rosacea. From the first session, I noticed less redness and a great improvement in the hydration of my skin. Thanks to the team for the care and attention at every step! Additionally, the VITA C FLUID that was recommended to me is perfect for maintaining the luminosity on my face without irritation.',
     'opinions.fifth': 'To control the oil on my skin, they recommended BIO DETOX CONTROL and it has been a great change for me. Its effect is very refreshing and really helps keep my pores under control. I also tried the Facial Cleansing + Dermaplaning, and I can say that my skin has never looked better. Super recommended!',
+
+    // Gift Card
+    'giftcard.subtitle': 'Gift Card',
+    'giftcard.select': 'Select your amount',
+    'giftcard.quantity': 'Select Quantity',
+    'giftcard.add': 'Add to cart',
+    'giftcard.other': 'Other amount',
   },
 
   es: {
@@ -169,5 +176,12 @@ export const ui = {
     'opinions.third': 'Decidí hacerme el tratamiento para manchas y, en pocas sesiones, mi piel se ve mucho más uniforme. También me recomendaron el serum ECLAIR LUMIBLEND para ayudar a mantener los resultados en casa, y ¡es fantástico! Realmente, el equipo sabe lo que hace y personaliza cada recomendación para asegurar los mejores resultados. Un servicio de primera.',
     'opinions.fourth': 'Mi piel es muy sensible, por lo que probé el Facial para Piel Sensible y Rosácea. Desde la primera sesión, noté menos enrojecimiento y una gran mejora en la hidratación de mi piel. ¡Gracias al equipo por el cuidado y la atención en cada paso! Además, el VITA C FLUID que me recomendaron es perfecto para mantener la luminosidad en mi rostro sin irritación.',
     'opinions.fifth': 'Para el control de la grasa en mi piel, me recomendaron el CONTROL BIO DETOX y ha sido un gran cambio para mí. Su efecto es muy refrescante y realmente ayuda a mantener mis poros bajo control. También probé la Limpieza Facial + Dermaplaning, y puedo decir que mi piel nunca se ha visto mejor. ¡Súper recomendado!',
+
+    // Gift Card
+    'giftcard.subtitle': 'Gift Card',
+    'giftcard.select': 'Selecciona el monto',
+    'giftcard.quantity': 'Selecciona la cantidad',
+    'giftcard.add': 'Agregar al carrito',
+    'giftcard.other': 'Otro monto',
   },
 } as const;

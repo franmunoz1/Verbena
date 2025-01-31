@@ -6,6 +6,12 @@ import Cart from "../../components/CartButton";
 import OpinionsClients from "../../components/OpinionsClients";
 import LandingAbout from "../../components/LandingAbout";
 import "@fontsource/tenor-sans";
+import "@fontsource/neucha";
+// Supports weights 100-700
+import "@fontsource-variable/josefin-sans";
+import "@fontsource/merriweather";
+import "@fontsource-variable/playfair-display";
+import "@fontsource/cormorant-garamond";
 
 // Funcionamiento de la base de datos de astro
 import { db, Service, Product } from "astro:db";
@@ -52,6 +58,15 @@ const opinionsTraductions = {
       />
       <!-- Overlay para agregar un efecto de oscuridad sutil sobre la imagen -->
       <div class="absolute inset-0 bg-black opacity-20"></div>
+      <!-- Texto sobre la imagen en la parte inferior derecha -->
+      <div class="absolute right-4 bottom-4">
+        <h2
+          class="text-white text-2xl sm:text-3xl lg:text-4xl tracking-wider sans-serif"
+          style="font-family: 'Cormorant Garamond';"
+        >
+          Rediscover Your Glow
+        </h2>
+      </div>
     </section>
 
     <section class="py-16">
@@ -103,7 +118,7 @@ const opinionsTraductions = {
           </h2>
           <a
             href=`/${lang}/services`
-            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-green-800 transition duration-300 max-h-[30px] self-center"
+            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-gray-400 transition duration-300 max-h-[30px] self-center"
           >
             Ver más
           </a>
@@ -131,7 +146,7 @@ const opinionsTraductions = {
           </h2>
           <a
             href=`/${lang}/products`
-            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-green-800 transition duration-300 max-h-[30px] self-center"
+            class="inline-flex items-center justify-center px-12 bg-green-verbena text-white rounded-md text-lg hover:bg-gray-400 transition duration-300 max-h-[30px] self-center"
           >
             Ver más
           </a>
@@ -173,7 +188,7 @@ const opinionsTraductions = {
         <a
           href="https://www.instagram.com/verbena.ec?igsh=bjJqamo2M2JtZTg2"
           target="_blank"
-          class="inline-block px-6 py-2 bg-green-verbena text-white rounded-md text-sm hover:bg-green-800 transition duration-300"
+          class="inline-block px-6 py-2 bg-green-verbena text-white rounded-md text-sm hover:bg-gray-400 transition duration-300"
         >
           ➔ Instagram
         </a>
