@@ -46,7 +46,7 @@ export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
                 {/* Imagen de la Gift Card */}
                 <div className="md:w-1/2">
                     <img
-                        src="../../public/img/giftcard.png"
+                        src="/img/giftcard.png"
                         alt="Gift Card"
                         className="rounded-lg object-cover w-full h-full"
                         style={{ maxHeight: '500px' }}
