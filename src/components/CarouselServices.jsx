@@ -1,67 +1,53 @@
-import React from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function CarouselCards({ services, currentLanguage, carouselTraductions }) {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-    console.log("services", services)
 
-    const scrollPrev = React.useCallback(() => {
-        if (emblaApi) emblaApi.scrollPrev()
-    }, [emblaApi])
-
-    const scrollNext = React.useCallback(() => {
-        if (emblaApi) emblaApi.scrollNext()
-    }, [emblaApi])
+    useEffect(() => {
+        AOS.init({
+            duration: 600,
+            once: true,
+            offset: 50,
+        });
+    }, []);
 
     return (
-        <div className="relative px-4 py-8">
-            <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex">
-                    {services && services.length > 0 && services.map((card, index) => (
-                        <div key={card.id} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4">
-                            <div className="rounded overflow-hidden shadow-lg p-6 bg-white h-full flex flex-col">
-                                <img
-                                    className="w-full h-[150px] sm:h-[200px] md:h-[250px] lg:h-[200px] object-cover mb-4"
-                                    src={card.image}
-                                    alt={card.alt}
+        <div className="relative px-4 py-8 space-y-6 flex flex-col items-center">
+            {services && services.length > 0 && services.map((card, index) => {
+                const animationDirection = index % 2 === 0 ? "fade-right" : "fade-left";
+                return (
+                    <div
+                        key={card.id}
+                        className={`w-[200px] h-[240px] sm:w-[260px] sm:h-[280px] 
+                        md:w-[320px] md:h-[340px] lg:w-[400px] lg:h-[420px] xl:w-[450px] xl:h-[480px]
+                        rounded-lg overflow-hidden shadow-lg p-4 bg-white flex flex-col justify-between
+                        ${animationDirection === "fade-right" ? "ml-auto lg:mr-[10%] xl:mr-[12%]" : "mr-auto lg:ml-[10%] xl:ml-[12%]"}`}
+                        data-aos={animationDirection}
+                    >
 
-                                />
-                                <div className="px-6 py-4 flex-grow">
-                                    <div className="font-bold text-xl mb-2">{card.name}</div>
-                                    <p className="text-gray-700 text-base">
-                                        {card.summary}
-                                    </p>
-                                </div>
-                                <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
-                                    {/* <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
-                                        Book Now
-                                    </button> */}
-                                    <a
-                                        href={`/${currentLanguage}/service-${card.id}`}
-                                        className="bg-green-verbena hover:bg-gray-400 text-white font-semibold py-3 px-6 rounded-full shadow-md transform transition-transform duration-300 ease-in-out mr-2 text-center"
-                                    >
-                                        {carouselTraductions.reserve}
-                                    </a>
-
-                                </div>
+                        <img
+                            className="w-full h-[120px] sm:h-[150px] md:h-[180px] lg:h-[220px] xl:h-[260px] object-cover rounded-md"
+                            src={card.image}
+                            alt={card.alt}
+                        />
+                        <div className="text-center px-2 p-2 flex-grow flex items-center justify-center">
+                            <div className="font-bold text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl">
+                                {card.name}
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-            <button
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-                onClick={scrollPrev}
-            >
-                <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-                onClick={scrollNext}
-            >
-                <ChevronRight className="w-6 h-6" />
-            </button>
+                        <div className="flex justify-center">
+                            <a
+                                href={`/${currentLanguage}/service-${card.id}`}
+                                className="bg-green-verbena hover:bg-gray-400 text-white font-semibold py-2 px-5 rounded-full 
+                                            text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                            >
+                                {carouselTraductions.reserve}
+                            </a>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
-    )
+    );
 }

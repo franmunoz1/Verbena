@@ -31,7 +31,7 @@ export const LanguagePicker = ({ siteUrl }) => {
   }, []);
 
   return (
-    <select onChange={(e) => { handleSelect(e) }} className={"bg-transparent"}>
+    <select onChange={(e) => { handleSelect(e) }} className={"bg-transparent text-2xl"}>
       {langsArray &&
         langsArray.length > 0 &&
         langsArray.map((l) => {

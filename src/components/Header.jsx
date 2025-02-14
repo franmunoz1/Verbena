@@ -17,7 +17,7 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
     };
 
     return (
-        <nav className="fixed top-0 z-40 w-full bg-white shadow-md">
+        <nav className="fixed top-0 z-40 w-full bg-white shadow-md bg-opacity-30 backdrop-blur-sm">
             <div className="container mx-auto p-4">
                 {/* Contenedor principal */}
                 <div className="flex justify-between items-center">
@@ -76,11 +76,11 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
 
                 {/* Menú desplegable lateral solo para móviles */}
                 {menuOpen && (
-                    <div className="fixed inset-0 z-50 bg-white p-6 shadow-md w-[250px] h-full left-0" data-aos="fade-right">
+                    <div className="fixed inset-0 z-50 bg-[#f5f1ec] bg-opacity-100 w-[250px] h-screen left-0 overflow-y-auto" data-aos="fade-right">
                         <button className="absolute top-4 right-4 text-2xl font-bold" onClick={toggleMenu}>
                             &times;
                         </button>
-                        <nav className="flex flex-col gap-6 mt-8 text-lg">
+                        <nav className="flex flex-col gap-6 mt-8 text-lg p-4">
                             <a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">
                                 {navbarTraductions.home}
                             </a>
@@ -96,6 +96,7 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                         </nav>
                     </div>
                 )}
+
             </div>
         </nav>
 
