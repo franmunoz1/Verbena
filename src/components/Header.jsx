@@ -18,23 +18,12 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
 
     return (
         <nav className="fixed top-0 z-40 w-full bg-white shadow-md bg-opacity-30 backdrop-blur-sm">
-            <div className="container mx-auto p-4">
+            <div className="container mx-auto p-4 pt-0">
                 {/* Contenedor principal */}
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <a href={`/${lang}`} className="flex-1 md:flex-none flex flex-col justify-center md:justify-start items-center gap-x-2">
-                        <span
-                            className="text-green-verbena font-extrabold text-4xl"
-                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                        >
-                            Verbena
-                        </span>
-                        <span
-                            className="text-[0.6rem] text-green-verbena italic tracking-tighter"
-                            style={{ letterSpacing: '0.03em' }}
-                        >
-                            ESTHETIC CENTER
-                        </span>
+                        <img src="/img/testIcon.png" alt="Verbena Logo" className="h-[120px] w-auto" />
                     </a>
 
                     {/* Anchors de navegación y selector de idioma */}
@@ -52,17 +41,15 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                             {navbarTraductions.about}
                         </a>
                         <LanguagePicker siteUrl={siteUrl} />
-
                     </div>
 
                     <div className="hidden md:block">
                         <CartButton lang={lang} className="h-5 w-5" />
                     </div>
-
                 </div>
 
                 {/* Menú para pantallas pequeñas */}
-                <div className="flex justify-between items-center mt-4 md:hidden">
+                <div className="flex justify-between items-center md:hidden">
                     <button className="rounded-full p-2 border" onClick={toggleMenu}>
                         <MenuIcon className="h-5 w-5" />
                         <span className="sr-only">Toggle menu</span>
@@ -96,9 +83,9 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                         </nav>
                     </div>
                 )}
-
             </div>
         </nav>
+
 
 
     );

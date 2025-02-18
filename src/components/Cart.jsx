@@ -34,18 +34,40 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
   const enviarPorWhatsapp = () => {
     if (cart.length === 0) return;
 
-    let mensaje = 'Hola, me gustaría hacer el siguiente pedido:\n\n';
+    // Detectar idioma directamente de la URL actual
+    const currentLang = window.location.pathname.split("/")[1];
+
+    // Definir mensajes en función del idioma actual
+    let greeting, productLabel, quantityLabel, priceLabel, totalLabel;
+
+    if (currentLang === "es") {
+      greeting = "Hola, me gustaría hacer el siguiente pedido:\n\n";
+      productLabel = "Producto";
+      quantityLabel = "Cantidad";
+      priceLabel = "Precio";
+      totalLabel = "Total";
+    } else {
+      greeting = "Hello, I would like to place the following order:\n\n";
+      productLabel = "Product";
+      quantityLabel = "Quantity";
+      priceLabel = "Price";
+      totalLabel = "Total";
+    }
+
+    // Construcción del mensaje
+    let mensaje = greeting;
     cart.forEach(item => {
-      mensaje += `Producto: ${item.name}\nCantidad: ${item.quantity}\nPrecio: $${item.price * item.quantity}\n\n`;
+      mensaje += `${productLabel}: ${item.name}\n${quantityLabel}: ${item.quantity}\n${priceLabel}: $${item.price * item.quantity}\n\n`;
     });
+
     const total = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    mensaje += `Total: $${total}\n`;
+    mensaje += `${totalLabel}: $${total}\n`;
 
-    // Codificar el mensaje para usarlo en la URL de WhatsApp
+    // Codificar mensaje para URL de WhatsApp
     const mensajeCodificado = encodeURIComponent(mensaje);
-    const numeroTelefono = '17869256878'; // Reemplaza con el número de teléfono que recibirá el mensaje
+    const numeroTelefono = '17869256878'; // Número de destino en WhatsApp
 
-    // Abrir el enlace de WhatsApp
+    // Abrir enlace de WhatsApp
     window.open(`https://api.whatsapp.com/send?phone=${numeroTelefono}&text=${mensajeCodificado}`, '_blank');
   };
 

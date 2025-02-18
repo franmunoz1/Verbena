@@ -53,5 +53,14 @@ export default async function seed() {
 				'Quitar el maquillaje: Asegúrese de que sus pestañas estén completamente limpias y libres de residuos de maquillaje.'
 			]
 		},
+		{
+			id: '111', name: 'Microneedling Full Face', price: 120, summary: 'Este tratamiento minimiza líneas de expresión, cicatrices de acné, manchas y poros dilatados.', description: 'Este tratamiento minimiza líneas de expresión, cicatrices de acné, manchas y poros dilatados. A través de microperforaciones controladas, estimulamos la regeneración celular para mejorar la textura y elasticidad de tu piel.', recomendation: '', image: '/img/liftingPestanas2.jpeg', alt: 'Microneedling Full Face', benefits: '', care: ''
+		},
+		{
+			id: '112', name: 'Microneedling en Labios', price: 120, summary: 'Dale a tus labios una hidratación profunda y un efecto de relleno natural.', description: 'Dale a tus labios una hidratación profunda y un efecto de relleno natural. El microneedling en labios mejora la circulación, estimula la producción de colágeno y suaviza la textura, logrando un aspecto más jugoso y definido.', recomendation: '', image: '/img/liftingPestanas2.jpeg', alt: 'Microneedling en Labios', benefits: '', care: ''
+		},
+		{
+			id: '113', name: 'Microneedling Full Face + Labios', price: 120, summary: 'Para un rejuvenecimiento completo, este tratamiento combina ambos procedimientos, potenciando los beneficios del microneedling en todo el rostro y labios, dejando tu piel más uniforme, tersa y radiante.', description: 'Para un rejuvenecimiento completo, este tratamiento combina ambos procedimientos, potenciando los beneficios del microneedling en todo el rostro y labios, dejando tu piel más uniforme, tersa y radiante.', recomendation: '', image: '/img/liftingPestanas2.jpeg', alt: 'Limpieza facial con dermapen', benefits: '', care: ''
+		},
 	]);
 }

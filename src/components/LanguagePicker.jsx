@@ -1,19 +1,11 @@
 import { languages, defaultLang } from "../i18n/ui";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export const LanguagePicker = ({ siteUrl }) => {
   const langsEntries = Object.entries(languages);
+  const langsArray = langsEntries.map(([key, label]) => ({ key, label }));
 
-  const langsArray = [];
-
-  langsEntries.forEach((l, i) => {
-    langsArray.push({
-      key: l[0],
-      label: l[1],
-    });
-  });
-
-  const [currentLang, setCurrentLang] = useState('')
+  const [currentLang, setCurrentLang] = useState("");
 
   const handleSelect = (e) => {
     const newLang = e.target.value;
@@ -25,27 +17,26 @@ export const LanguagePicker = ({ siteUrl }) => {
       : newUrl;
   };
 
-
   useEffect(() => {
     setCurrentLang(window.location.pathname.split("/")[1]);
   }, []);
 
   return (
-    <select onChange={(e) => { handleSelect(e) }} className={"bg-transparent text-2xl"}>
-      {langsArray &&
-        langsArray.length > 0 &&
-        langsArray.map((l) => {
-
-          return l.key === currentLang ? (
-            <option selected key={l.key} value={l.key}>
-              {l.label}
-            </option>
-          ) : (
-            <option key={l.key} value={l.key}>
-              {l.label}
-            </option>
-          )
-        })}
-    </select>
+    <div className="relative">
+      <select
+        onChange={handleSelect}
+        className="appearance-none bg-transparent text-2xl  p-2 pr-8 rounded-md"
+      >
+        {langsArray.map((l) => (
+          <option key={l.key} value={l.key} selected={l.key === currentLang}>
+            {l.label}
+          </option>
+        ))}
+      </select>
+      {/* Flecha personalizada */}
+      <div className="text-xl pb-3 pointer-events-none absolute right-2 top-1/2 -translate-y-1/2">
+        ⌄
+      </div>
+    </div>
   );
 };
