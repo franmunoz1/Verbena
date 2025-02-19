@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function ServiceCard({ services, lang, siteUrl, servicesTraductions }) {
     const [filter, setFilter] = useState("All");
@@ -6,6 +6,14 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
 
     const handleFilterChange = (e) => setFilter(e.target.value);
     const handleSortChange = (e) => setSort(e.target.value);
+
+    const [currentLang, setCurrentLang] = useState(lang);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentLang(window.location.pathname.split("/")[1]);
+        }
+    }, []);
 
     const filteredServices = services
         .filter((service) => filter === "All" || service.category === filter)
@@ -60,11 +68,11 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
                             <img
                                 className="w-full h-[300px] object-cover"
                                 src={service.image}
-                                alt={service.name}
+                                alt={service.name_es}
                             />
                             <div className="px-6 py-4">
-                                <div className="font-bold text-xl mb-2">{service.name}</div>
-                                <p className="text-gray-700 text-base">{service.summary}</p>
+                                <div className="font-bold text-xl mb-2">{currentLang == 'es' ? service.name_es : service.name_en}</div>
+                                <p className="text-gray-700 text-base">{currentLang == 'es' ? service.summary_es : service.summary_en}</p>
                                 <span className="text-gray-700 font-bold">{servicesTraductions.price}: ${service.price}</span>
                             </div>
                             <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">

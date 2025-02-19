@@ -1,8 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-export default function CarouselCards({ services, currentLanguage, carouselTraductions }) {
+export default function CarouselCards({ services, currentLanguage, carouselTraductions, lang }) {
+
+    const [currentLang, setCurrentLang] = useState(lang);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentLang(window.location.pathname.split("/")[1]);
+        }
+    }, []);
 
     useEffect(() => {
         AOS.init({
@@ -33,7 +41,7 @@ export default function CarouselCards({ services, currentLanguage, carouselTradu
                         />
                         <div className="text-center px-2 p-2 flex-grow flex items-center justify-center">
                             <div className="font-bold text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl">
-                                {card.name}
+                                {currentLang == 'es' ? card.name_es : card.name_en}
                             </div>
                         </div>
                         <div className="flex justify-center">
