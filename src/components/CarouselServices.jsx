@@ -48,7 +48,7 @@ export default function CarouselCards({ services, currentLanguage, carouselTradu
                             <a
                                 href={`/${currentLanguage}/service-${card.id}`}
                                 className="bg-green-verbena hover:bg-gray-400 text-white font-semibold py-2 px-5 rounded-full 
-                                            text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl"
+                                            text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-all"
                             >
                                 {carouselTraductions.reserve}
                             </a>

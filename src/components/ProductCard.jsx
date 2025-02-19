@@ -109,7 +109,7 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                             <div className="mt-2">
                                 <button
                                     onClick={() => handleAddToCart(product)}
-                                    className="w-full bg-green-verbena hover:bg-green-600 text-white font-semibold py-3 px-5 rounded-lg shadow-lg transform transition-transform duration-300 ease-in-out"
+                                    className="w-full bg-green-verbena hover:bg-gray-400 text-white font-semibold py-3 px-5 rounded-lg shadow-lg transition-all"
                                 >
                                     {listProdTraductions.add}
                                 </button>

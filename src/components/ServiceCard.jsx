@@ -81,7 +81,7 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
                                 </button> */}
                                 <a
                                     href={`/${lang}/service-${service.id}`}
-                                    className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2 text-center"
+                                    className="bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full mr-2 text-center transition-all"
                                 >
                                     {servicesTraductions.reserve}
                                 </a>

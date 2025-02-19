@@ -60,7 +60,7 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                             />
                             <button
                                 onClick={handleAddToCart}
-                                className="flex bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
+                                className="flex bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full transition-all">
                                 {detailProductTranslation.addCart}
                             </button>
                         </div>

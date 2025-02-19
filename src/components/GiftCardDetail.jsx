@@ -4,7 +4,7 @@ import { useStore } from '@nanostores/react';
 
 export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
     const $cart = useStore(cart);
-    const [selectedAmount, setSelectedAmount] = useState(10);
+    const [selectedAmount, setSelectedAmount] = useState(0);
     const [customAmount, setCustomAmount] = useState('');
     const [showCustomInput, setShowCustomInput] = useState(false);
     const [quantity, setQuantity] = useState(1);
@@ -29,16 +29,23 @@ export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
     };
 
     const handleAddToCart = () => {
-        addToCart(
-            {
-                id: `giftcard-${selectedAmount}`,
-                name: `Gift Card - $${selectedAmount}`,
-                price: selectedAmount,
-                image: 'https://example.com/giftcard.jpg'
-            },
-            quantity
-        );
+        if (!selectedAmount || selectedAmount <= 0) {
+            alert('Por favor, selecciona un monto para la tarjeta de regalo.');
+            return;
+        }
+
+        const giftcard = {
+            id: 'giftcard',
+            name_es: `Giftcard - $${selectedAmount}`,
+            image: '/img/giftcard.PNG',
+            price: selectedAmount,
+            quantity: quantity,
+        };
+
+        addToCart(giftcard);
     };
+
+
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
