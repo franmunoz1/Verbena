@@ -43,18 +43,16 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
     return (
         <div className="mx-[20px] lg:mx-[50px] flex flex-col lg:flex-row">
             {/* Aside para los filtros */}
-            <aside className="w-full lg:w-1/4 mb-6 lg:mb-0 lg:mr-6">
-                <div className="bg-gray-100 p-6 rounded-md shadow-md">
-                    <h2 className="text-lg font-bold mb-4">{listProdTraductions.filter}</h2>
-
-                    {/* Select para categoría */}
-                    <div className="mb-6">
-                        <label htmlFor="categoryFilter" className="block mb-2 text-md font-semibold">{listProdTraductions.category}</label>
+            <aside className="w-full lg:w-1/4 mb-6 lg:mb-0 lg:mr-6 lg:sticky lg:top-10 self-start pt-4 lg:pt-[120px]">
+                <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                    <h2 className="text-xl font-bold text-gray-800 mb-4">{listProdTraductions.filter}</h2>
+                    <div className="mb-4">
+                        <label htmlFor="categoryFilter" className="block mb-2 text-md font-semibold text-gray-700">{listProdTraductions.category}</label>
                         <select
                             id="categoryFilter"
                             value={selectedCategory}
                             onChange={handleFilterChange}
-                            className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-verbena"
+                            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-verbena transition-all"
                         >
                             <option value="">{listProdTraductions.all}</option>
                             <option value="Limpiadores">{listProdTraductions.categorylimp}</option>
@@ -63,15 +61,13 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                             <option value="FPS">{listProdTraductions.categoryfps}</option>
                         </select>
                     </div>
-
-                    {/* Select para ordenación por precio */}
-                    <div className="mb-6">
-                        <label htmlFor="priceSort" className="block mb-2 text-md font-semibold">{listProdTraductions.orderbyprice}</label>
+                    <div>
+                        <label htmlFor="priceSort" className="block mb-2 text-md font-semibold text-gray-700">{listProdTraductions.orderbyprice}</label>
                         <select
                             id="priceSort"
                             value={sortOrder}
                             onChange={handleSortChange}
-                            className="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-green-verbena"
+                            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-verbena transition-all"
                         >
                             <option value="">{listProdTraductions.noorder}</option>
                             <option value="low-to-high">{listProdTraductions.lth}</option>
@@ -113,7 +109,6 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                                 >
                                     {listProdTraductions.add}
                                 </button>
-
                             </div>
                         </div>
                     ))

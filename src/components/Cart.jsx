@@ -3,6 +3,7 @@ import { removeFromCart, updateQuantity } from '../store/cart';
 
 export default function Cart({ lang, siteUrl, cartTraductions }) {
   const [cart, setCart] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const getCart = () => {
     if (typeof window !== 'undefined' && window.localStorage) {
@@ -29,6 +30,13 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
   const clearCart = () => {
     setCart([]);
     localStorage.removeItem('cart');
+  };
+
+  const confirmClearCart = () => {
+    const isConfirmed = window.confirm(cartTraductions.confirmClearCart || "¿Estás seguro de que quieres vaciar el carrito?");
+    if (isConfirmed) {
+      clearCart();
+    }
   };
 
   const enviarPorWhatsapp = () => {
@@ -127,9 +135,13 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
           </div>
 
           <div className="flex gap-4">
-            <button onClick={clearCart} className="w-full border border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300">
+            <button
+              onClick={() => setShowModal(true)}
+              className="w-full border border-red-700 text-red-700 hover:bg-red-700 hover:text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300"
+            >
               {cartTraductions.clearCart}
             </button>
+
             <button
               onClick={enviarPorWhatsapp}
               className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg mt-4 transition-colors duration-300 flex items-center justify-center gap-2"
@@ -153,7 +165,36 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
       ) : (
         <p className="text-gray-500">{cartTraductions.emptyCart}</p>
       )}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <p className="text-lg font-semibold mb-4">
+              {cartTraductions.questionCart}
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => {
+                  setCart([]);
+                  localStorage.removeItem('cart');
+                  setShowModal(false);
+                }}
+                className="bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition-colors"
+              >
+                {cartTraductions.confirmCart}
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 transition-colors"
+              >
+                {cartTraductions.cancelCart}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
+
   );
 }
 

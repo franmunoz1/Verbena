@@ -39,6 +39,9 @@ export const ui = {
     'cart.quit': 'Remove',
     'cart.clear': 'Clear cart',
     'cart.checkout': 'Send via Whatsapp',
+    'cart.question': 'Are you sure you want to clear the cart?',
+    'cart.confirm': 'Yes',
+    'cart.cancel': 'No',
 
     // Detail product
     'detailprod.quantity': 'Quantity',
@@ -128,6 +131,9 @@ export const ui = {
     'cart.quit': 'Quitar',
     'cart.clear': 'Vaciar carrito',
     'cart.checkout': 'Enviar por Whatsapp',
+    'cart.question': '¿Estás seguro de que deseas vaciar el carrito?',
+    'cart.confirm': 'Sí',
+    'cart.cancel': 'No',
 
     // Detail product
     'detailprod.quantity': 'Cantidad',
