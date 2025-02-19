@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { cart, addToCart } from '../store/cart';
 import { useStore } from '@nanostores/react';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
     const $cart = useStore(cart);
@@ -34,6 +35,8 @@ export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
             return;
         }
 
+        console.log("Añadiendo al carrito:", selectedAmount); // <-- Prueba si esto se imprime en la consola
+
         const giftcard = {
             id: 'giftcard',
             name_es: `Giftcard - $${selectedAmount}`,
@@ -43,7 +46,24 @@ export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
         };
 
         addToCart(giftcard);
+
+        toast.success(giftCardTraductions.added, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            style: {
+                backgroundColor: "#708a6f",
+                color: "#fff",
+                fontWeight: "",
+                borderRadius: "8px",
+            },
+        });
     };
+
 
 
 
@@ -125,6 +145,7 @@ export default function GiftCardDetail({ lang, siteUrl, giftCardTraductions }) {
                         >
                             {giftCardTraductions.addGiftCard}
                         </button>
+                        <ToastContainer />
                     </div>
                 </div>
             </div>

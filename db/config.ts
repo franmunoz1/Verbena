@@ -17,6 +17,7 @@ const Product = defineTable({
     image: column.text({ unique: false }),
     alt: column.text({ unique: false }),
     category: column.text({ unique: false }),
+    capacity: column.text({ unique: false }),
   }
 });
 

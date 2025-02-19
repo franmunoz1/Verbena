@@ -17,9 +17,10 @@ export default async function seed() {
 			description_en: 'Wrinkle-filling serum with a three-dimensional volume effect. It acts simultaneously at different skin levels, creating a 24-hour protective film on the epidermis and a hydric filling effect in the dermis to minimize wrinkles from within.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/Hyalu7.jpeg',
-			alt: 'HYALU7',
-			category: 'Serum'
+			image: '/img/IMG_0380.PNG',
+			alt: 'HYALU7 bioserum',
+			category: 'Serum',
+			capacity: '30ml'
 		},
 		{
 			id: '2',
@@ -32,14 +33,15 @@ export default async function seed() {
 			description_en: 'Cleanses the skin by removing greasy residues without leaving it tight or dry. Its foam is refreshing, softening, and provides a pleasant cleansing effect.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/ControlBrossage.jpeg',
+			image: '/img/IMG_0379.PNG',
 			alt: 'Control Brossage',
-			category: 'Serum'
+			category: 'Limpiadores',
+			capacity: '130ml'
 		},
 		{
 			id: '3',
-			name_es: 'CONTROL BIO DETOX',
-			name_en: 'CONTROL BIO DETOX',
+			name_es: 'BIOCONTROL DETOX',
+			name_en: 'BIOCONTROL DETOX',
 			price: 150,
 			summary_es: 'Serum equilibrante para piel grasa.',
 			summary_en: 'Balancing serum for oily skin.',
@@ -47,9 +49,10 @@ export default async function seed() {
 			description_en: 'Fluid designed to improve skin microbiome imbalances, with detox and regulatory effects. Strengthens the skins protective function and provides softness, freshness, and an inner glow.Ideal for treating highly visible pores.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/ControlBioDetox.jpeg',
+			image: '/img/IMG_0392.PNG',
 			alt: 'Control Bio Detox',
-			category: 'Serum'
+			category: 'Serum',
+			capacity: '60ml'
 		},
 		{
 			id: '4',
@@ -62,9 +65,10 @@ export default async function seed() {
 			description_en: 'Ideal for oily skin and dehydrated areas, as it regulates both oiliness and dehydration tightness. Perfect for humid and warm climates, as it moisturizes without adding greasiness.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/ControlBrossage.jpeg',
+			image: '/img/IMG_0391.PNG',
 			alt: 'Control Fluid',
-			category: 'Limpiadores'
+			category: 'Cremas',
+			capacity: '50ml'
 		},
 		{
 			id: '5',
@@ -77,14 +81,15 @@ export default async function seed() {
 			description_en: 'Ideal for all types of darkened, thick, and dull skin. Progressively reduces spot intensity with a formula free of irritation risks. Suitable for all skin types at any time of the year.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/Hyalu7.jpeg',
+			image: '/img/IMG_0384.PNG',
 			alt: 'Eclair Lumiblend',
-			category: 'Limpiadores'
+			category: 'Serum',
+			capacity: '30ml'
 		},
 		{
 			id: '6',
-			name_es: 'VITA C BROSSAGE',
-			name_en: 'VITA C BROSSAGE',
+			name_es: 'VITA-C BROSSAGE',
+			name_en: 'VITA-C BROSSAGE',
 			price: 200,
 			summary_es: 'Espuma limpiadora.',
 			summary_en: 'Cleansing foam.',
@@ -92,14 +97,15 @@ export default async function seed() {
 			description_en: 'Cleanses the skin by removing greasy residues without leaving it dry. Its foam is refreshing and provides a pleasant cleansing effect.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/ControlBrossage.jpeg',
+			image: '/img/IMG_0388.PNG',
 			alt: 'Vita C Brossage',
-			category: 'Limpiadores'
+			category: 'Limpiadores',
+			capacity: '60ml'
 		},
 		{
 			id: '7',
-			name_es: 'VITA C FLUID',
-			name_en: 'VITA C FLUID',
+			name_es: 'VITA-C FLUID',
+			name_en: 'VITA-C FLUID',
 			price: 210,
 			summary_es: 'Emulsión antioxidante con micronutrientes.',
 			summary_en: 'Antioxidant emulsion with micronutrients.',
@@ -107,9 +113,10 @@ export default async function seed() {
 			description_en: 'Antioxidant emulsion with micronutrients that revitalizes and moisturizes dull skin, restoring its radiance.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/Hyalu7.jpeg',
+			image: '/img/IMG_0387.PNG',
 			alt: 'Vita C Fluid',
-			category: 'Hidratantes'
+			category: 'Cremas',
+			capacity: '50ml'
 		},
 		{
 			id: '8',
@@ -122,14 +129,15 @@ export default async function seed() {
 			description_en: 'Ideal for all skin types and ages. It has an elastic and adaptable texture. Improves skin softness and reduces wrinkles. Perfect for daily use.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/HyaluCream.jpeg',
+			image: '/img/IMG_0382.PNG',
 			alt: 'Hyalu Cream',
-			category: 'Hidratantes'
+			category: 'Cremas',
+			capacity: '50ml'
 		},
 		{
 			id: '9',
-			name_es: 'VITA A MULTISERUM',
-			name_en: 'VITA A MULTISERUM',
+			name_es: 'VITA-A MULTI-SERUM',
+			name_en: 'VITA-A MULTI-SERUM',
 			price: 230,
 			summary_es: 'Serum multivitaminas que repara y reequilibra.',
 			summary_en: 'Multivitamin serum that repairs and rebalances.',
@@ -137,9 +145,10 @@ export default async function seed() {
 			description_en: 'A true comprehensive anti-aging support with 5 antioxidant vitamins. The result is more nourished, hydrated skin, fewer deep wrinkles, improved cell renewal, and better barrier function.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/Hyalu7.jpeg',
+			image: '/img/vita-a-multiserum-Photoroom.png',
 			alt: 'Vita A Multiserum',
-			category: 'FPS'
+			category: 'Serum',
+			capacity: '30ml'
 		},
 		{
 			id: '10',
@@ -152,9 +161,10 @@ export default async function seed() {
 			description_en: 'Fluid, fresh texture with high protection and a non-greasy finish. Specially designed for oily skin and warm, humid climates.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/UrbanLait.jpeg',
+			image: '/img/IMG_0383.PNG',
 			alt: 'Urban Lait',
-			category: 'FPS'
+			category: 'Protector solar',
+			capacity: '50ml'
 		},
 		{
 			id: '11',
@@ -167,9 +177,10 @@ export default async function seed() {
 			description_en: 'Renewing lotion that softens and refines the skin, improving its condition for deep cleansing. Helps even out skin tone and smoothness to the touch.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/Hyalu7.jpeg',
+			image: '/img/IMG_0395.PNG',
 			alt: 'Pure Mega Tonic',
-			category: 'FPS'
+			category: 'Tónico',
+			capacity: '130ml'
 		},
 		{
 			id: '12',
@@ -182,9 +193,122 @@ export default async function seed() {
 			description_en: 'With a fresh texture and effective cleansing action. Formulated to remove makeup and cleanse the face without irritation.',
 			recomendation_es: '',
 			recomendation_en: '',
-			image: '/img/ControlBrossage.jpeg',
+			image: '/img/IMG_0393.PNG',
 			alt: 'Fresh Clean',
-			category: 'FPS'
+			category: 'Limpiadores',
+			capacity: '150ml'
+		},
+		{
+			id: '13',
+			name_es: 'GLYCO CREAM',
+			name_en: 'GLYCO CREAM',
+			price: 120,
+			summary_es: 'Crema de uso diario para atenuar las arrugas, mejorar la tersura de la piel y aumentar su luminosidad.',
+			summary_en: 'Daily use cream to reduce wrinkles, improve skin smoothness, and increase luminosity.',
+			description_es: 'Crema de uso diario para atenuar las arrugas, mejorar la tersura de la piel y aumentar su luminosidad. Previene la tirantez superficial con acción elastizante y final aterciopelado.',
+			description_en: 'Daily use cream to reduce wrinkles, improve skin smoothness, and increase luminosity. Prevents superficial tightness with an elasticizing action and a velvety finish.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/IMG_0389.PNG',
+			alt: 'Glyco Cream',
+			category: 'Cremas',
+			capacity: '50ml'
+		},
+		{
+			id: '14',
+			name_es: 'SERUM C',
+			name_en: 'SERUM C',
+			price: 120,
+			summary_es: 'Serum nanosomado de Vitamina C pura',
+			summary_en: 'Nanosomed serum of pure Vitamin C',
+			description_es: 'Mejora la oxigenación de la piel, favorece la renovación celular y devuelve su grado de humectación. Potencia la luminosidad de la piel y tiene un efecto AntiOxidante (AOX). Ayuda a permeabilizar la piel. Se absorbe con facilidad permitiendo que las manos deslicen sin pesar en el rostro. Es ideal para pieles sensibles.',
+			description_en: 'Improves skin oxygenation, promotes cell renewal, and restores its moisture level. Enhances skin luminosity and has an Antioxidant (AOX) effect. Helps to permeabilize the skin. It is easily absorbed, allowing the hands to glide without weighing on the face. Ideal for sensitive skin.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/IMG_0390.PNG',
+			alt: 'Serum C',
+			category: 'Serum',
+			capacity: '30ml'
+		},
+		{
+			id: '15',
+			name_es: 'CUIDADO EXTREMO FACIAL',
+			name_en: 'CUIDADO EXTREMO FACIAL',
+			price: 120,
+			summary_es: 'Concentrado facial de óleos reparadores',
+			summary_en: 'Facial concentrate of repairing oils',
+			description_es: 'Blend finamente emoliente y nutritivo, ideal para elastizar y defender las zonas más frágiles del rostro. Sus delicados óleos de efecto balsámico protegen y colaboran en la cicatrización de microlesiones típicas en las pieles vulnerables.',
+			description_en: 'Finely emollient and nourishing blend, ideal for elastizing and defending the most fragile areas of the face. Its delicate balsamic effect oils protect and collaborate in the healing of microlesions typical of vulnerable skin.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/IMG_0381.PNG',
+			alt: 'Cuidado extremo facial',
+			category: 'Cremas',
+			capacity: '50ml'
+		},
+		{
+			id: '16',
+			name_es: 'URBAN LAIT COLOR',
+			name_en: 'URBAN LAIT COLOR',
+			price: 120,
+			summary_es: 'Fotoprotector con color FPS 35+ no graso',
+			summary_en: 'Non-greasy SPF 35+ color sunscreen',
+			description_es: 'Leche de alta fotoprotección, final fresco no-graso y como plus aporta una cálida coloración a modo de maquillaje leve. Ideal para el cuidado diario urbano en climas cálidos, en pieles grasas y en pieles con tendencia a la formación de manchas.',
+			description_en: 'High sun protection milk, fresh non-greasy finish, and as a plus, it provides a warm coloration as a light makeup. Ideal for daily urban care in warm climates, oily skin, and skin prone to spot formation.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/IMG_0401.PNG',
+			alt: 'Urban Lait Color',
+			category: 'Protector solar',
+			capacity: '50ml'
+		},
+		{
+			id: '17',
+			name_es: 'HYDRA LIPSTICK',
+			name_en: 'HYDRA LIPSTICK',
+			price: 120,
+			summary_es: 'Fotoprotector elastizante en barra',
+			summary_en: 'Elasticizing sunscreen in stick form',
+			description_es: 'Barra labial super humectante de efecto protector y elastizante. Ideal para labios dañados por el sol y otros factores agresivos. Concebido para el cuidado diario UNISEX: incoloro, sin brillos ni aromas predominantes.',
+			description_en: 'Super moisturizing lip balm with a protective and elasticizing effect. Ideal for lips damaged by the sun and other aggressive factors. Designed for daily UNISEX care: colorless, without shine or predominant aromas.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/hydra-lipstick-Photoroom2.png',
+			alt: 'Hydra lipstick',
+			category: 'Protector solar',
+			capacity: ''
+		},
+		{
+			id: '18',
+			name_es: 'Pure Bio Serum',
+			name_en: 'Pure Bio Serum',
+			price: 120,
+			summary_es: 'Serum purificante, normaliza el exceso de grasitud, purifica y regenera la piel dañanda.',
+			summary_en: 'Purifying serum, normalizes excess oiliness, purifies and regenerates damaged skin.',
+			description_es: '-Controla la flora bacteriana -Mejora la regeneración de las lesiones -Garantiza la condición higiénica óptima.',
+			description_en: '-Controls bacterial flora -Improves lesion regeneration -Guarantees optimal hygienic condition.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/IMG_0385.PNG',
+			alt: 'Pro bioserum',
+			category: 'Serum',
+			capacity: '30ml'
+		},
+		{
+			id: '19',
+			name_es: 'CONTROL PORE TONIC',
+			name_en: 'CONTROL PORE TONIC',
+			price: 120,
+			summary_es: 'Loción refinadora para poros dilatados',
+			summary_en: 'Refining lotion for enlarged pores',
+			description_es: 'Tónico equilibrante y renovador ideal para el uso nocturno. Mejora la apariencia y textura de la piel. Colabora a regular el exceso de secreción con un efecto purificante.',
+			description_en: 'Balancing and renewing tonic ideal for nighttime use. Improves the appearance and texture of the skin. Helps regulate excess secretion with a purifying effect.',
+			recomendation_es: '',
+			recomendation_en: '',
+			image: '/img/IMG_0396.PNG',
+			alt: 'Control Pore Tonic',
+			category: 'Tónico',
+			capacity: '130ml'
 		},
 	]);
 

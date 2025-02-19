@@ -68,6 +68,9 @@ export const ui = {
     'listprod.categoryserum': 'Serum',
     'listprod.categoryhid': 'Moisturizers',
     'listprod.categoryfps': 'FPS',
+    'listprod.categorycream': 'Creams',
+    'listprod.categorytonic': 'Tonics',
+    'listprod.categorysunscreen': 'Sunscreens',
     'listprod.noorder': 'Unordered',
     'listprod.lth': 'Low to high',
     'listprod.htl': 'High to low',
@@ -99,6 +102,7 @@ export const ui = {
     'giftcard.quantity': 'Select Quantity',
     'giftcard.add': 'Add to cart',
     'giftcard.other': 'Other amount',
+    'giftcard.added': 'Gift card added to cart',
   },
 
   es: {
@@ -162,6 +166,9 @@ export const ui = {
     'listprod.categoryserum': 'Serum',
     'listprod.categoryhid': 'Hidrantes',
     'listprod.categoryfps': 'FPS',
+    'listprod.categorycream': 'Cremas',
+    'listprod.categorytonic': 'Tónicos',
+    'listprod.categorysunscreen': 'Protector solar',
     'listprod.noorder': 'Sin ordenar',
     'listprod.lth': 'Menor a mayor',
     'listprod.htl': 'Mayor a menor',
@@ -193,5 +200,6 @@ export const ui = {
     'giftcard.quantity': 'Selecciona la cantidad',
     'giftcard.add': 'Agregar al carrito',
     'giftcard.other': 'Otro monto',
+    'giftcard.added': 'Gift card agregada al carrito',
   },
 } as const;

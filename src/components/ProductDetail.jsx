@@ -46,7 +46,7 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                         <img
                             src={product.image}
                             alt={product.alt || "Product Image"}
-                            className="rounded-lg object-cover w-full h-full"
+                            className="rounded-lg object-contain w-full h-full"
                             style={{ maxHeight: '500px' }}
                         />
                     </div>
@@ -61,6 +61,7 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                     </nav>
                     {/* <h1 className="text-2xl font-semibold mb-2">{product.brand}</h1> */}
                     <h2 className="text-4xl font-light text-primary mb-4">{currentLang == 'es' ? product.name_es : product.name_en}</h2>
+                    <p className="text-md text-gray-500 mb-6">{product.capacity}</p>
                     <p className="text-2xl mb-4">US${product.price}</p>
                     <p className="text-sm text-gray-500 mb-6">
                         {currentLang == 'es' ? product.description_es : product.description_en}
@@ -80,8 +81,7 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                                 className="flex bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full transition-all">
                                 {detailProductTranslation.addCart}
                             </button>
-                            <ToastContainer
-                            />
+                            <ToastContainer />
 
                         </div>
                     </div>

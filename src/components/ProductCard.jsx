@@ -73,8 +73,9 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                             <option value="">{listProdTraductions.all}</option>
                             <option value="Limpiadores">{listProdTraductions.categorylimp}</option>
                             <option value="Serum">{listProdTraductions.categoryserum}</option>
-                            <option value="Hidratantes">{listProdTraductions.categoryhid}</option>
-                            <option value="FPS">{listProdTraductions.categoryfps}</option>
+                            <option value="Cremas">{listProdTraductions.categorycream}</option>
+                            <option value="Tónico">{listProdTraductions.categorytonic}</option>
+                            <option value="Protector solar">{listProdTraductions.categorysunscreen}</option>
                         </select>
                     </div>
                     <div>
@@ -103,7 +104,7 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                                     <img
                                         src={product.image}
                                         alt={product.alt}
-                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[300px] rounded-md"
+                                        className="h-full w-full object-contain object-center lg:h-full lg:w-full max-h-[300px] rounded-md"
                                     />
                                 </div>
                                 <div className="mt-4 flex-grow flex flex-col justify-between">
@@ -116,8 +117,12 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                                 </div>
                             </a>
                             <div className="text-center mt-2">
+                                {product.capacity && (
+                                    <p className="text-xs text-gray-500 mb-2">{product.capacity}</p>
+                                )}
                                 <p className="text-sm font-medium text-gray-900">US$ {product.price}</p>
                             </div>
+
                             <div className="mt-2">
                                 <button
                                     onClick={() => handleAddToCart(product)}
