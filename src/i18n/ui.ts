@@ -46,6 +46,7 @@ export const ui = {
     // Detail product
     'detailprod.quantity': 'Quantity',
     'detailprod.add': 'Add to cart',
+    'detailprod.added': 'Product added to cart',
 
     // Carousel
     'carouselprod.title': 'Our products',
@@ -70,6 +71,7 @@ export const ui = {
     'listprod.noorder': 'Unordered',
     'listprod.lth': 'Low to high',
     'listprod.htl': 'High to low',
+    'listprod.added': 'Product added to cart',
 
     // List services
     'listserv.reserve': 'Reserve',
@@ -138,6 +140,7 @@ export const ui = {
     // Detail product
     'detailprod.quantity': 'Cantidad',
     'detailprod.add': 'Agregar al carrito',
+    'detailprod.added': 'Producto agregado al carrito',
 
     // Carousel
     'carouselprod.title': 'Nuestros productos',
@@ -162,6 +165,7 @@ export const ui = {
     'listprod.noorder': 'Sin ordenar',
     'listprod.lth': 'Menor a mayor',
     'listprod.htl': 'Mayor a menor',
+    'listprod.added': 'Producto agregado al carrito',
 
     // List services
     'listserv.reserve': 'Reservar',

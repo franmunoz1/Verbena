@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { addToCart } from '../store/cart';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => {
     const [quantity, setQuantity] = useState(1);
@@ -8,8 +9,24 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
         if (quantity > 0) {
             console.log('Adding to cart, quantity:', quantity); // Debugging
             addToCart(product, quantity);
+            toast.success(detailProductTranslation.addedToCart, {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    backgroundColor: "#708a6f",
+                    color: "#fff",
+                    fontWeight: "",
+                    borderRadius: "8px",
+                },
+            });
         }
     };
+
 
     const [currentLang, setCurrentLang] = useState(lang);
 
@@ -63,6 +80,9 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                                 className="flex bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full transition-all">
                                 {detailProductTranslation.addCart}
                             </button>
+                            <ToastContainer
+                            />
+
                         </div>
                     </div>
                 </div>

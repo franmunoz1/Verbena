@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { addToCart } from '../store/cart';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function ProductCard({ products, lang, siteUrl, listProdTraductions }) {
     const [selectedCategory, setSelectedCategory] = useState(''); // Estado del filtro de categoría
@@ -7,6 +8,21 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
 
     const handleAddToCart = (product) => {
         addToCart(product);
+        toast.success(listProdTraductions.added, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            style: {
+                backgroundColor: "#708a6f",
+                color: "#fff",
+                fontWeight: "",
+                borderRadius: "8px",
+            },
+        });
     };
 
     const [currentLang, setCurrentLang] = useState(lang);
@@ -109,6 +125,7 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                                 >
                                     {listProdTraductions.add}
                                 </button>
+                                <ToastContainer />
                             </div>
                         </div>
                     ))
