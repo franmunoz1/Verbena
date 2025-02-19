@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addToCart } from '../store/cart';
 
 const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => {
@@ -10,6 +10,14 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
             addToCart(product, quantity);
         }
     };
+
+    const [currentLang, setCurrentLang] = useState(lang);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentLang(window.location.pathname.split("/")[1]);
+        }
+    }, []);
 
     console.log(detailProductTranslation.quantity)
 
@@ -35,10 +43,10 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                         </ol>
                     </nav>
                     {/* <h1 className="text-2xl font-semibold mb-2">{product.brand}</h1> */}
-                    <h2 className="text-4xl font-light text-primary mb-4">{product.name}</h2>
+                    <h2 className="text-4xl font-light text-primary mb-4">{currentLang == 'es' ? product.name_es : product.name_en}</h2>
                     <p className="text-2xl mb-4">US${product.price}</p>
                     <p className="text-sm text-gray-500 mb-6">
-                        {product.description}
+                        {currentLang == 'es' ? product.description_es : product.description_en}
                     </p>
                     <div className="mb-6">
                         <h3 className="text-sm font-medium mb-2">{detailProductTranslation.quantity}</h3>

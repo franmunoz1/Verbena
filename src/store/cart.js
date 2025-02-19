@@ -21,7 +21,7 @@ export const addToCart = (product, quantity = 1) => {
     // Add new product with the passed quantity
     currentCart.push({
       id: product.id,
-      name: product.name,
+      name: product.name_es,
       price: product.price,
       quantity: quantity, // Use the passed quantity here
       alt: product.alt,

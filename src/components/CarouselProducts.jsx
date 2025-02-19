@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { addToCart } from '../store/cart';
 import '@fontsource/tenor-sans';
 import '@fontsource-variable/raleway';
 
-export default function CarouselCards({ products, currentLanguage, carouselTraductions }) {
+export default function CarouselCards({ products, currentLanguage, carouselTraductions, lang }) {
 
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+
+    const [currentLang, setCurrentLang] = useState(lang);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentLang(window.location.pathname.split("/")[1]);
+        }
+    }, []);
 
     const scrollPrev = React.useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev()
@@ -39,10 +47,10 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                                     <div className="text-center">
                                         <h3 className="text-sm text-gray-700 font-bold">
                                             <a href={`/${currentLanguage}/product-${product.id}`}>
-                                                {product.name}
+                                                {currentLang == 'es' ? product.name_es : product.name_en}
                                             </a>
                                         </h3>
-                                        <p className="mt-1 text-sm text-gray-500">{product.summary}</p>
+                                        <p className="mt-1 text-sm text-gray-500">{currentLang == 'es' ? product.summary_es : product.summary_en}</p>
                                     </div>
                                     <p className="text-sm font-medium text-gray-900" style={{ fontFamily: 'Raleway Variable' }}>US$ {product.price}</p>
                                 </div>

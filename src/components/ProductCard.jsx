@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { addToCart } from '../store/cart';
 
 export default function ProductCard({ products, lang, siteUrl, listProdTraductions }) {
@@ -8,6 +8,14 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
     const handleAddToCart = (product) => {
         addToCart(product);
     };
+
+    const [currentLang, setCurrentLang] = useState(lang);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentLang(window.location.pathname.split("/")[1]);
+        }
+    }, []);
 
     const handleFilterChange = (event) => {
         setSelectedCategory(event.target.value); // Actualiza el estado del filtro de categoría
@@ -89,9 +97,9 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                                 <div className="mt-4 flex-grow flex flex-col justify-between">
                                     <div className="text-center">
                                         <h3 className="text-sm text-gray-700 font-bold">
-                                            {product.name}
+                                            {currentLang == 'es' ? product.name_es : product.name_en}
                                         </h3>
-                                        <p className="mt-1 text-sm text-gray-500">{product.summary}</p>
+                                        <p className="mt-1 text-sm text-gray-500">{currentLang == 'es' ? product.summary_es : product.summary_en}</p>
                                     </div>
                                 </div>
                             </a>
