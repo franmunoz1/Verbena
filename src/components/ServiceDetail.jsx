@@ -88,7 +88,7 @@ const ServiceDetail = ({ service, serviceTraductions, lang }) => {
                             {currentLang === 'es' ? service.description_es : service.description_en}
                         </p>
 
-                        {service.care_es && service.care_es.trim() !== '' && (
+                        {service.care_es && service.care_es !== '' && (
                             <div className="bg-green-50 border-l-4 border-red-500 p-4 mb-6">
                                 <p className="text-sm text-red-700 font-medium">
                                     {serviceTraductions.cares}:
@@ -99,7 +99,7 @@ const ServiceDetail = ({ service, serviceTraductions, lang }) => {
                             </div>
                         )}
 
-                        {service.benefits_es && service.benefits_es.trim() !== '' && (
+                        {service.benefits_es && service.benefits_es !== '' && (
                             <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
                                 <p className="text-sm text-green-700 font-medium">
                                     {serviceTraductions.benefits}:
