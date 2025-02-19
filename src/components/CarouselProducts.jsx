@@ -36,11 +36,11 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                     {products && products.length > 0 && products.map((product, index) => (
                         <div key={product.id} className="flex-[0_0_100%] sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] shadow-md p-4 rounded-md hover:shadow-lg transition duration-300">
                             <div className="group relative flex flex-col h-full "> {/* Agregado rounded-lg y shadow-lg */}
-                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
+                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none lg:h-80">
                                     <img
                                         src={product.image}
                                         alt={product.alt}
-                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full max-h-[300px]"
+                                        className="h-full w-full object-contain object-center lg:h-full lg:w-full max-h-[300px]"
                                     />
                                 </div>
                                 <div className="mt-4 flex-grow flex flex-col justify-between items-center">
