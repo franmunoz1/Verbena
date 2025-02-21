@@ -120,7 +120,8 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
                                 {product.capacity && (
                                     <p className="text-xs text-gray-500 mb-2">{product.capacity}</p>
                                 )}
-                                <p className="text-sm font-medium text-gray-900">US$ {product.price}</p>
+                                {/* QUITANDO PRECIOS POR EL MOMENTO */}
+                                {/* <p className="text-sm font-medium text-gray-900">US$ {product.price}</p> */}
                             </div>
 
                             <div className="mt-2">

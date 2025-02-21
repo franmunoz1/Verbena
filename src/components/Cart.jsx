@@ -65,11 +65,14 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
     // Construcción del mensaje
     let mensaje = greeting;
     cart.forEach(item => {
-      mensaje += `${productLabel}: ${item.name}\n${quantityLabel}: ${item.quantity}\n${priceLabel}: $${item.price * item.quantity}\n\n`;
+      mensaje += `${productLabel}: ${item.name}\n${quantityLabel}: ${item.quantity}\n`;
+      // QUITANDO PRECIOS
+      //  ${priceLabel}: $${item.price * item.quantity}\n\n
     });
 
     const total = cart.reduce((total, item) => total + item.price * item.quantity, 0);
-    mensaje += `${totalLabel}: $${total}\n`;
+    // QUITANDO PRECIOS
+    // mensaje += `${totalLabel}: $${total}\n`;
 
     // Codificar mensaje para URL de WhatsApp
     const mensajeCodificado = encodeURIComponent(mensaje);
@@ -116,7 +119,8 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
                     </button>
                   </div>
 
-                  <p className="text-[#2e3814]">${item.price.toFixed(2)}</p>
+                  {/* QUITANDO PRECIOS */}
+                  {/* <p className="text-[#2e3814]">${item.price.toFixed(2)}</p> */}
 
                   <button
                     onClick={() => removeItem(index)}
@@ -130,9 +134,10 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
             )
           })}
 
-          <div className="text-right mt-4">
+          {/* QUITANDO PRECIOS */}
+          {/* <div className="text-right mt-4">
             <p className="text-2xl font-bold">Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
-          </div>
+          </div> */}
 
           <div className="flex gap-4">
             <button

@@ -62,7 +62,8 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                     {/* <h1 className="text-2xl font-semibold mb-2">{product.brand}</h1> */}
                     <h2 className="text-4xl font-light text-primary mb-4">{currentLang == 'es' ? product.name_es : product.name_en}</h2>
                     <p className="text-md text-gray-500 mb-6">{product.capacity}</p>
-                    <p className="text-2xl mb-4">US${product.price}</p>
+                    {/* QUITANDO PRECIOS POR EL MOMENTO */}
+                    {/* <p className="text-2xl mb-4">US${product.price}</p> */}
                     <p className="text-sm text-gray-500 mb-6">
                         {currentLang == 'es' ? product.description_es : product.description_en}
                     </p>

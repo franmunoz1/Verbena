@@ -27,7 +27,7 @@ export default function CarouselCards({ services, currentLanguage, carouselTradu
                 return (
                     <div
                         key={card.id}
-                        className={`w-[200px] h-[240px] sm:w-[260px] sm:h-[280px] 
+                        className={`w-[220px] h-[260px] sm:w-[260px] sm:h-[280px] 
                         md:w-[320px] md:h-[340px] lg:w-[400px] lg:h-[420px] xl:w-[450px] xl:h-[480px]
                         rounded-lg overflow-hidden shadow-lg p-4 bg-white flex flex-col justify-between
                         ${animationDirection === "fade-right" ? "ml-auto lg:mr-[10%] xl:mr-[12%]" : "mr-auto lg:ml-[10%] xl:ml-[12%]"}`}
