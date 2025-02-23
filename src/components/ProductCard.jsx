@@ -2,9 +2,36 @@ import React, { useState, useEffect } from "react";
 import { addToCart } from '../store/cart';
 import { ToastContainer, toast } from 'react-toastify';
 
-export default function ProductCard({ products, lang, siteUrl, listProdTraductions }) {
-    const [selectedCategory, setSelectedCategory] = useState(''); // Estado del filtro de categoría
-    const [sortOrder, setSortOrder] = useState(''); // Estado del filtro de ordenación
+export default function ProductCard({ lang, listProdTraductions }) {
+    const [products, setProducts] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [sortOrder, setSortOrder] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch("https://franmunoz.online/api/products?populate=*");
+                if (!response.ok) {
+                    throw new Error("Error al obtener los productos");
+                }
+                const result = await response.json();
+                console.log("Productos obtenidos:", result); // Verifica el formato
+                setProducts(result.data); // Accede a result.data para obtener los productos
+            } catch (error) {
+                console.error("Error al obtener productos:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+
+        fetchProducts();
+    }, []);
+
+
 
     const handleAddToCart = (product) => {
         addToCart(product);
@@ -19,126 +46,77 @@ export default function ProductCard({ products, lang, siteUrl, listProdTraductio
             style: {
                 backgroundColor: "#708a6f",
                 color: "#fff",
-                fontWeight: "",
                 borderRadius: "8px",
             },
         });
     };
 
-    const [currentLang, setCurrentLang] = useState(lang);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setCurrentLang(window.location.pathname.split("/")[1]);
-        }
-    }, []);
-
     const handleFilterChange = (event) => {
-        setSelectedCategory(event.target.value); // Actualiza el estado del filtro de categoría
+        setSelectedCategory(event.target.value);
     };
 
     const handleSortChange = (event) => {
-        setSortOrder(event.target.value); // Actualiza el estado del filtro de ordenación
+        setSortOrder(event.target.value);
     };
 
-    // Filtrar productos basados en la categoría seleccionada
     const filteredProducts = selectedCategory
         ? products.filter((product) => product.category === selectedCategory)
         : products;
 
-    // Ordenar productos basados en el precio
-    const sortedProducts = filteredProducts.sort((a, b) => {
-        if (sortOrder === 'low-to-high') {
-            return a.price - b.price;
-        } else if (sortOrder === 'high-to-low') {
-            return b.price - a.price;
-        }
-        return 0; // No ordenado si no hay filtro de orden
+    const sortedProducts = [...filteredProducts].sort((a, b) => {
+        if (sortOrder === 'low-to-high') return a.price - b.price;
+        if (sortOrder === 'high-to-low') return b.price - a.price;
+        return 0;
     });
+
+    if (loading) return <p>{listProdTraductions.loading}</p>;
+    if (error) return <p>{listProdTraductions.error}</p>;
 
     return (
         <div className="mx-[20px] lg:mx-[50px] flex flex-col lg:flex-row">
-            {/* Aside para los filtros */}
-            <aside className="w-full lg:w-1/4 mb-6 lg:mb-0 lg:mr-6 lg:sticky lg:top-10 self-start pt-4 lg:pt-[120px]">
-                <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
-                    <h2 className="text-xl font-bold text-gray-800 mb-4">{listProdTraductions.filter}</h2>
-                    <div className="mb-4">
-                        <label htmlFor="categoryFilter" className="block mb-2 text-md font-semibold text-gray-700">{listProdTraductions.category}</label>
-                        <select
-                            id="categoryFilter"
-                            value={selectedCategory}
-                            onChange={handleFilterChange}
-                            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-verbena transition-all"
-                        >
-                            <option value="">{listProdTraductions.all}</option>
-                            <option value="Limpiadores">{listProdTraductions.categorylimp}</option>
-                            <option value="Serum">{listProdTraductions.categoryserum}</option>
-                            <option value="Cremas">{listProdTraductions.categorycream}</option>
-                            <option value="Tónico">{listProdTraductions.categorytonic}</option>
-                            <option value="Protector solar">{listProdTraductions.categorysunscreen}</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="priceSort" className="block mb-2 text-md font-semibold text-gray-700">{listProdTraductions.orderbyprice}</label>
-                        <select
-                            id="priceSort"
-                            value={sortOrder}
-                            onChange={handleSortChange}
-                            className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-verbena transition-all"
-                        >
-                            <option value="">{listProdTraductions.noorder}</option>
-                            <option value="low-to-high">{listProdTraductions.lth}</option>
-                            <option value="high-to-low">{listProdTraductions.htl}</option>
-                        </select>
-                    </div>
+            <aside className="w-full lg:w-1/4 mb-6 lg:mr-6">
+                <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 className="text-xl font-bold mb-4">{listProdTraductions.filter}</h2>
+                    <select value={selectedCategory} onChange={handleFilterChange} className="w-full p-3 border rounded-md">
+                        <option value="">{listProdTraductions.all}</option>
+                        <option value="Limpiadores">{listProdTraductions.categorylimp}</option>
+                        <option value="Serum">{listProdTraductions.categoryserum}</option>
+                        <option value="Cremas">{listProdTraductions.categorycream}</option>
+                        <option value="Tónico">{listProdTraductions.categorytonic}</option>
+                        <option value="Protector solar">{listProdTraductions.categorysunscreen}</option>
+                    </select>
+                    <select value={sortOrder} onChange={handleSortChange} className="w-full p-3 border rounded-md mt-4">
+                        <option value="">{listProdTraductions.noorder}</option>
+                        <option value="low-to-high">{listProdTraductions.lth}</option>
+                        <option value="high-to-low">{listProdTraductions.htl}</option>
+                    </select>
                 </div>
             </aside>
 
-            {/* Grid de productos */}
-            <div className="w-full lg:w-3/4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 p-4">
+            <div className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                 {sortedProducts.length > 0 ? (
                     sortedProducts.map((product) => (
-                        <div key={product.id} className="group relative flex flex-col h-full shadow-md p-4 rounded-md hover:shadow-lg transition duration-300">
-                            <a href={`/${lang}/product-${product.id}`} className="block group flex-grow flex-col justify-between">
-                                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none lg:h-80">
-                                    <img
-                                        src={product.image}
-                                        alt={product.alt}
-                                        className="h-full w-full object-contain object-center lg:h-full lg:w-full max-h-[300px] rounded-md"
-                                    />
-                                </div>
-                                <div className="mt-4 flex-grow flex flex-col justify-between">
-                                    <div className="text-center">
-                                        <h3 className="text-sm text-gray-700 font-bold">
-                                            {currentLang == 'es' ? product.name_es : product.name_en}
-                                        </h3>
-                                        <p className="mt-1 text-sm text-gray-500">{currentLang == 'es' ? product.summary_es : product.summary_en}</p>
-                                    </div>
-                                </div>
-                            </a>
-                            <div className="text-center mt-2">
-                                {product.capacity && (
-                                    <p className="text-xs text-gray-500 mb-2">{product.capacity}</p>
-                                )}
-                                {/* QUITANDO PRECIOS POR EL MOMENTO */}
-                                {/* <p className="text-sm font-medium text-gray-900">US$ {product.price}</p> */}
-                            </div>
+                        <div key={product.id} className="group relative flex flex-col h-full shadow-md p-4 rounded-md hover:shadow-lg transition">
+                            <a href={`/${lang}/products/${product.documentId}`} className="block">
+                                <img
+                                    src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
+                                    alt={product.image?.[0]?.alternativeText || "Imagen del producto"}
+                                    className="w-full h-48 object-contain rounded-md"
+                                />
 
-                            <div className="mt-2">
-                                <button
-                                    onClick={() => handleAddToCart(product)}
-                                    className="w-full bg-green-verbena hover:bg-gray-400 text-white font-semibold py-3 px-5 rounded-lg shadow-lg transition-all"
-                                >
-                                    {listProdTraductions.add}
-                                </button>
-                                <ToastContainer />
-                            </div>
+                                <h3 className="text-sm font-bold mt-4">{lang === 'es' ? product.name_es : product.name_en}</h3>
+                                <p className="text-xs text-gray-500">{lang === 'es' ? product.summary_es : product.summary_en}</p>
+                            </a>
+                            <button onClick={() => handleAddToCart(product)} className="w-full bg-green-500 text-white py-2 rounded-lg mt-2">
+                                {listProdTraductions.add}
+                            </button>
                         </div>
                     ))
                 ) : (
                     <p>{listProdTraductions.noprod}</p>
                 )}
             </div>
+            <ToastContainer />
         </div>
     );
 }
