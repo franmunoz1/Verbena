@@ -97,7 +97,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
                 {sortedProducts.length > 0 ? (
                     sortedProducts.map((product) => (
                         <div key={product.id} className="group relative flex flex-col h-full shadow-md p-4 rounded-md hover:shadow-lg transition">
-                            <a href={`/${lang}/products/${product.documentId}`} className="block">
+                            <a href={`/${lang}/product-${product.documentId}`} className="block">
                                 <img
                                     src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
                                     alt={product.image?.[0]?.alternativeText || "Imagen del producto"}

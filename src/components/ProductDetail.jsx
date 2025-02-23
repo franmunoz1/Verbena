@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'; // Para obtener el documentId de la URL
+// import { useParams } from 'react-router-dom'; // Para obtener el documentId de la URL
 import { addToCart } from '../store/cart';
 import { ToastContainer, toast } from 'react-toastify';
 
-const ProductDetail = ({ siteUrl, lang, detailProductTranslation }) => {
-    const { documentId } = useParams(); // Obtiene el documentId de la URL
+const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) => {
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    console.log(documentId)
+    console.log(productId)
 
     useEffect(() => {
         const fetchProductDetail = async () => {
-            const url = `https://franmunoz.online/api/products/${documentId}?populate=*`;
+            const url = `https://franmunoz.online/api/products/${productId}?populate=*`;
             console.log("Fetching URL:", url); // 👀 Verifica la URL
 
             try {
@@ -32,10 +31,10 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation }) => {
             }
         };
 
-        if (documentId) {
+        if (productId) {
             fetchProductDetail();
         }
-    }, [documentId]);
+    }, [productId]);
 
 
     const handleAddToCart = () => {

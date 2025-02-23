@@ -1,15 +1,18 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ProductDetail from "../../components/ProductDetail.jsx";
-import { db, Product } from "astro:db";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
-  const products = await db.select().from(Product);
-  return products.map((product) => ({
-    params: { id: product.id },
+  const response = await fetch("https://franmunoz.online/api/products?populate=*")
+  const products = await response.json();
+
+  return products.data.map((product) => ({
+    params: { id: product.documentId },
   }));
 }
+
+const { id } = Astro.params;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,23 +23,14 @@ const detailProductTranslation = {
   addedToCart: t("detailprod.added"),
 };
 
-const products = await db.select().from(Product);
-
-const { id } = Astro.params;
-
-const product = products.find((s) => s.id === id);
-
-if (!product) {
-  throw new Error(`Product with id ${id} not found`);
-}
 ---
 
-<Layout title={`Product-${product.name_en}`}>
+<Layout title={`Producto - ${id}`}>
   <ProductDetail
-    product={product}
+    productId={id}
     siteUrl={Astro.url}
     lang={lang}
     detailProductTranslation={detailProductTranslation}
-    client:load
+    client:only
   />
 </Layout>
