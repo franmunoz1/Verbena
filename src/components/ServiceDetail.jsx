@@ -73,8 +73,14 @@ const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
         }
     };
 
-    if (loading) return <p>Cargando...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="w-12 h-12 border-4 border-gray-300 border-t-green-verbena rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
     if (!service) return <p>No se encontró el servicio.</p>;
 
     return (

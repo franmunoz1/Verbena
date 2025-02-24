@@ -17,19 +17,35 @@ export default function ProductCard({ lang, listProdTraductions }) {
                     throw new Error("Error al obtener los productos");
                 }
                 const result = await response.json();
-                console.log("Productos obtenidos:", result); // Verifica el formato
-                setProducts(result.data); // Accede a result.data para obtener los productos
+                console.log("Productos obtenidos:", result);
+                setProducts(result.data);
+
+                // Pre-cargar imágenes
+                const imagePromises = result.data.map((product) =>
+                    new Promise((resolve) => {
+                        if (product.image?.[0]?.url) {
+                            const img = new Image();
+                            img.src = `https://franmunoz.online${product.image[0].url}`;
+                            img.onload = resolve;
+                            img.onerror = resolve;
+                        } else {
+                            resolve();
+                        }
+                    })
+                );
+
+                await Promise.all(imagePromises); // Esperar que todas las imágenes se carguen
             } catch (error) {
                 console.error("Error al obtener productos:", error);
                 setError(error.message);
             } finally {
-                setLoading(false);
+                setTimeout(() => setLoading(false), 500); // Pequeño delay para mejor UX
             }
         };
 
-
         fetchProducts();
     }, []);
+
 
 
 
@@ -69,9 +85,13 @@ export default function ProductCard({ lang, listProdTraductions }) {
         return 0;
     });
 
-    if (loading) return <p>{listProdTraductions.loading}</p>;
-    if (error) return <p>{listProdTraductions.error}</p>;
-
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="w-12 h-12 border-4 border-gray-300 border-t-green-verbena rounded-full animate-spin"></div>
+            </div>
+        );
+    }
     return (
         <div className="mx-[20px] lg:mx-[50px] flex flex-col lg:flex-row">
             <aside className="w-full lg:w-1/4 mb-6 lg:mr-6">

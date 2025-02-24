@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import { addToCart } from '../store/cart';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -56,8 +57,13 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
         }
     };
 
-    if (loading) return <p>{detailProductTranslation.loading}</p>;
-    if (error) return <p>{detailProductTranslation.error}</p>;
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="w-12 h-12 border-4 border-gray-300 border-t-green-verbena rounded-full animate-spin"></div>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
