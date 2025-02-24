@@ -65,14 +65,14 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
     // Construcción del mensaje
     let mensaje = greeting;
     cart.forEach(item => {
-      mensaje += `${productLabel}: ${item.name}\n${quantityLabel}: ${item.quantity}\n`;
+      mensaje += `${productLabel}: ${item.name}\n${quantityLabel}: ${item.quantity}\n${priceLabel}: $${item.price * item.quantity}\n\n`;
       // QUITANDO PRECIOS
-      //  ${priceLabel}: $${item.price * item.quantity}\n\n
+
     });
 
     const total = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     // QUITANDO PRECIOS
-    // mensaje += `${totalLabel}: $${total}\n`;
+    mensaje += `${totalLabel}: $${total}\n`;
 
     // Codificar mensaje para URL de WhatsApp
     const mensajeCodificado = encodeURIComponent(mensaje);
@@ -97,7 +97,12 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
 
             return (
               <div key={index} className="flex flex-col md:flex-row items-center justify-between bg-[#f9f8f4] shadow-md rounded-lg p-4 space-y-4 md:space-y-0">
-                <img src={item.image} alt={item.name} className="w-24 h-24 md:w-16 md:h-16 object-cover rounded-md mr-4" />
+                {/* <img src={item.image} alt={item.name} className="w-24 h-24 md:w-16 md:h-16 object-cover rounded-md mr-4" /> */}
+                <img
+                  src={item.image?.[0]?.url ? `https://franmunoz.online${item.image[0].url}` : "/default-image.jpg"}
+                  alt={item.image?.[0]?.alternativeText || "Imagen del producto"}
+                  className="w-24 h-24 md:w-16 md:h-16 object-cover rounded-md mr-4"
+                />
 
                 <div className="flex-1 text-center md:text-left">
                   <p className="font-semibold text-lg text-[#2e3814]">{item.name}</p>
@@ -120,7 +125,7 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
                   </div>
 
                   {/* QUITANDO PRECIOS */}
-                  {/* <p className="text-[#2e3814]">${item.price.toFixed(2)}</p> */}
+                  <p className="text-[#2e3814]">${item.price.toFixed(2)}</p>
 
                   <button
                     onClick={() => removeItem(index)}
@@ -135,9 +140,9 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
           })}
 
           {/* QUITANDO PRECIOS */}
-          {/* <div className="text-right mt-4">
+          <div className="text-right mt-4">
             <p className="text-2xl font-bold">Total: ${cart.reduce((total, item) => total + item.price * item.quantity, 0)}</p>
-          </div> */}
+          </div>
 
           <div className="flex gap-4">
             <button

@@ -1,54 +1,57 @@
 import React, { useState, useEffect } from 'react';
 
-const ServiceDetail = ({ service, serviceTraductions, lang }) => {
+const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
+    const [service, setService] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [name, setName] = useState('');
     const [date, setDate] = useState('');
     const [error, setError] = useState('');
-    const [currentLang, setCurrentLang] = useState(lang);
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            setCurrentLang(window.location.pathname.split("/")[1]);
+        const fetchServiceDetail = async () => {
+            const url = `https://franmunoz.online/api/services/${serviceId}?populate=*`;
+            console.log("Fetching URL:", url);
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const result = await response.json();
+                setService(result.data);
+            } catch (error) {
+                console.error('Error:', error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (serviceId) {
+            fetchServiceDetail();
         }
-    }, []);
+    }, [serviceId]);
 
-    const handleWhatsApp = (name, date, treatment) => {
-        // Detectar idioma directamente de la URL actual
-        const currentLang = window.location.pathname.split("/")[1];
+    const handleWhatsApp = () => {
+        if (!service) return;
+        const greeting = lang === 'es' ? "Hola! Quiero reservar el tratamiento:" : "Hello! I want to book the treatment:";
+        const nameLabel = lang === 'es' ? "Nombre" : "Name";
+        const dateLabel = lang === 'es' ? "Fecha seleccionada" : "Selected date";
 
-        // Definir mensajes en función del idioma actual
-        let greeting, bookingText, nameLabel, dateLabel;
+        const message = `${greeting} ${lang === 'es' ? service.name_es : service.name_en}.
+        ${nameLabel}: ${name}
+        ${dateLabel}: ${date}`;
 
-        if (currentLang === "es") {
-            greeting = "Hola! Quiero reservar el tratamiento:";
-            nameLabel = "Nombre";
-            dateLabel = "Fecha seleccionada";
-        } else {
-            greeting = "Hello! I want to book the treatment:";
-            nameLabel = "Name";
-            dateLabel = "Selected date";
-        }
-
-        // Construcción del mensaje
-        const message = `${greeting} ${treatment}.
-                ${nameLabel}: ${name}
-                ${dateLabel}: ${date}`;
-
-        // Codificar mensaje para URL de WhatsApp
         const url = `https://wa.me/17869256878?text=${encodeURIComponent(message)}`;
-
-        // Abrir enlace de WhatsApp
         window.open(url, '_blank');
     };
-
 
     const validateForm = () => {
         if (!name) {
             setError('El nombre no puede estar vacío.');
             return false;
         }
-        const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/;
-        if (!nameRegex.test(name)) {
+        if (!/^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/.test(name)) {
             setError('El nombre solo debe contener letras.');
             return false;
         }
@@ -56,8 +59,7 @@ const ServiceDetail = ({ service, serviceTraductions, lang }) => {
             setError('Se debe seleccionar una fecha.');
             return false;
         }
-        const today = new Date().toISOString().split('T')[0];
-        if (date < today) {
+        if (date < new Date().toISOString().split('T')[0]) {
             setError('La fecha no puede ser anterior a hoy.');
             return false;
         }
@@ -67,54 +69,32 @@ const ServiceDetail = ({ service, serviceTraductions, lang }) => {
 
     const handleSubmit = () => {
         if (validateForm()) {
-            handleWhatsApp(name, date, currentLang === 'es' ? service.name_es : service.name_en);
+            handleWhatsApp();
         }
     };
+
+    if (loading) return <p>Cargando...</p>;
+    if (error) return <p>Error: {error}</p>;
+    if (!service) return <p>No se encontró el servicio.</p>;
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
             <div className="max-w-4xl mx-auto p-6">
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                     <div className="relative h-64 sm:h-80 md:h-96">
-                        <img src={service.image} alt={service.alt} className="w-full h-full object-cover" />
+                        <img className="w-full h-full object-cover"
+                            src={service.image?.url ? `https://franmunoz.online${service.image.url}` : "/default-image.jpg"}
+                            alt={service.image?.alternativeText || "Imagen del servicio"} />
                         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center px-4">
-                                {currentLang === 'es' ? service.name_es : service.name_en}
+                                {lang === 'es' ? service.name_es : service.name_en}
                             </h1>
                         </div>
                     </div>
                     <div className="p-6 sm:p-8">
                         <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                            {currentLang === 'es' ? service.description_es : service.description_en}
+                            {lang === 'es' ? service.description_es : service.description_en}
                         </p>
-
-                        {service.care_es && service.care_es !== '' && (
-                            <div className="bg-green-50 border-l-4 border-red-500 p-4 mb-6">
-                                <p className="text-sm text-red-700 font-medium">
-                                    {serviceTraductions.cares}:
-                                </p>
-                                <p className="text-sm text-red-700 ml-4">
-                                    {currentLang === 'es' ? service.care_es : service.care_en}
-                                </p>
-                            </div>
-                        )}
-
-                        {service.benefits_es && service.benefits_es !== '' && (
-                            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
-                                <p className="text-sm text-green-700 font-medium">
-                                    {serviceTraductions.benefits}:
-                                </p>
-                                <p className="text-sm text-green-700 ml-4">
-                                    {currentLang === 'es' ? service.benefits_es : service.benefits_en}
-                                </p>
-                            </div>
-                        )}
-
-                        <div className="flex items-center justify-between mb-8">
-                            <span className="text-2xl font-semibold text-gray-800">${service.price}</span>
-                            <div className="text-sm text-gray-500">{serviceTraductions.per}</div>
-                        </div>
-
                         <form className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -147,7 +127,7 @@ const ServiceDetail = ({ service, serviceTraductions, lang }) => {
                                 <button
                                     type="button"
                                     onClick={handleSubmit}
-                                    className="bg-green-600 text-white p-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors flex items-center gap-2"
+                                    className="bg-green-verbena text-white p-3 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors flex items-center gap-2"
                                 >
                                     {serviceTraductions.send}
                                     <svg
@@ -163,7 +143,6 @@ const ServiceDetail = ({ service, serviceTraductions, lang }) => {
                                     </svg>
                                 </button>
                             </div>
-
                         </form>
                     </div>
                 </div>

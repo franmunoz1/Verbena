@@ -5,11 +5,33 @@ import { addToCart } from '../store/cart';
 import '@fontsource/tenor-sans';
 import '@fontsource-variable/raleway';
 
-export default function CarouselCards({ products, currentLanguage, carouselTraductions, lang }) {
+export default function CarouselCards({ currentLanguage, carouselTraductions, lang }) {
 
     const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-
+    const [products, setProducts] = useState([]);
     const [currentLang, setCurrentLang] = useState(lang);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch("https://franmunoz.online/api/products?populate=*");
+                if (!response.ok) {
+                    throw new Error("Error al obtener los productos");
+                }
+                const result = await response.json();
+                console.log("Productos obtenidos:", result); // Verifica el formato
+                setProducts(result.data); // Accede a result.data para obtener los productos
+            } catch (error) {
+                console.error("Error al obtener productos:", error);
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+
+        fetchProducts();
+    }, []);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -38,15 +60,15 @@ export default function CarouselCards({ products, currentLanguage, carouselTradu
                             <div className="group relative flex flex-col h-full "> {/* Agregado rounded-lg y shadow-lg */}
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none lg:h-80">
                                     <img
-                                        src={product.image}
-                                        alt={product.alt}
-                                        className="h-full w-full object-contain object-center lg:h-full lg:w-full max-h-[300px]"
+                                        src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
+                                        alt={product.image?.[0]?.alternativeText || "Imagen del producto"}
+                                        className="w-full h-48 object-contain rounded-md"
                                     />
                                 </div>
                                 <div className="mt-4 flex-grow flex flex-col justify-between items-center">
                                     <div className="text-center">
                                         <h3 className="text-sm text-gray-700 font-bold">
-                                            <a href={`/${currentLanguage}/product-${product.id}`}>
+                                            <a href={`/${currentLanguage}/product-${product.documentId}`}>
                                                 {currentLang == 'es' ? product.name_es : product.name_en}
                                             </a>
                                         </h3>

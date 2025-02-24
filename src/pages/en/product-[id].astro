@@ -4,7 +4,9 @@ import ProductDetail from "../../components/ProductDetail.jsx";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
-  const response = await fetch("https://franmunoz.online/api/products?populate=*")
+  const response = await fetch(
+    "https://franmunoz.online/api/products?populate=*",
+  );
   const products = await response.json();
 
   return products.data.map((product) => ({
@@ -22,10 +24,9 @@ const detailProductTranslation = {
   addCart: t("detailprod.add"),
   addedToCart: t("detailprod.added"),
 };
-
 ---
 
-<Layout title={`Producto - ${id}`}>
+<Layout title={`Product - ${id}`}>
   <ProductDetail
     productId={id}
     siteUrl={Astro.url}

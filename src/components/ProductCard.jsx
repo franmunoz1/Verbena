@@ -107,7 +107,13 @@ export default function ProductCard({ lang, listProdTraductions }) {
                                 <h3 className="text-sm font-bold mt-4">{lang === 'es' ? product.name_es : product.name_en}</h3>
                                 <p className="text-xs text-gray-500">{lang === 'es' ? product.summary_es : product.summary_en}</p>
                             </a>
-                            <button onClick={() => handleAddToCart(product)} className="w-full bg-green-500 text-white py-2 rounded-lg mt-2">
+                            <div className="text-center mt-2">
+                                {product.capacity && (
+                                    <p className="text-xs text-gray-500 mb-2">{product.capacity}</p>
+                                )}
+                                <p className="text-sm font-medium text-gray-900">US$ {product.price}</p>
+                            </div>
+                            <button onClick={() => handleAddToCart(product)} className="w-full bg-green-verbena text-white py-2 rounded-lg mt-2">
                                 {listProdTraductions.add}
                             </button>
                         </div>

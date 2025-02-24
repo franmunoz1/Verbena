@@ -1,29 +1,23 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ServiceDetail from "../../components/ServiceDetail.jsx";
-import { db, Service } from "astro:db";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
-    const services = await db.select().from(Service);
-    return services.map((service) => ({
-        params: { id: service.id },
+    const response = await fetch(
+        "https://franmunoz.online/api/services?populate=*",
+    );
+    const services = await response.json();
+
+    return services.data.map((service) => ({
+        params: { id: service.documentId },
     }));
 }
 
-const lang = getLangFromUrl(Astro.url);
-
-const t = useTranslations(lang);
-
-const services = await db.select().from(Service);
-
 const { id } = Astro.params;
 
-const service = services.find((s) => s.id === id);
-
-if (!service) {
-    throw new Error(`Service with id ${id} not found`);
-}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const serviceTraductions = {
     per: t("detailserv.per"),
@@ -35,9 +29,9 @@ const serviceTraductions = {
 };
 ---
 
-<Layout title={`Service-${service.name_es}`}>
+<Layout title={`Service - ${id}`}>
     <ServiceDetail
-        service={service}
+        serviceId={id}
         siteUrl={Astro.url}
         serviceTraductions={serviceTraductions}
         lang={lang}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom'; // Para obtener el documentId de la URL
 import { addToCart } from '../store/cart';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -65,9 +64,15 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
             <div className="flex flex-col md:flex-row gap-8">
                 <div className="md:w-1/2">
                     <div className="relative aspect-square">
-                        <img
+                        {/* <img
                             src={product.image}
                             alt={product.alt || 'Product Image'}
+                            className="rounded-lg object-contain w-full h-full"
+                            style={{ maxHeight: '500px' }}
+                        /> */}
+                        <img
+                            src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
+                            alt={product.image?.[0]?.alternativeText || "Imagen del producto"}
                             className="rounded-lg object-contain w-full h-full"
                             style={{ maxHeight: '500px' }}
                         />
@@ -77,6 +82,8 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
                     <h2 className="text-4xl font-light text-primary mb-4">
                         {lang === 'es' ? product.name_es : product.name_en}
                     </h2>
+                    <p className="text-md text-gray-500 mb-6">{product.capacity}</p>
+                    <p className="text-2xl mb-4">US${product.price}</p>
                     <p className="text-sm text-gray-500 mb-6">
                         {lang === 'es' ? product.description_es : product.description_en}
                     </p>
