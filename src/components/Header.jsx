@@ -7,9 +7,23 @@ import '@fontsource/cormorant-garamond';
 
 export default function Header({ siteUrl, lang, navbarTraductions }) {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [hideLogo, setHideLogo] = useState(false);
 
     useEffect(() => {
         AOS.init({ duration: 600 });
+        let lastScrollY = window.scrollY;
+        const handleScroll = () => {
+            if (window.innerWidth < 768) { // Solo afecta a pantallas pequeñas
+                if (window.scrollY > lastScrollY) {
+                    setHideLogo(true);
+                } else {
+                    setHideLogo(false);
+                }
+            }
+            lastScrollY = window.scrollY;
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     const toggleMenu = () => {
@@ -17,14 +31,15 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
     };
 
     return (
-        <nav className="fixed top-0 z-40 w-full bg-white shadow-md bg-opacity-30 backdrop-blur-sm">
+        <nav className="fixed top-0 z-40 w-full bg-white shadow-md bg-opacity-30 backdrop-blur-sm transition-all duration-300">
             <div className="container mx-auto p-4 pt-0">
                 {/* Contenedor principal */}
-                <div className="flex justify-between items-center">
-                    {/* Logo */}
-                    <a href={`/${lang}`} className="flex-1 md:flex-none flex flex-col justify-center md:justify-start items-center gap-x-2">
-                        <img src="/img/testIcon.png" alt="Verbena Logo" className="h-[120px] w-auto" />
+                <div className={`flex justify-between items-center transition-all duration-500 ease-in-out ${hideLogo ? 'pt-4' : ''}`}>
+                    {/* Logo (se oculta solo en pantallas pequeñas) */}
+                    <a href={`/${lang}`} className={`flex-1 md:flex-none flex flex-col justify-center md:justify-start items-center gap-x-2 transition-all duration-1000 ${hideLogo ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
+                        <img src="/img/testIcon.png" alt="Verbena Logo" className="h-[120px] w-auto transition-all duration-1000" />
                     </a>
+
 
                     {/* Anchors de navegación y selector de idioma */}
                     <div className="hidden md:flex md:items-center md:space-x-6">
@@ -42,14 +57,13 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                         </a>
                         <LanguagePicker siteUrl={siteUrl} />
                     </div>
-
                     <div className="hidden md:block">
                         <CartButton lang={lang} className="h-5 w-5" />
                     </div>
                 </div>
 
                 {/* Menú para pantallas pequeñas */}
-                <div className="flex justify-between items-center md:hidden">
+                <div className={`flex justify-between items-center md:hidden transition-all duration-500 ease-in-out ${hideLogo ? 'pt-2' : ''}`}>
                     <button className="rounded-full p-2 border" onClick={toggleMenu}>
                         <MenuIcon className="h-5 w-5" />
                         <span className="sr-only">Toggle menu</span>
@@ -85,9 +99,6 @@ export default function Header({ siteUrl, lang, navbarTraductions }) {
                 )}
             </div>
         </nav>
-
-
-
     );
 }
 
@@ -111,6 +122,8 @@ function MenuIcon(props) {
         </svg>
     );
 }
+
+
 
 
 
