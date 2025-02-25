@@ -110,6 +110,43 @@ const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
                         <p className="text-gray-600 text-lg leading-relaxed mb-6">
                             {lang === 'es' ? service.description_es : service.description_en}
                         </p>
+
+                        {/* {service.benefit && Array.isArray(service.benefit) && service.benefit.length > 0 && (
+                            <div className="my-6">
+                                <h2 className="text-2xl font-semibold mb-4">
+                                    {lang === "es" ? "Beneficios" : "Benefits"}
+                                </h2>
+                                <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                                    {service.benefit.map((benefit, index) => (
+                                        <li key={index} className="text-gray-600">{benefit}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )} */}
+
+                        {/* {service.care_es && service.care_es !== '' && (
+                            <div className="bg-green-50 border-l-4 border-red-500 p-4 mb-6">
+                                <p className="text-sm text-red-700 font-medium">
+                                    {serviceTraductions.cares}:
+                                </p>
+                                <p className="text-sm text-red-700 ml-4">
+                                    {currentLang === 'es' ? service.care_es : service.care_en}
+                                </p>
+                            </div>
+                        )}
+
+                        {service.benefits_es && service.benefits_es !== '' && (
+                            <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                                <p className="text-sm text-green-700 font-medium">
+                                    {serviceTraductions.benefits}:
+                                </p>
+                                <p className="text-sm text-green-700 ml-4">
+                                    {currentLang === 'es' ? service.benefits_es : service.benefits_en}
+                                </p>
+                            </div>
+                        )} */}
+
+
                         <form className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
