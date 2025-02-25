@@ -101,7 +101,7 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
                 <img
                   src={item.image?.[0]?.url ? `https://franmunoz.online${item.image[0].url}` : "/default-image.jpg"}
                   alt={item.image?.[0]?.alternativeText || "Imagen del producto"}
-                  className="w-24 h-24 md:w-16 md:h-16 object-cover rounded-md mr-4"
+                  className="w-16 h-16 md:w-16 md:h-16 object-contain rounded-md mr-4"
                 />
 
                 <div className="flex-1 text-center md:text-left">

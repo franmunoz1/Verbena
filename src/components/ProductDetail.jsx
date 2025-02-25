@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { addToCart } from '../store/cart';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -9,12 +8,9 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    console.log(productId)
-
     useEffect(() => {
         const fetchProductDetail = async () => {
             const url = `https://franmunoz.online/api/products/${productId}?populate=*`;
-            console.log("Fetching URL:", url); // 👀 Verifica la URL
 
             try {
                 const response = await fetch(url);
@@ -23,10 +19,19 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
                 }
                 const result = await response.json();
                 setProduct(result.data);
+
+                // Precargar imagen antes de mostrar el contenido
+                if (result.data.image?.[0]?.url) {
+                    const img = new Image();
+                    img.src = `https://franmunoz.online${result.data.image[0].url}`;
+                    img.onload = () => setLoading(false);
+                    img.onerror = () => setLoading(false);
+                } else {
+                    setLoading(false);
+                }
             } catch (error) {
                 console.error('Error:', error);
                 setError(error.message);
-            } finally {
                 setLoading(false);
             }
         };
@@ -35,7 +40,6 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
             fetchProductDetail();
         }
     }, [productId]);
-
 
     const handleAddToCart = () => {
         if (quantity > 0 && product) {
@@ -70,12 +74,6 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
             <div className="flex flex-col md:flex-row gap-8">
                 <div className="md:w-1/2">
                     <div className="relative aspect-square">
-                        {/* <img
-                            src={product.image}
-                            alt={product.alt || 'Product Image'}
-                            className="rounded-lg object-contain w-full h-full"
-                            style={{ maxHeight: '500px' }}
-                        /> */}
                         <img
                             src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
                             alt={product.image?.[0]?.alternativeText || "Imagen del producto"}

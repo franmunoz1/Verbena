@@ -135,7 +135,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
                                 <p className="text-sm font-medium text-gray-900 text-center">US$ {product.price}</p>
                             </div>
 
-                            <button onClick={() => handleAddToCart(product)} className="w-full bg-green-verbena text-white py-2 rounded-lg mt-2">
+                            <button onClick={() => handleAddToCart(product)} className="w-full bg-green-verbena hover:bg-gray-400 transition-all text-white py-2 rounded-lg mt-2">
                                 {listProdTraductions.add}
                             </button>
                         </div>
