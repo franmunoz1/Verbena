@@ -20,31 +20,32 @@ export default function ProductCard({ lang, listProdTraductions }) {
                 console.log("Productos obtenidos:", result);
                 setProducts(result.data);
 
-                // Pre-cargar imágenes
-                const imagePromises = result.data.map((product) =>
-                    new Promise((resolve) => {
-                        if (product.image?.[0]?.url) {
+                // Pre-cargar imágenes antes de quitar el loader
+                const imagePromises = result.data.map((product) => {
+                    return new Promise((resolve, reject) => {
+                        const imageUrl = product.image?.[0]?.url ? `https://api.verbena-ec.com${product.image[0].url}` : null;
+                        if (imageUrl) {
                             const img = new Image();
-                            img.src = `https://api.verbena-ec.com${product.image[0].url}`;
+                            img.src = imageUrl;
                             img.onload = resolve;
-                            img.onerror = resolve;
+                            img.onerror = reject; // Si falla, podemos manejarlo en el catch
                         } else {
-                            resolve(); // Si no hay imagen, continuar
+                            resolve(); // Si no hay imagen, no retrasamos el proceso
                         }
-                    })
-                );
+                    });
+                });
 
-                await Promise.allSettled(imagePromises); // Esperar que todas las imágenes se carguen, sin fallar en caso de error
+                await Promise.all(imagePromises); // Esperar que todas las imágenes se carguen correctamente
+                setLoading(false); // Ocultar el loader solo después de cargar todas las imágenes
             } catch (error) {
                 console.error("Error al obtener productos:", error);
                 setError(error.message);
-            } finally {
-                setTimeout(() => setLoading(false), 500); // Pequeño delay para mejor UX
             }
         };
 
         fetchProducts();
     }, []);
+
 
     const handleAddToCart = (product) => {
         addToCart(product);

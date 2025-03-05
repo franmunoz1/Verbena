@@ -47,6 +47,7 @@ export const ui = {
     'detailprod.quantity': 'Quantity',
     'detailprod.add': 'Add to cart',
     'detailprod.added': 'Product added to cart',
+    'detailprod.recomendations': 'Recommendations',
 
     // Carousel
     'carouselprod.title': 'Our products',
@@ -145,6 +146,7 @@ export const ui = {
     'detailprod.quantity': 'Cantidad',
     'detailprod.add': 'Agregar al carrito',
     'detailprod.added': 'Producto agregado al carrito',
+    'detailprod.recomendations': 'Recomendaciones',
 
     // Carousel
     'carouselprod.title': 'Nuestros productos',

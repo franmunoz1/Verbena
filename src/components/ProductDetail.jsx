@@ -20,10 +20,9 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
                 const result = await response.json();
                 setProduct(result.data);
 
-                // Precargar imagen antes de mostrar el contenido
-                if (result.data.image?.[0]?.url) {
+                if (result.data.image?.url) {
                     const img = new Image();
-                    img.src = `https://api.verbena-ec.com${result.data.image[0].url}`;
+                    img.src = `https://api.verbena-ec.com${result.data.image.url}`;
                     img.onload = () => setLoading(false);
                     img.onerror = () => setLoading(false);
                 } else {
@@ -91,6 +90,18 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
                     <p className="text-sm text-gray-500 mb-6">
                         {lang === 'es' ? product.description_es : product.description_en}
                     </p>
+                    {product.recomendation_es?.length > 0 && (
+                        <div className="mb-6 p-4 rounded-lg shadow-md">
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 border-b pb-2">
+                                {detailProductTranslation.recomendations}
+                            </h3>
+                            <ul className="list-disc pl-5 text-gray-700">
+                                {(lang === 'es' ? product.recomendation_es : product.recomendation_en).map((rec, index) => (
+                                    <li key={index}>{rec}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                     <div className="mb-6">
                         <h3 className="text-sm font-medium mb-2">{detailProductTranslation.quantity}</h3>
                         <div className="flex items-center">

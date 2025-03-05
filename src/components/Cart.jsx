@@ -173,7 +173,21 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
           </div>
         </div>
       ) : (
-        <p className="text-gray-500">{cartTraductions.emptyCart}</p>
+        <div className="flex flex-col items-center text-center mt-12">
+          <h3 className="text-2xl font-semibold text-gray-700 mb-2">
+            {cartTraductions.emptyCartTitle || "Tu carrito está vacío"}
+          </h3>
+          <p className="text-gray-500 mb-6">
+            {cartTraductions.emptyCartMessage || "Parece que aún no has añadido productos a tu carrito."}
+          </p>
+          <a
+            href="/"
+            className="bg-green-verbena hover:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+          >
+            {cartTraductions.goToShop || "Ir a la tienda"}
+          </a>
+        </div>
+
       )}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
