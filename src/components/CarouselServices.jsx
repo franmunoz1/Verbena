@@ -16,7 +16,7 @@ export default function CarouselCards({ currentLanguage, carouselTraductions, la
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await fetch("https://franmunoz.online/api/services?populate=*");
+                const response = await fetch("https://api.verbena-ec.com/api/services?populate=*");
                 if (!response.ok) {
                     throw new Error("Error al obtener los servicios");
                 }
@@ -57,7 +57,7 @@ export default function CarouselCards({ currentLanguage, carouselTraductions, la
                     >
 
                         <img className="w-full h-[300px] object-cover"
-                            src={service.image?.url ? `https://franmunoz.online${service.image.url}` : "/default-image.jpg"}
+                            src={service.image?.url ? `https://api.verbena-ec.com${service.image.url}` : "/default-image.jpg"}
                             alt={service.image?.alternativeText || "Imagen del servicio"} />
                         <div className="text-center px-2 p-2 flex-grow flex items-center justify-center">
                             <div className="font-bold text-sm sm:text-base md:text-lg lg:text-2xl xl:text-3xl">

@@ -14,7 +14,7 @@ export default function CarouselCards({ currentLanguage, carouselTraductions, la
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("https://franmunoz.online/api/products?populate=*");
+                const response = await fetch("https://api.verbena-ec.com/api/products?populate=*");
                 if (!response.ok) {
                     throw new Error("Error al obtener los productos");
                 }
@@ -60,8 +60,8 @@ export default function CarouselCards({ currentLanguage, carouselTraductions, la
                             <div className="group relative flex flex-col h-full "> {/* Agregado rounded-lg y shadow-lg */}
                                 <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md  lg:aspect-none lg:h-80">
                                     <img
-                                        src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
-                                        alt={product.image?.[0]?.alternativeText || "Imagen del producto"}
+                                        src={product.image?.url ? `https://api.verbena-ec.com${product.image.url}` : "/default-image.jpg"}
+                                        alt={product.image?.alternativeText || "Imagen del producto"}
                                         className="w-full h-48 object-contain rounded-md"
                                     />
                                 </div>

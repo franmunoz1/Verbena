@@ -9,7 +9,7 @@ const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
 
     useEffect(() => {
         const fetchServiceDetail = async () => {
-            const url = `https://franmunoz.online/api/services/${serviceId}?populate=*`;
+            const url = `https://api.verbena-ec.com/api/services/${serviceId}?populate=*`;
             console.log("Fetching URL:", url);
 
             try {
@@ -23,7 +23,7 @@ const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
                 // Precargar la imagen
                 if (result.data?.image?.url) {
                     const img = new Image();
-                    img.src = `https://franmunoz.online${result.data.image.url}`;
+                    img.src = `https://api.verbena-ec.com${result.data.image.url}`;
                     img.onload = () => setLoading(false);
                 } else {
                     setLoading(false);
@@ -98,7 +98,7 @@ const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
                 <div className="bg-white shadow-xl rounded-lg overflow-hidden">
                     <div className="relative h-64 sm:h-80 md:h-96">
                         <img className="w-full h-full object-cover"
-                            src={service.image?.url ? `https://franmunoz.online${service.image.url}` : "/default-image.jpg"}
+                            src={service.image?.url ? `https://api.verbena-ec.com${service.image.url}` : "/default-image.jpg"}
                             alt={service.image?.alternativeText || "Imagen del servicio"} />
                         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center px-4">

@@ -21,7 +21,7 @@ export default function ServiceCard({ lang, siteUrl, servicesTraductions }) {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await fetch("https://franmunoz.online/api/services?populate=*");
+                const response = await fetch("https://api.verbena-ec.com/api/services?populate=*");
                 if (!response.ok) throw new Error("Error al obtener los servicios");
 
                 const result = await response.json();
@@ -32,7 +32,7 @@ export default function ServiceCard({ lang, siteUrl, servicesTraductions }) {
                     new Promise((resolve) => {
                         if (service.image?.url) {
                             const img = new Image();
-                            img.src = `https://franmunoz.online${service.image.url}`;
+                            img.src = `https://api.verbena-ec.com${service.image.url}`;
                             img.onload = resolve; // Resolver promesa cuando la imagen carga
                             img.onerror = resolve; // Evitar bloqueos si falla la carga
                         } else {
@@ -114,7 +114,7 @@ export default function ServiceCard({ lang, siteUrl, servicesTraductions }) {
                             className="max-w-lg rounded overflow-hidden shadow-lg p-6 bg-white flex flex-col"
                         >
                             <img className="w-full h-[300px] object-cover"
-                                src={service.image?.url ? `https://franmunoz.online${service.image.url}` : "/default-image.jpg"}
+                                src={service.image?.url ? `https://api.verbena-ec.com${service.image.url}` : "/default-image.jpg"}
                                 alt={service.image?.alternativeText || "Imagen del servicio"} />
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{currentLang == 'es' ? service.name_es : service.name_en}</div>

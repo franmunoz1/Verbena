@@ -10,7 +10,7 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
 
     useEffect(() => {
         const fetchProductDetail = async () => {
-            const url = `https://franmunoz.online/api/products/${productId}?populate=*`;
+            const url = `https://api.verbena-ec.com/api/products/${productId}?populate=*`;
 
             try {
                 const response = await fetch(url);
@@ -23,7 +23,7 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
                 // Precargar imagen antes de mostrar el contenido
                 if (result.data.image?.[0]?.url) {
                     const img = new Image();
-                    img.src = `https://franmunoz.online${result.data.image[0].url}`;
+                    img.src = `https://api.verbena-ec.com${result.data.image[0].url}`;
                     img.onload = () => setLoading(false);
                     img.onerror = () => setLoading(false);
                 } else {
@@ -75,8 +75,8 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
                 <div className="md:w-1/2">
                     <div className="relative aspect-square">
                         <img
-                            src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
-                            alt={product.image?.[0]?.alternativeText || "Imagen del producto"}
+                            src={product.image?.url ? `https://api.verbena-ec.com${product.image.url}` : "/default-image.jpg"}
+                            alt={product.image?.alternativeText || "Imagen del producto"}
                             className="rounded-lg object-contain w-full h-full"
                             style={{ maxHeight: '500px' }}
                         />

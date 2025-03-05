@@ -99,8 +99,8 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
               <div key={index} className="flex flex-col md:flex-row items-center justify-between bg-[#f9f8f4] shadow-md rounded-lg p-4 space-y-4 md:space-y-0">
                 {/* <img src={item.image} alt={item.name} className="w-24 h-24 md:w-16 md:h-16 object-cover rounded-md mr-4" /> */}
                 <img
-                  src={item.image?.[0]?.url ? `https://franmunoz.online${item.image[0].url}` : "/default-image.jpg"}
-                  alt={item.image?.[0]?.alternativeText || "Imagen del producto"}
+                  src={item.image?.url ? `https://api.verbena-ec.com${item.image.url}` : "/default-image.jpg"}
+                  alt={item.image?.alternativeText || "Imagen del producto"}
                   className="w-16 h-16 md:w-16 md:h-16 object-contain rounded-md mr-4"
                 />
 

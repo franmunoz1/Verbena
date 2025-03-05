@@ -5,7 +5,7 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
     const response = await fetch(
-        "https://franmunoz.online/api/services?populate=*",
+        "https://api.verbena-ec.com/api/services?populate=*",
     );
     const services = await response.json();
 

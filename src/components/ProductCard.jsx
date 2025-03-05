@@ -12,7 +12,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch("https://franmunoz.online/api/products?populate=*");
+                const response = await fetch("https://api.verbena-ec.com/api/products?populate=*");
                 if (!response.ok) {
                     throw new Error("Error al obtener los productos");
                 }
@@ -25,16 +25,16 @@ export default function ProductCard({ lang, listProdTraductions }) {
                     new Promise((resolve) => {
                         if (product.image?.[0]?.url) {
                             const img = new Image();
-                            img.src = `https://franmunoz.online${product.image[0].url}`;
+                            img.src = `https://api.verbena-ec.com${product.image[0].url}`;
                             img.onload = resolve;
                             img.onerror = resolve;
                         } else {
-                            resolve();
+                            resolve(); // Si no hay imagen, continuar
                         }
                     })
                 );
 
-                await Promise.all(imagePromises); // Esperar que todas las imágenes se carguen
+                await Promise.allSettled(imagePromises); // Esperar que todas las imágenes se carguen, sin fallar en caso de error
             } catch (error) {
                 console.error("Error al obtener productos:", error);
                 setError(error.message);
@@ -45,9 +45,6 @@ export default function ProductCard({ lang, listProdTraductions }) {
 
         fetchProducts();
     }, []);
-
-
-
 
     const handleAddToCart = (product) => {
         addToCart(product);
@@ -92,6 +89,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
             </div>
         );
     }
+
     return (
         <div className="mx-[20px] lg:mx-[50px] flex flex-col lg:flex-row">
             <aside className="w-full lg:w-1/4 mb-6 lg:mr-6">
@@ -119,15 +117,15 @@ export default function ProductCard({ lang, listProdTraductions }) {
                         <div key={product.id} className="group relative flex flex-col h-full shadow-md p-4 rounded-md hover:shadow-lg transition">
                             <a href={`/${lang}/product-${product.documentId}`} className="block">
                                 <img
-                                    src={product.image?.[0]?.url ? `https://franmunoz.online${product.image[0].url}` : "/default-image.jpg"}
-                                    alt={product.image?.[0]?.alternativeText || "Imagen del producto"}
+                                    src={product.image?.url ? `https://api.verbena-ec.com${product.image.url}` : "/default-image.jpg"}
+                                    alt={product.image?.alternativeText || "Imagen del producto"}
                                     className="w-full h-48 object-contain rounded-md"
                                 />
+
                                 <h3 className="text-sm font-bold mt-4">{lang === 'es' ? product.name_es : product.name_en}</h3>
                                 <p className="text-xs text-gray-500">{lang === 'es' ? product.summary_es : product.summary_en}</p>
                             </a>
 
-                            {/* Contenedor flexible para que el precio y capacidad queden siempre en la misma posición */}
                             <div className="flex flex-col mt-auto">
                                 {product.capacity && (
                                     <p className="text-xs text-gray-500 text-center">{product.capacity}</p>
