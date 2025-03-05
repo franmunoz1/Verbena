@@ -414,7 +414,7 @@ export default async function seed() {
 			summary_es: 'El PRP (Plasma Rico en Plaquetas) con Microneedling es un tratamiento avanzado que estimula la regeneración celular, mejorando la textura, firmeza y luminosidad de la piel.',
 			summary_en: 'PRP (Platelet-Rich Plasma) with Microneedling is an advanced treatment that stimulates cell regeneration, improving skin texture, firmness, and radiance.',
 			description_es: 'El PRP (Plasma Rico en Plaquetas) con Microneedling es un tratamiento avanzado que estimula la regeneración celular, mejorando la textura, firmeza y luminosidad de la piel. ¿Cómo funciona? Este procedimiento combina dos técnicas altamente efectivas: ✔ Microneedling: Se utilizan microagujas para crear microcanales en la piel, promoviendo la producción natural de colágeno y elastina. ✔ PRP: Se extrae una pequeña cantidad de sangre del paciente, se procesa para obtener el plasma rico en plaquetas y se aplica sobre la piel para potenciar la reparación celular y la regeneración de los tejidos.',
-			description_en: 'PRP (Platelet-Rich Plasma) with Microneedling is an advanced treatment that stimulates cell regeneration, improving skin texture, firmness, and radiance. How does it work? This procedure combines two highly effective techniques: ✔ Microneedling: Micro-needles are used to create micro-channels in the skin, promoting the natural production of collagen and elastin. ✔ PRP: A small amount of the patient\'s blood is extracted, processed to obtain platelet-rich plasma, and applied to the skin to enhance cell repair and tissue regeneration.',
+			description_en: 'PRP (Platelet-Rich Plasma) with Microneedling is an advanced treatment that stimulates cell regeneration, improving skin texture, firmness, and radiance. How does it work? This procedure combines two highly effective techniques: ✔ Microneedling: Micro-needles are used to create micro-channels in the skin, promoting the natural production of collagen and elastin. ✔ PRP: A small amount of the patient blood is extracted, processed to obtain platelet-rich plasma, and applied to the skin to enhance cell repair and tissue regeneration.',
 			recomendation_es: '',
 			recomendation_en: '',
 			image: '/img/prp.jpeg',
@@ -450,34 +450,34 @@ export default async function seed() {
 			image: '/img/biorepeel.jpeg',
 			alt: 'Limpieza facial',
 			benefits_es: [
-				'Sin inyecciones',
-				'No requiere anestesia',
-				'Rápido',
-				'Resultado instantáneo',
-				'Multifuncional',
-				'Libre de amoniaco',
-				'Aplicable para todas las edades',
-				'Apto para todo el cuerpo',
-				'Puede usarse todo el año',
-				'No aumenta la fotosensibilidad'
+				"Sin inyecciones",
+				"No requiere anestesia",
+				"Rápido",
+				"Resultado instantáneo",
+				"Multifuncional",
+				"Libre de amoniaco",
+				"Aplicable para todas las edades",
+				"Apto para todo el cuerpo",
+				"Puede usarse todo el año",
+				"No aumenta la fotosensibilidad"
 			],
 			benefits_en: [
-				'No injections',
-				'No anesthesia required',
-				'Fast',
-				'Instant results',
-				'Multifunctional',
-				'Ammonia-free',
-				'Applicable for all ages',
-				'Suitable for the entire body',
-				'Can be used year-round',
-				'Does not increase photosensitivity'
+				"No injections",
+				"No anesthesia required",
+				"Fast",
+				"Instant results",
+				"Multifunctional",
+				"Ammonia-free",
+				"Applicable for all ages",
+				"Suitable for the entire body",
+				"Can be used year-round",
+				"Does not increase photosensitivity"
 			],
 			care_es: '',
 			care_en: ''
 		},
 		{ id: '109', name_es: 'Tratamiento para Manchas', name_en: 'Treatment for Spots', price: 95, summary_es: 'Nuestro Tratamiento para Manchas está diseñado para aclarar y unificar el tono de la piel, eliminando manchas causadas por el sol, el envejecimiento o el acné.', summary_en: 'Our Treatment for Spots is designed to lighten and unify the skin tone, eliminating spots caused by the sun, aging, or acne.', description_es: 'Nuestro Tratamiento para Manchas está diseñado para aclarar y unificar el tono de la piel, eliminando manchas causadas por el sol, el envejecimiento o el acné. Utilizamos técnicas avanzadas y productos específicos que ayudan a reducir la pigmentación y promover una piel más luminosa y uniforme. Resultados visibles en pocas sesiones, para que luzcas una piel radiante y sin imperfecciones. Ideal para todo tipo de piel.', description_en: 'Our Treatment for Spots is designed to lighten and unify the skin tone, eliminating spots caused by the sun, aging, or acne. We use advanced techniques and specific products that help reduce pigmentation and promote a brighter, more even skin. Visible results in just a few sessions, so you can look radiant and flawless. Ideal for all skin types.', recomendation_es: '', recomendation_en: '', image: '/img/limpiezaFacial+dermapen.jpeg', alt: 'Limpieza facial con dermapen', benefits_es: '', benefits_en: '', care_es: '', care_en: '' },
-		{ id: '110', name_es: 'Tratamiento para Piel Sensible y Rosácea', name_en: 'Treatment for Sensitive Skin and Rosacea', price: 110, summary_es: 'Nuestro Facial para Piel Sensible y Rosácea está especialmente formulado para calmar, hidratar y fortalecer las pieles delicadas o con rosácea.', summary_en: 'Our Facial for Sensitive Skin and Rosacea is specially formulated to calm, hydrate, and strengthen delicate skin or skin with rosacea.', description_es: 'Nuestro Facial para Piel Sensible y Rosácea está especialmente formulado para calmar, hidratar y fortalecer las pieles delicadas o con rosácea. Utilizamos ingredientes suaves y de acción antiinflamatoria que ayudan a reducir el enrojecimiento, la irritación y la incomodidad, restaurando el equilibrio de la piel. Ideal para quienes buscan un tratamiento gentil pero efectivo para su piel sensible.', description_en: 'Our Facial for Sensitive Skin and Rosacea is specially formulated to calm, hydrate, and strengthen delicate skin or skin with rosacea. We use gentle, anti-inflammatory ingredients that help reduce redness, irritation, and discomfort, restoring the skin\'s balance. Ideal for those looking for a gentle yet effective treatment for their sensitive skin.', recomendation_es: '', recomendation_en: '', image: '/img/facialrosacea.jpeg', alt: 'Limpieza facial con dermapen', benefits_es: '', benefits_en: '', care_es: '', care_en: '' },
+		{ id: '110', name_es: 'Tratamiento para Piel Sensible y Rosácea', name_en: 'Treatment for Sensitive Skin and Rosacea', price: 110, summary_es: 'Nuestro Facial para Piel Sensible y Rosácea está especialmente formulado para calmar, hidratar y fortalecer las pieles delicadas o con rosácea.', summary_en: 'Our Facial for Sensitive Skin and Rosacea is specially formulated to calm, hydrate, and strengthen delicate skin or skin with rosacea.', description_es: 'Nuestro Facial para Piel Sensible y Rosácea está especialmente formulado para calmar, hidratar y fortalecer las pieles delicadas o con rosácea. Utilizamos ingredientes suaves y de acción antiinflamatoria que ayudan a reducir el enrojecimiento, la irritación y la incomodidad, restaurando el equilibrio de la piel. Ideal para quienes buscan un tratamiento gentil pero efectivo para su piel sensible.', description_en: 'Our Facial for Sensitive Skin and Rosacea is specially formulated to calm, hydrate, and strengthen delicate skin or skin with rosacea. We use gentle, anti-inflammatory ingredients that help reduce redness, irritation, and discomfort, restoring the skins balance. Ideal for those looking for a gentle yet effective treatment for their sensitive skin.', recomendation_es: '', recomendation_en: '', image: '/img/facialrosacea.jpeg', alt: 'Limpieza facial con dermapen', benefits_es: '', benefits_en: '', care_es: '', care_en: '' },
 		{
 			id: '111',
 			name_es: 'Limpieza Facial Profunda de Espalda',
@@ -512,14 +512,14 @@ export default async function seed() {
 			benefits_es: '',
 			benefits_en: '',
 			care_es: [
-				'Evite los productos grasos: Antes del tratamiento, evite usar productos aceitosos alrededor de los ojos, ya que pueden interferir con la efectividad del levantamiento.',
-				'No use rizadores de pestañas: No use un rizador de pestañas durante al menos 24 horas antes del procedimiento para evitar dañar o debilitar sus pestañas naturales.',
-				'Quitar el maquillaje: Asegúrese de que sus pestañas estén completamente limpias y libres de residuos de maquillaje.'
+				"Evite los productos grasos: Antes del tratamiento, evite usar productos aceitosos alrededor de los ojos, ya que pueden interferir con la efectividad del levantamiento.",
+				"No use rizadores de pestañas: No use un rizador de pestañas durante al menos 24 horas antes del procedimiento para evitar dañar o debilitar sus pestañas naturales.",
+				"Quitar el maquillaje: Asegúrese de que sus pestañas estén completamente limpias y libres de residuos de maquillaje."
 			],
 			care_en: [
-				'Avoid oily products: Before the treatment, avoid using oily products around the eyes, as they may interfere with the effectiveness of the lift.',
-				'Do not use eyelash curlers: Avoid using an eyelash curler for at least 24 hours before the procedure to prevent damaging or weakening your natural lashes.',
-				'Remove makeup: Make sure your lashes are completely clean and free of makeup residues.'
+				"Avoid oily products: Before the treatment, avoid using oily products around the eyes, as they may interfere with the effectiveness of the lift.",
+				"Do not use eyelash curlers: Avoid using an eyelash curler for at least 24 hours before the procedure to prevent damaging or weakening your natural lashes.",
+				"Remove makeup: Make sure your lashes are completely clean and free of makeup residues."
 			]
 		},
 		{
@@ -547,7 +547,7 @@ export default async function seed() {
 			price: 120,
 			summary_es: 'Es un tratamiento estético que consiste en dar forma a las cejas para realzar la belleza natural del rostro.',
 			summary_en: 'Is an aesthetic treatment that consists of shaping the eyebrows to enhance the natural beauty of the face.',
-			description_es: 'es un tratamiento estético que consiste en dar forma a las cejas para realzar la belleza natural del rostro. Con el objetivo de mejorar la simetría facial, Aumentar la definición de la mirada, Dar un aspecto más equilibrado al rostro, Crear armonía facial. La técnica la realizamos con pinza, y el proceso es personalizado, ya que depende de las necesidades de cada cliente.',
+			description_es: 'Es un tratamiento estético que consiste en dar forma a las cejas para realzar la belleza natural del rostro. Con el objetivo de mejorar la simetría facial, Aumentar la definición de la mirada, Dar un aspecto más equilibrado al rostro, Crear armonía facial. La técnica la realizamos con pinza, y el proceso es personalizado, ya que depende de las necesidades de cada cliente.',
 			description_en: 'Is an aesthetic treatment that consists of shaping the eyebrows to enhance the natural beauty of the face. With the aim of improving facial symmetry, Increasing the definition of the gaze, Giving a more balanced appearance to the face, Create facial harmony. The technique is done with tweezers, and the process is personalized, as it depends on the needs of each client.',
 			recomendation_es: '',
 			recomendation_en: '',

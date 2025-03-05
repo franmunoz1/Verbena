@@ -20,7 +20,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
                 console.log("Productos obtenidos:", result);
                 setProducts(result.data);
 
-                // Pre-cargar imágenes antes de quitar el loader
+
                 const imagePromises = result.data.map((product) => {
                     return new Promise((resolve) => {
                         let imageUrl = product.image?.url
@@ -33,15 +33,15 @@ export default function ProductCard({ lang, listProdTraductions }) {
                             const img = new Image();
                             img.src = imageUrl;
                             img.onload = resolve;
-                            img.onerror = resolve; // Si falla, simplemente seguimos
+                            img.onerror = resolve;
                         } else {
-                            resolve(); // Si no hay imagen, no retrasamos el proceso
+                            resolve();
                         }
                     });
                 });
 
-                await Promise.all(imagePromises); // Esperar que todas las imágenes se carguen correctamente
-                setLoading(false); // Ocultar el loader solo después de cargar todas las imágenes
+                await Promise.all(imagePromises);
+                setLoading(false);
             } catch (error) {
                 console.error("Error al obtener productos:", error);
                 setError(error.message);
