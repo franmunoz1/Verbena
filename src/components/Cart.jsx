@@ -13,8 +13,6 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
     return [];
   };
 
-  console.log(lang)
-
   const handleQuantity = (index, quantity) => {
     const updatedCart = cart.map((item, i) =>
       i === index ? { ...item, quantity: item.quantity + quantity } : item
