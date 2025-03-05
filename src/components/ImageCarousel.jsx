@@ -26,8 +26,8 @@ export default function ImageCarousel() {
 
     const images = [
         { src: '/img/imgface.jpeg', alt: 'Image 1' },
-        { src: '/img/imgface.jpeg', alt: 'Image 2' },
-        { src: '/img/imgface.jpeg', alt: 'Image 3' },
+        { src: '/img/laminadoCejas.jpeg', alt: 'Image 2' },
+        { src: '/img/imghands.jpeg', alt: 'Image 3' },
     ];
 
     return (
