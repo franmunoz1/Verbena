@@ -22,13 +22,18 @@ export default function ProductCard({ lang, listProdTraductions }) {
 
                 // Pre-cargar imágenes antes de quitar el loader
                 const imagePromises = result.data.map((product) => {
-                    return new Promise((resolve, reject) => {
-                        const imageUrl = product.image?.[0]?.url ? `https://api.verbena-ec.com${product.image[0].url}` : null;
+                    return new Promise((resolve) => {
+                        let imageUrl = product.image?.url
+                            ? `https://api.verbena-ec.com${product.image.url}`
+                            : product.image?.[0]?.url
+                                ? `https://api.verbena-ec.com${product.image[0].url}`
+                                : null;
+
                         if (imageUrl) {
                             const img = new Image();
                             img.src = imageUrl;
                             img.onload = resolve;
-                            img.onerror = reject; // Si falla, podemos manejarlo en el catch
+                            img.onerror = resolve; // Si falla, simplemente seguimos
                         } else {
                             resolve(); // Si no hay imagen, no retrasamos el proceso
                         }
@@ -45,6 +50,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
 
         fetchProducts();
     }, []);
+
 
 
     const handleAddToCart = (product) => {
