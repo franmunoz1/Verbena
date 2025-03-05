@@ -13,6 +13,8 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
     return [];
   };
 
+  console.log(lang)
+
   const handleQuantity = (index, quantity) => {
     const updatedCart = cart.map((item, i) =>
       i === index ? { ...item, quantity: item.quantity + quantity } : item
@@ -175,17 +177,18 @@ export default function Cart({ lang, siteUrl, cartTraductions }) {
       ) : (
         <div className="flex flex-col items-center text-center mt-12">
           <h3 className="text-2xl font-semibold text-gray-700 mb-2">
-            {cartTraductions.emptyCartTitle || "Tu carrito está vacío"}
+            {lang == 'es' ? "Tu carrito esta vacio" : "Your cart is empty"}
           </h3>
           <p className="text-gray-500 mb-6">
-            {cartTraductions.emptyCartMessage || "Parece que aún no has añadido productos a tu carrito."}
+            {lang == 'es' ? "Parece que aún no has añadido productos a tu carrito." : "It looks like you haven't added any products to your cart yet."}
           </p>
           <a
-            href="/"
+            href={`/${lang}/products`}
             className="bg-green-verbena hover:bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
           >
-            {cartTraductions.goToShop || "Ir a la tienda"}
+            {lang == 'es' ? "Ir a la tienda" : "Go to the store"}
           </a>
+
         </div>
 
       )}

@@ -44,7 +44,7 @@ const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) =
         if (quantity > 0 && product) {
             addToCart(product, quantity);
             toast.success(detailProductTranslation.addedToCart, {
-                position: 'top-right',
+                position: 'bottom-right',
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,

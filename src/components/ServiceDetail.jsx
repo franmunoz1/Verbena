@@ -154,13 +154,14 @@ const ServiceDetail = ({ serviceTraductions, lang, serviceId }) => {
 
 
 
-                        <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6">
-                            <p className="text-sm text-yellow-700 font-medium">
+                        <div className="bg-white border-4 border-green-verbena p-4 mb-6 rounded-lg shadow-lg">
+                            <p className="text-base text-green-verbena font-semibold text-center">
                                 {lang === 'es'
                                     ? "Para confirmar la reserva, debe abonarse una seña de $30 previamente."
                                     : "To confirm the booking, a $30 deposit must be paid in advance."}
                             </p>
                         </div>
+
 
 
 

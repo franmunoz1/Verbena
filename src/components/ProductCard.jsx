@@ -56,7 +56,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
     const handleAddToCart = (product) => {
         addToCart(product);
         toast.success(listProdTraductions.added, {
-            position: "top-right",
+            position: "bottom-right",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,

@@ -25,7 +25,7 @@ export const LanguagePicker = ({ siteUrl }) => {
     <div className="relative">
       <select
         onChange={handleSelect}
-        className="appearance-none bg-transparent text-2xl  p-2 pr-8 rounded-md"
+        className="appearance-none bg-transparent text-2xl  p-2 pr-8 rounded-md cursor-pointer"
       >
         {langsArray.map((l) => (
           <option key={l.key} value={l.key} selected={l.key === currentLang}>
