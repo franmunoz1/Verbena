@@ -55,13 +55,10 @@ export default function ServiceCard({ lang, siteUrl, servicesTraductions }) {
 
 
 
-    const filteredServices = services
+    const filteredServices = [...services]
         .filter((service) => filter === "All" || service.category === filter)
-        .sort((a, b) => {
-            if (sort === "priceAsc") return a.price - b.price;
-            if (sort === "priceDesc") return b.price - a.price;
-            return 0; // Default sorting
-        });
+        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
 
     if (loading) {
         return (
