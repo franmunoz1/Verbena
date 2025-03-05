@@ -20,7 +20,7 @@ export default function CarouselCards({ currentLanguage, carouselTraductions, la
                 }
                 const result = await response.json();
                 console.log("Productos obtenidos:", result); // Verifica el formato
-                setProducts(result.data); // Accede a result.data para obtener los productos
+                setProducts(result.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))); // Accede a result.data para obtener los productos
             } catch (error) {
                 console.error("Error al obtener productos:", error);
                 setError(error.message);

@@ -22,7 +22,10 @@ export default function CarouselCards({ currentLanguage, carouselTraductions, la
                 }
                 const result = await response.json();
                 console.log("Servicios obtenidos:", result);
-                setServices(result.data);
+                const sortedServices = result.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                setServices(sortedServices);
+
+
             } catch (error) {
                 console.error("Error al obtener servicios:", error);
             }

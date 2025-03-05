@@ -18,7 +18,7 @@ export default function ProductCard({ lang, listProdTraductions }) {
                 }
                 const result = await response.json();
                 console.log("Productos obtenidos:", result);
-                setProducts(result.data);
+                setProducts(result.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)));
 
 
                 const imagePromises = result.data.map((product) => {
