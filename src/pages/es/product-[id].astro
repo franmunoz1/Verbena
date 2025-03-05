@@ -1,17 +1,18 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ProductDetail from "../../components/ProductDetail.jsx";
-import { db, Product } from "astro:db";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
 export async function getStaticPaths() {
-  const products = await db.select().from(Product);
-  return products.map((product) => ({
-    params: { id: product.id },
+  const response = await fetch(
+    "https://api.verbena-ec.com/api/products?populate=*",
+  );
+  const products = await response.json();
+
+  return products.data.map((product) => ({
+    params: { id: product.documentId },
   }));
 }
-
-const products = await db.select().from(Product);
 
 const { id } = Astro.params;
 
@@ -22,21 +23,16 @@ const detailProductTranslation = {
   quantity: t("detailprod.quantity"),
   addCart: t("detailprod.add"),
   addedToCart: t("detailprod.added"),
+  recomendations: t("detailprod.recomendations"),
 };
-
-const product = products.find((s) => s.id === id);
-
-if (!product) {
-  throw new Error(`Product with id ${id} not found`);
-}
 ---
 
-<Layout title={`Producto-${product.name_es}`}>
+<Layout title={`Producto - ${id}`}>
   <ProductDetail
-    product={product}
+    productId={id}
     siteUrl={Astro.url}
     lang={lang}
     detailProductTranslation={detailProductTranslation}
-    client:load
+    client:only
   />
 </Layout>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-export default function ServiceCard({ services, lang, siteUrl, servicesTraductions }) {
+export default function ServiceCard({ lang, siteUrl, servicesTraductions }) {
+    const [services, setServices] = useState([]);
     const [filter, setFilter] = useState("All");
     const [sort, setSort] = useState("default");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const handleFilterChange = (e) => setFilter(e.target.value);
     const handleSortChange = (e) => setSort(e.target.value);
@@ -15,6 +18,43 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
         }
     }, []);
 
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await fetch("https://api.verbena-ec.com/api/services?populate=*");
+                if (!response.ok) throw new Error("Error al obtener los servicios");
+
+                const result = await response.json();
+                setServices(result.data);
+
+                // Pre-cargar imágenes
+                const imagePromises = result.data.map((service) =>
+                    new Promise((resolve) => {
+                        if (service.image?.url) {
+                            const img = new Image();
+                            img.src = `https://api.verbena-ec.com${service.image.url}`;
+                            img.onload = resolve; // Resolver promesa cuando la imagen carga
+                            img.onerror = resolve; // Evitar bloqueos si falla la carga
+                        } else {
+                            resolve();
+                        }
+                    })
+                );
+
+                await Promise.all(imagePromises); // Esperar que todas las imágenes carguen
+            } catch (error) {
+                console.error("Error al obtener servicios:", error);
+                setError(error.message);
+            } finally {
+                setTimeout(() => setLoading(false), 500); // Reducir delay
+            }
+        };
+
+        fetchServices();
+    }, []);
+
+
+
     const filteredServices = services
         .filter((service) => filter === "All" || service.category === filter)
         .sort((a, b) => {
@@ -22,6 +62,14 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
             if (sort === "priceDesc") return b.price - a.price;
             return 0; // Default sorting
         });
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="w-12 h-12 border-4 border-gray-300 border-t-green-verbena rounded-full animate-spin"></div>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -65,11 +113,9 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
                             key={service.id}
                             className="max-w-lg rounded overflow-hidden shadow-lg p-6 bg-white flex flex-col"
                         >
-                            <img
-                                className="w-full h-[300px] object-cover"
-                                src={service.image}
-                                alt={service.name_es}
-                            />
+                            <img className="w-full h-[300px] object-cover"
+                                src={service.image?.url ? `https://api.verbena-ec.com${service.image.url}` : "/default-image.jpg"}
+                                alt={service.image?.alternativeText || "Imagen del servicio"} />
                             <div className="px-6 py-4">
                                 <div className="font-bold text-xl mb-2">{currentLang == 'es' ? service.name_es : service.name_en}</div>
                                 <p className="text-gray-700 text-base">{currentLang == 'es' ? service.summary_es : service.summary_en}</p>
@@ -80,7 +126,7 @@ export default function ServiceCard({ services, lang, siteUrl, servicesTraductio
                                     Book Now
                                 </button> */}
                                 <a
-                                    href={`/${lang}/service-${service.id}`}
+                                    href={`/${lang}/service-${service.documentId}`}
                                     className="bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full mr-2 text-center transition-all"
                                 >
                                     {servicesTraductions.reserve}

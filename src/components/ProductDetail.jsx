@@ -2,15 +2,49 @@ import React, { useState, useEffect } from 'react';
 import { addToCart } from '../store/cart';
 import { ToastContainer, toast } from 'react-toastify';
 
-const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => {
+const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) => {
+    const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchProductDetail = async () => {
+            const url = `https://api.verbena-ec.com/api/products/${productId}?populate=*`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const result = await response.json();
+                setProduct(result.data);
+
+                if (result.data.image?.url) {
+                    const img = new Image();
+                    img.src = `https://api.verbena-ec.com${result.data.image.url}`;
+                    img.onload = () => setLoading(false);
+                    img.onerror = () => setLoading(false);
+                } else {
+                    setLoading(false);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        if (productId) {
+            fetchProductDetail();
+        }
+    }, [productId]);
 
     const handleAddToCart = () => {
-        if (quantity > 0) {
-            console.log('Adding to cart, quantity:', quantity); // Debugging
+        if (quantity > 0 && product) {
             addToCart(product, quantity);
             toast.success(detailProductTranslation.addedToCart, {
-                position: "top-right",
+                position: 'top-right',
                 autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
@@ -18,25 +52,21 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                 draggable: true,
                 progress: undefined,
                 style: {
-                    backgroundColor: "#708a6f",
-                    color: "#fff",
-                    fontWeight: "",
-                    borderRadius: "8px",
+                    backgroundColor: '#708a6f',
+                    color: '#fff',
+                    borderRadius: '8px',
                 },
             });
         }
     };
 
-
-    const [currentLang, setCurrentLang] = useState(lang);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            setCurrentLang(window.location.pathname.split("/")[1]);
-        }
-    }, []);
-
-    console.log(detailProductTranslation.quantity)
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="w-12 h-12 border-4 border-gray-300 border-t-green-verbena rounded-full animate-spin"></div>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -44,29 +74,34 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                 <div className="md:w-1/2">
                     <div className="relative aspect-square">
                         <img
-                            src={product.image}
-                            alt={product.alt || "Product Image"}
+                            src={product.image?.url ? `https://api.verbena-ec.com${product.image.url}` : "/default-image.jpg"}
+                            alt={product.image?.alternativeText || "Imagen del producto"}
                             className="rounded-lg object-contain w-full h-full"
                             style={{ maxHeight: '500px' }}
                         />
                     </div>
                 </div>
                 <div className="md:w-1/2">
-                    <nav className="text-sm mb-2">
-                        <ol className="list-none p-0 inline-flex">
-                            <li className="flex items-center">
-                                <span className="text-gray-800">{product.brand}</span>
-                            </li>
-                        </ol>
-                    </nav>
-                    {/* <h1 className="text-2xl font-semibold mb-2">{product.brand}</h1> */}
-                    <h2 className="text-4xl font-light text-primary mb-4">{currentLang == 'es' ? product.name_es : product.name_en}</h2>
+                    <h2 className="text-4xl font-light text-primary mb-4">
+                        {lang === 'es' ? product.name_es : product.name_en}
+                    </h2>
                     <p className="text-md text-gray-500 mb-6">{product.capacity}</p>
-                    {/* QUITANDO PRECIOS POR EL MOMENTO */}
-                    {/* <p className="text-2xl mb-4">US${product.price}</p> */}
+                    <p className="text-2xl mb-4">US${product.price}</p>
                     <p className="text-sm text-gray-500 mb-6">
-                        {currentLang == 'es' ? product.description_es : product.description_en}
+                        {lang === 'es' ? product.description_es : product.description_en}
                     </p>
+                    {product.recomendation_es?.length > 0 && (
+                        <div className="mb-6 p-4 rounded-lg shadow-md">
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 border-b pb-2">
+                                {detailProductTranslation.recomendations}
+                            </h3>
+                            <ul className="list-disc pl-5 text-gray-700">
+                                {(lang === 'es' ? product.recomendation_es : product.recomendation_en).map((rec, index) => (
+                                    <li key={index}>{rec}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                     <div className="mb-6">
                         <h3 className="text-sm font-medium mb-2">{detailProductTranslation.quantity}</h3>
                         <div className="flex items-center">
@@ -79,17 +114,17 @@ const ProductDetail = ({ product, siteUrl, lang, detailProductTranslation }) => 
                             />
                             <button
                                 onClick={handleAddToCart}
-                                className="flex bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full transition-all">
+                                className="flex bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full transition-all"
+                            >
                                 {detailProductTranslation.addCart}
                             </button>
-                            <ToastContainer />
-
                         </div>
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
-}
+};
 
 export default ProductDetail;
