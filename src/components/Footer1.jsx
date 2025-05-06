@@ -95,7 +95,7 @@ export default function Footer({ siteUrl, lang, footerTraductions }) {
                             {/* <a href="#" className="text-muted-foreground hover:text-foreground">
                                 <FacebookIcon className="h-5 w-5" />
                             </a> */}
-                            <a href="https://www.instagram.com/verbena.ec/" target="blank" className="text-muted-foreground hover:text-foreground">
+                            <a href="https://www.instagram.com/verbenaskin.clinic/" target="blank" className="text-muted-foreground hover:text-foreground">
                                 <InstagramIcon className="h-5 w-5" />
                             </a>
                             {/* <a href="#" className="text-muted-foreground hover:text-foreground">
