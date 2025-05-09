@@ -1,66 +1,82 @@
-import React from 'react'
-import useEmblaCarousel from 'embla-carousel-react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-export default function CarouselCards({ services }) {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
-    console.log("services", services)
+export default function CarouselCards({ currentLanguage, carouselTraductions, lang }) {
 
-    const scrollPrev = React.useCallback(() => {
-        if (emblaApi) emblaApi.scrollPrev()
-    }, [emblaApi])
+    const [currentLang, setCurrentLang] = useState(lang);
+    const [services, setServices] = useState([]);
 
-    const scrollNext = React.useCallback(() => {
-        if (emblaApi) emblaApi.scrollNext()
-    }, [emblaApi])
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setCurrentLang(window.location.pathname.split("/")[1]);
+        }
+    }, []);
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            try {
+                const response = await fetch("https://api.verbena-ec.com/api/services?populate=*");
+                if (!response.ok) {
+                    throw new Error("Error al obtener los servicios");
+                }
+                const result = await response.json();
+                console.log("Servicios obtenidos:", result);
+                const sortedServices = result.data.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                setServices(sortedServices);
+
+
+            } catch (error) {
+                console.error("Error al obtener servicios:", error);
+            }
+        };
+
+        fetchServices();
+    }, []);
+
+    useEffect(() => {
+        AOS.init({
+            duration: 600,
+            once: true,
+            offset: 50,
+        });
+    }, []);
 
     return (
-        <div className="relative px-4 py-8">
-            <div className="overflow-hidden" ref={emblaRef}>
-                <div className="flex">
-                    {services && services.length > 0 && services.map((card, index) => (
-                        <div key={card.id} className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_70%] md:flex-[0_0_50%] lg:flex-[0_0_33.33%] p-4">
-                            <div className="rounded overflow-hidden shadow-lg p-6 bg-white h-full flex flex-col">
-                                <img
-                                    className="w-full h-[150px] sm:h-[200px] md:h-[250px] lg:h-[200px] object-cover mb-4"
-                                    src={card.image}
-                                    alt={card.alt}
+        <div className="relative px-4 py-8 space-y-6 flex flex-col items-center">
+            {services.length > 0 && services.map((service, index) => {
+                const animationDirection = index % 2 === 0 ? "fade-right" : "fade-left";
+                return (
+                    <div
+                        key={service.id}
+                        className={`w-[240px] min-h-[320px] sm:w-[260px] sm:min-h-[340px] 
+                        md:w-[320px] md:min-h-[360px] lg:w-[400px] lg:min-h-[420px] xl:w-[450px] xl:min-h-[480px]
+                        rounded-lg shadow-lg p-4 bg-white flex flex-col justify-between
+                        ${animationDirection === "fade-right" ? "ml-auto lg:mr-[10%] xl:mr-[12%]" : "mr-auto lg:ml-[10%] xl:ml-[12%]"}`}
+                        data-aos={animationDirection}
+                    >
+                        <img className="w-full h-[180px] sm:h-[200px] md:h-[250px] lg:h-[280px] object-cover rounded-lg"
+                            src={service.image?.url ? `https://api.verbena-ec.com${service.image.url}` : "/default-image.jpg"}
+                            alt={service.image?.alternativeText || "Imagen del servicio"} />
 
-                                />
-                                <div className="px-6 py-4 flex-grow">
-                                    <div className="font-bold text-xl mb-2">{card.name}</div>
-                                    <p className="text-gray-700 text-base">
-                                        {card.summary}
-                                    </p>
-                                </div>
-                                <div className="px-6 pt-4 pb-2 flex flex-col gap-6 mt-auto">
-                                    <button className="bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full mr-2">
-                                        Book Now
-                                    </button>
-                                    <a
-                                        href={`/service-${card.id}`}
-                                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-full text-center"
-                                    >
-                                        Learn More
-                                    </a>
-                                </div>
+                        <div className="text-center px-2 py-2 flex-grow flex items-center justify-center">
+                            <div className="font-bold text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-h-20 text-wrap">
+                                {currentLang == 'es' ? service.name_es : service.name_en}
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-            <button
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-                onClick={scrollPrev}
-            >
-                <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md z-10"
-                onClick={scrollNext}
-            >
-                <ChevronRight className="w-6 h-6" />
-            </button>
+
+                        <div className="flex justify-center">
+                            <a
+                                href={`/${currentLanguage}/service-${service.documentId}`}
+                                className="bg-green-verbena hover:bg-gray-400 text-white font-semibold py-2 px-5 rounded-full 
+                                            text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl transition-all w-full sm:w-auto text-center"
+                            >
+                                {carouselTraductions.reserve}
+                            </a>
+                        </div>
+                    </div>
+                );
+            })}
         </div>
-    )
+    );
 }

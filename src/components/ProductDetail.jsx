@@ -1,49 +1,130 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addToCart } from '../store/cart';
+import { ToastContainer, toast } from 'react-toastify';
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = ({ siteUrl, lang, detailProductTranslation, productId }) => {
+    const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchProductDetail = async () => {
+            const url = `https://api.verbena-ec.com/api/products/${productId}?populate=*`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const result = await response.json();
+                setProduct(result.data);
+
+                if (result.data.image?.url) {
+                    const img = new Image();
+                    img.src = `https://api.verbena-ec.com${result.data.image.url}`;
+                    img.onload = () => setLoading(false);
+                    img.onerror = () => setLoading(false);
+                } else {
+                    setLoading(false);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        if (productId) {
+            fetchProductDetail();
+        }
+    }, [productId]);
 
     const handleAddToCart = () => {
-        if (quantity > 0) {
+        if (quantity > 0 && product) {
             addToCart(product, quantity);
+            toast.success(detailProductTranslation.addedToCart, {
+                position: 'bottom-right',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    backgroundColor: '#708a6f',
+                    color: '#fff',
+                    borderRadius: '8px',
+                },
+            });
         }
     };
 
-    return (
-        <section className="text-gray-600 body-font overflow-hidden">
-            <div className="container px-5 py-24 mx-auto">
-                <div className="lg:w-4/5 mx-auto flex flex-wrap">
-                    <img alt={product.alt} className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded max-h-[500px]" src={product.image} />
-                    <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                        <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-                        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.name}</h1>
-                        <div className="flex mb-4"></div>
-                        <p className="leading-relaxed">{product.description}</p>
-                        <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5"></div>
-                        <div className="flex justify-between">
-                            <span className="title-font font-medium text-2xl text-gray-900">${product.price}</span>
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div className="w-12 h-12 border-4 border-gray-300 border-t-green-verbena rounded-full animate-spin"></div>
+            </div>
+        );
+    }
 
-                            <div className="flex items-center">
-                                <input
-                                    type="number"
-                                    min="1"
-                                    value={quantity}
-                                    onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                    className="w-16 text-center border rounded mr-2"
-                                />
-                                <button
-                                    onClick={handleAddToCart}
-                                    className="flex bg-green-verbena hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
-                                    Add to Cart
-                                </button>
-                            </div>
+    return (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="flex flex-col md:flex-row gap-8">
+                <div className="md:w-1/2">
+                    <div className="relative aspect-square">
+                        <img
+                            src={product.image?.url ? `https://api.verbena-ec.com${product.image.url}` : "/default-image.jpg"}
+                            alt={product.image?.alternativeText || "Imagen del producto"}
+                            className="rounded-lg object-contain w-full h-full"
+                            style={{ maxHeight: '500px' }}
+                        />
+                    </div>
+                </div>
+                <div className="md:w-1/2">
+                    <h2 className="text-4xl font-light text-primary mb-4">
+                        {lang === 'es' ? product.name_es : product.name_en}
+                    </h2>
+                    <p className="text-md text-gray-500 mb-6">{product.capacity}</p>
+                    <p className="text-2xl mb-4">US${product.price}</p>
+                    <p className="text-sm text-gray-500 mb-6">
+                        {lang === 'es' ? product.description_es : product.description_en}
+                    </p>
+                    {product.recomendation_es?.length > 0 && (
+                        <div className="mb-6 p-4 rounded-lg shadow-md">
+                            <h3 className="text-lg font-semibold text-gray-800 mb-2 border-b pb-2">
+                                {detailProductTranslation.recomendations}
+                            </h3>
+                            <ul className="list-disc pl-5 text-gray-700">
+                                {(lang === 'es' ? product.recomendation_es : product.recomendation_en).map((rec, index) => (
+                                    <li key={index}>{rec}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                    <div className="mb-6">
+                        <h3 className="text-sm font-medium mb-2">{detailProductTranslation.quantity}</h3>
+                        <div className="flex items-center">
+                            <input
+                                type="number"
+                                min="1"
+                                value={quantity}
+                                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                className="w-16 text-center border rounded mr-2"
+                            />
+                            <button
+                                onClick={handleAddToCart}
+                                className="flex bg-green-verbena hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full transition-all"
+                            >
+                                {detailProductTranslation.addCart}
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+            <ToastContainer />
+        </div>
     );
-}
+};
 
 export default ProductDetail;

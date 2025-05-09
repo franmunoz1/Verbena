@@ -1,31 +1,86 @@
 ---
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.astro";
+import Footer1 from "../components/Footer1.jsx";
 import WhatsappButton from "../components/WhatsappButton.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+
+const navbarTraductions = {
+	home: t("nav.home"),
+	products: t("nav.products"),
+	services: t("nav.services"),
+	about: t("nav.about"),
+};
+
+const footerTraductions = {
+	description: t("footer.description"),
+	quickLinks: t("footer.quickLinks"),
+	contactUs: t("footer.contactUs"),
+	copyrigth: t("footer.copyright"),
+	home: t("footer.home"),
+	products: t("footer.products"),
+	services: t("footer.services"),
+	about: t("footer.about"),
+	links: t("footer.links"),
+};
+
+const test = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Verbena Esthetic Center" />
+		<meta
+			name="keywords"
+			content="estética, belleza, tratamientos faciales, spa, Verbena Esthetic Center"
+		/>
+		<meta name="author" content="Verbena Esthetic Center" />
+		<meta name="robots" content="index, follow" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/img/iconNew.png" />
+
+		<meta
+			property="og:title"
+			content="Verbena Esthetic Center - Belleza y bienestar para tu piel"
+		/>
+		<meta
+			property="og:description"
+			content="Descubre nuestros tratamientos faciales y corporales. ¡Reserva tu cita en Verbena Esthetic Center y luce radiante!"
+		/>
+		<meta property="og:type" content="website" />
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<Header client:load />
+	<body class="bg-[#f5f1ec] pt-[180px] lg:pt-[140px]">
+		<Header
+			siteUrl={Astro.url}
+			lang={lang}
+			test={test}
+			navbarTraductions={navbarTraductions}
+			client:load
+		/>
 		<section class="min-h-[800px]">
 			<slot />
 		</section>
 		<WhatsappButton />
-		<Footer />
+		<Footer1
+			siteUrl={Astro.url}
+			lang={lang}
+			test={test}
+			footerTraductions={footerTraductions}
+			client:load
+		/>
 	</body>
 </html>

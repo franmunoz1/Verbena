@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GiftCardDetail from "../../components/GiftCardDetail.jsx";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const giftCardTraductions = {
+    titleGiftCard: t("giftcard.subtitle"),
+    selectGiftCard: t("giftcard.select"),
+    quantityGiftCard: t("giftcard.quantity"),
+    addGiftCard: t("giftcard.add"),
+    otherGiftCard: t("giftcard.other"),
+};
+---
+
+<Layout title="Gift Card">
+    <GiftCardDetail
+        giftCardTraductions={giftCardTraductions}
+        siteUrl={Astro.url}
+        lang={lang}
+        client:load
+    />
+</Layout>

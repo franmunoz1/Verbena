@@ -1,55 +1,287 @@
-import React, { useState } from 'react';
-import CartButton from './CartButton';
+import { useState, useEffect } from "react";
+import CartButton from "./CartButton";
+import { LanguagePicker } from "./LanguagePicker";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import '@fontsource/cormorant-garamond';
 
-const Header = () => {
-    // Estado para controlar la visibilidad del menú
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Header({ siteUrl, lang, navbarTraductions }) {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [hideLogo, setHideLogo] = useState(false);
 
-    // Función para manejar el clic en el botón de hamburguesa
+    useEffect(() => {
+        AOS.init({ duration: 600 });
+        let lastScrollY = window.scrollY;
+        const handleScroll = () => {
+            if (window.innerWidth < 768) { // Solo afecta a pantallas pequeñas
+                if (window.scrollY > lastScrollY) {
+                    setHideLogo(true);
+                } else {
+                    setHideLogo(false);
+                }
+            }
+            lastScrollY = window.scrollY;
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+        setMenuOpen(!menuOpen);
     };
 
     return (
-        <nav className="bg-green-verbena">
-            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Verbena</span>
-                </a>
-                <button
-                    onClick={toggleMenu}
-                    type="button"
-                    className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    aria-controls="navbar-default"
-                    aria-expanded={isMenuOpen}
-                >
-                    <span className="sr-only">Open main menu</span>
-                    <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                    </svg>
-                </button>
-                <div className={`w-full md:block md:w-auto ${isMenuOpen ? 'block' : 'hidden'}`} id="navbar-default">
-                    <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-green-verbena md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-green-verbena dark:bg-green-verbena md:dark:bg-green-verbena dark:border-gray-700 text-white">
-                        <li>
-                            <a href="/" className="block py-2 px-3 text-white rounded ">Home</a>
-                        </li>
-                        <li>
-                            <a href="/products" className="block py-2 px-3 text-white rounded ">Products</a>
-                        </li>
-                        <li>
-                            <a href="/services" className="block py-2 px-3 text-white rounded ">Services</a>
-                        </li>
-                        <li>
-                            <a href="/about" className="block py-2 px-3 text-white rounded ">About</a>
-                        </li>
-                        <li>
-                            <CartButton />
-                        </li>
-                    </ul>
+        <nav className="fixed top-0 z-40 w-full bg-white shadow-md bg-opacity-30 backdrop-blur-sm transition-all duration-300">
+            <div className="container mx-auto p-4 pt-0">
+                {/* Contenedor principal */}
+                <div className={`flex justify-between items-center transition-all duration-500 ease-in-out ${hideLogo ? 'pt-4' : ''}`}>
+                    {/* Logo (se oculta solo en pantallas pequeñas) */}
+                    <a href={`/${lang}`} className={`flex-1 md:flex-none flex flex-col justify-center md:justify-start items-center gap-x-2 transition-all duration-1000 ${hideLogo ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
+                        <img src="/img/testIcon.png" alt="Verbena Logo" className="h-[120px] w-auto transition-all duration-1000" />
+                    </a>
+
+
+                    {/* Anchors de navegación y selector de idioma */}
+                    <div className="hidden md:flex md:items-center md:space-x-6">
+                        <a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">
+                            {navbarTraductions.products}
+                        </a>
+                        <a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">
+                            {navbarTraductions.services}
+                        </a>
+                        <a href={`/${lang}/giftcard`} className="text-muted-foreground hover:text-foreground">
+                            Gift Card
+                        </a>
+                        <a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">
+                            {navbarTraductions.about}
+                        </a>
+                        <LanguagePicker siteUrl={siteUrl} />
+                    </div>
+                    <div className="hidden md:block">
+                        <CartButton lang={lang} className="h-5 w-5" />
+                    </div>
                 </div>
+
+                {/* Menú para pantallas pequeñas */}
+                <div className={`flex justify-between items-center md:hidden transition-all duration-500 ease-in-out ${hideLogo ? 'pt-2' : ''}`}>
+                    <button className="rounded-full p-2 border" onClick={toggleMenu}>
+                        <MenuIcon className="h-5 w-5" />
+                        <span className="sr-only">Toggle menu</span>
+                    </button>
+                    <a href={`/${lang}/services`} className="text-muted-foreground hover:text-foreground">
+                        {navbarTraductions.services}
+                    </a>
+                    <LanguagePicker siteUrl={siteUrl} />
+                    <CartButton lang={lang} className="h-5 w-5" />
+                </div>
+
+                {/* Menú desplegable lateral solo para móviles */}
+                {menuOpen && (
+                    <div className="fixed inset-0 z-50 bg-[#f5f1ec] bg-opacity-100 w-[250px] h-screen left-0 overflow-y-auto" data-aos="fade-right">
+                        <button className="absolute top-4 right-4 text-2xl font-bold" onClick={toggleMenu}>
+                            &times;
+                        </button>
+                        <nav className="flex flex-col gap-6 mt-8 text-lg p-4">
+                            <a href={`/${lang}`} className="text-muted-foreground hover:text-foreground">
+                                {navbarTraductions.home}
+                            </a>
+                            <a href={`/${lang}/products`} className="text-muted-foreground hover:text-foreground">
+                                {navbarTraductions.products}
+                            </a>
+                            <a href={`/${lang}/giftcard`} className="text-muted-foreground hover:text-foreground">
+                                Gift Card
+                            </a>
+                            <a href={`/${lang}/about`} className="text-muted-foreground hover:text-foreground">
+                                {navbarTraductions.about}
+                            </a>
+                        </nav>
+                    </div>
+                )}
             </div>
         </nav>
     );
-};
+}
 
-export default Header;
+function MenuIcon(props) {
+    return (
+        <svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+    );
+}
+
+
+
+
+
+
+// Last header
+
+// import { useState, useEffect } from "react";
+// import CartButton from "./CartButton";
+// import { LanguagePicker } from "./LanguagePicker";
+// import AOS from "aos";
+// import "aos/dist/aos.css"; // Import AOS styles
+// import '@fontsource/cormorant-garamond';
+
+// export default function Header({ siteUrl, lang, navbarTraductions }) {
+//     const [menuOpen, setMenuOpen] = useState(false);
+
+//     useEffect(() => {
+//         AOS.init({ duration: 600 });
+//     }, []);
+
+//     const toggleMenu = () => {
+//         setMenuOpen(!menuOpen);
+//     };
+
+//     return (
+//         <nav className="sticky top-0 z-40 w-full bg-white  shadow-md" >
+//             {/* AGREGAR TRANSPARENCIA HEADER: bg-opacity-30 backdrop-blur-sm */}
+//             <div className="container flex mx-auto h-16 items-center justify-between px-4 md:px-6">
+//                 {/* Menú hamburguesa solo visible en pantallas pequeñas (izquierda) */}
+//                 <button className="md:hidden rounded-full p-2 border" onClick={toggleMenu}>
+//                     <MenuIcon className="h-5 w-5" />
+//                     <span className="sr-only">Toggle menu</span>
+//                 </button>
+
+//                 {/* Logo centrado en pantallas pequeñas, pero en su lugar normal en pantallas grandes */}
+//                 <a href={/${lang}} className="flex-1 md:flex-none flex justify-center md:justify-start items-center gap-2">
+//                     <div className="flex flex-col text-center leading-none">
+//                         <span
+//                             className="text-green-verbena font-extrabold text-4xl"
+//                             style={{ fontFamily: 'Cormorant Garamond, serif' }}
+//                         >
+//                             Verbena
+//                         </span>
+//                         <span
+//                             className="text-[0.6rem] text-green-verbena italic tracking-tighter"
+//                             style={{ letterSpacing: '0.03em' }}
+//                         >
+//                             ESTHETIC CENTER
+//                         </span>
+//                     </div>
+//                 </a>
+
+//                 {/* Barra de navegación centrada en pantallas md o mayores */}
+//                 <div className="hidden md:flex md:flex-1 justify-center items-center gap-6 text-sm font-medium">
+//                     <a href={/${lang}} className="text-muted-foreground hover:text-foreground">
+//                         {navbarTraductions.home}
+//                     </a>
+//                     <a href={/${lang}/products} className="text-muted-foreground hover:text-foreground">
+//                         {navbarTraductions.products}
+//                     </a>
+//                     <a href={/${lang}/services} className="text-muted-foreground hover:text-foreground">
+//                         {navbarTraductions.services}
+//                     </a>
+//                     <a href={/${lang}/giftcard} className="text-muted-foreground hover:text-foreground">
+//                         Gift Card
+//                     </a>
+//                     <a href={/${lang}/about} className="text-muted-foreground hover:text-foreground">
+//                         {navbarTraductions.about}
+//                     </a>
+//                     {/* LanguagePicker visible en computadoras */}
+//                     <LanguagePicker siteUrl={siteUrl} />
+//                 </div>
+
+//                 {/* Botón de carrito visible en todas las pantallas */}
+//                 <div className="flex items-center">
+//                     <button className="rounded-full">
+//                         <CartButton lang={lang} className="h-5 w-5" />
+//                         <span className="sr-only">Cart</span>
+//                     </button>
+//                 </div>
+
+//                 {/* Menú hamburguesa animado */}
+//                 {menuOpen && (
+//                     <div
+//                         className="fixed inset-0 z-50 bg-white p-6 shadow-md w-[250px] h-full left-0"
+//                         data-aos="fade-right"
+//                     >
+//                         {/* Cruz para cerrar el menú */}
+//                         <button className="absolute top-4 right-4 text-2xl font-bold" onClick={toggleMenu}>
+//                             &times;
+//                         </button>
+
+//                         {/* LanguagePicker visible en móviles */}
+//                         <LanguagePicker siteUrl={siteUrl} />
+
+//                         <nav className="flex flex-col gap-6 mt-8 text-lg">
+//                             <a href={/${lang}} className="text-muted-foreground hover:text-foreground">
+//                                 {navbarTraductions.home}
+//                             </a>
+//                             <a href={/${lang}/products} className="text-muted-foreground hover:text-foreground">
+//                                 {navbarTraductions.products}
+//                             </a>
+//                             <a href={/${lang}/services} className="text-muted-foreground hover:text-foreground">
+//                                 {navbarTraductions.services}
+//                             </a>
+//                             <a href={/${lang}/giftcard} className="text-muted-foreground hover:text-foreground">
+//                                 Gift Card
+//                             </a>
+//                             <a href={/${lang}/about} className="text-muted-foreground hover:text-foreground">
+//                                 {navbarTraductions.about}
+//                             </a>
+//                         </nav>
+//                     </div>
+//                 )}
+//             </div>
+//         </nav >
+
+//     );
+// }
+
+
+// // Iconos como antes
+// function MenuIcon(props) {
+//     return (
+//         <svg
+//             {...props}
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             stroke="currentColor"
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//         >
+//             <line x1="4" x2="20" y1="12" y2="12" />
+//             <line x1="4" x2="20" y1="6" y2="6" />
+//             <line x1="4" x2="20" y1="18" y2="18" />
+//         </svg>
+//     );
+// }
+
+// function MountainIcon(props) {
+//     return (
+//         <svg
+//             {...props}
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="24"
+//             height="24"
+//             viewBox="0 0 24 24"
+//             fill="none"
+//             stroke="currentColor"
+//             strokeWidth="2"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//         >
+//             <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+//         </svg>
+//     );
+// }

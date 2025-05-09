@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ServiceDetail from "../../components/ServiceDetail.jsx";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+export async function getStaticPaths() {
+    const response = await fetch(
+        "https://api.verbena-ec.com/api/services?populate=*",
+    );
+    const services = await response.json();
+
+    return services.data.map((service) => ({
+        params: { id: service.documentId },
+    }));
+}
+
+const { id } = Astro.params;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const serviceTraductions = {
+    per: t("detailserv.per"),
+    name: t("detailserv.name"),
+    date: t("detailserv.date"),
+    send: t("detailserv.send"),
+    benefits: t("detailserv.benefits"),
+    cares: t("detailserv.cares"),
+};
+---
+
+<Layout title={`Service - ${id}`}>
+    <ServiceDetail
+        serviceId={id}
+        siteUrl={Astro.url}
+        serviceTraductions={serviceTraductions}
+        lang={lang}
+        client:load
+    />
+</Layout>
